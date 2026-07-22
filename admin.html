@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>GT RESULTS ADMIN</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+background:#050505;
+font-family:Arial;
+color:#fff;
+padding:20px;
+}
+
+.card{
+max-width:700px;
+margin:auto;
+background:#0a0a0a;
+border:1px solid #222;
+padding:20px;
+border-radius:20px;
+}
+
+h1{
+font-family:Orbitron;
+margin-bottom:20px;
+}
+
+input,select{
+width:100%;
+padding:14px;
+margin-bottom:12px;
+background:#111;
+border:1px solid #333;
+border-radius:12px;
+color:#fff;
+}
+
+button{
+width:100%;
+padding:15px;
+background:#a855f7;
+border:none;
+border-radius:12px;
+color:#fff;
+font-weight:bold;
+cursor:pointer;
+}
+
+.result-item{
+background:#111;
+padding:15px;
+margin-top:10px;
+border-radius:12px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.delete-btn{
+background:red;
+padding:8px 12px;
+border:none;
+border-radius:8px;
+color:#fff;
+cursor:pointer;
+}
+
+.admin-nav{
+display:flex;
+gap:10px;
+margin-bottom:15px;
+}
+
+.nav-btn{
+flex:1;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+
+padding:12px;
+background:#1a1a1a;
+border:1px solid #b95cff;
+border-radius:10px;
+
+color:#fff;
+text-decoration:none;
+font-weight:700;
+font-size:12px;
+}
+
+.nav-btn i{
+font-size:18px;
+color:#b95cff;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+
+<h1>GT RESULTS ADMIN</h1>
+
+<input type="text" id="title" placeholder="Result Title">
+
+<input type="date" id="date">
+
+<select id="slot">
+<option>3:00 PM</option>
+<option>5:00 PM</option>
+<option>9:00 PM</option>
+</select>
+
+<select id="game">
+<option>FREE FIRE MAX</option>
+<option>BGMI</option>
+<option>VALORANT</option>
+<option>MOBA</option>
+<option>FIFA</option>
+</select>
+
+<input type="text" id="image"
+placeholder="ImageBB Direct URL">
+
+<button onclick="publishResult()">
+PUBLISH RESULT
+</button>
+
+<div id="list"></div>
+
+</div>
+<div class="admin-nav">
+
+<a href="slot-admin.html" class="nav-btn">
+<i class="ri-list-check-3"></i>
+SLOT LIST ADMIN
+</a>
+
+<a href="table-admin.html" class="nav-btn">
+<i class="ri-bar-chart-box-line"></i>
+TABLE ADMIN
+</a>
+
+<a href="standing.html" class="nav-btn">
+<i class="ri-bar-chart-box-line"></i>
+TABLE PAGE
+</a>
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script>
+
+const firebaseConfig = {
+apiKey: "AIzaSyAxxvbQlbvqtedhoicrijzAlljIjKeejWw",
+authDomain: "grind-treager.firebaseapp.com",
+databaseURL: "https://grind-treager-default-rtdb.firebaseio.com",
+projectId: "grind-treager",
+storageBucket: "grind-treager.firebasestorage.app",
+messagingSenderId: "236334920342",
+appId: "1:236334920342:web:5ae959f81b41541f5608b7"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.database();
+
+function publishResult(){
+
+let title=document.getElementById("title").value;
+let date=document.getElementById("date").value;
+let slot=document.getElementById("slot").value;
+let game=document.getElementById("game").value;
+let image=document.getElementById("image").value;
+
+if(!title || !date || !image){
+alert("Fill all fields");
+return;
+}
+
+db.ref("results").push({
+title,
+date,
+slot,
+game,
+image
+});
+
+alert("Result Published");
+
+document.getElementById("title").value="";
+document.getElementById("image").value="";
+}
+
+db.ref("results").on("value",snap=>{
+
+let data=snap.val();
+let html="";
+
+if(data){
+
+for(let id in data){
+
+html+=`
+<div class="result-item">
+
+<span>${data[id].title}</span>
+
+<button class="delete-btn"
+onclick="deleteResult('${id}')">
+DELETE
+</button>
+
+</div>
+`;
+}
+
+}
+
+document.getElementById("list").innerHTML=html;
+
+});
+
+function deleteResult(id){
+
+if(confirm("Delete Result?")){
+
+db.ref("results/"+id).remove();
+
+}
+
+}
+
+</script>
+<script>
+const password = prompt("ENTER ADMIN PASSWORD");
+
+if(password !== "IMADMIN"){
+alert("ACCESS DENIED");
+window.location.href = "index.html";
+}
+</script>
+</body>
+</html>

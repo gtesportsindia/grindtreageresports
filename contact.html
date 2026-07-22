@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GT ESPORTS INDIA | CONTACT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+
+<style>
+
+body{
+background:#050505;
+font-family:'Poppins',sans-serif;
+color:#fff;
+padding:20px;
+}
+
+.contact-box{
+max-width:900px;
+margin:auto;
+background:#0b0b0b;
+border:1px solid #181818;
+border-radius:25px;
+padding:30px;
+}
+
+h1{
+font-family:'Orbitron',sans-serif;
+text-align:center;
+margin-bottom:30px;
+}
+
+.contact-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+margin-bottom:30px;
+}
+
+.contact-card{
+background:#111;
+border:1px solid #222;
+border-radius:15px;
+padding:20px;
+color:#fff;
+cursor:pointer;
+}
+
+.contact-card i{
+font-size:28px;
+color:#a855f7;
+margin-bottom:10px;
+display:block;
+}
+
+details{
+background:#111;
+border:1px solid #222;
+border-radius:12px;
+padding:15px;
+margin-bottom:10px;
+}
+
+summary{
+cursor:pointer;
+font-weight:600;
+}
+
+details p{
+margin-top:10px;
+color:#aaa;
+}
+
+.direct-contact,
+.office-box{
+margin-top:25px;
+background:#111;
+border:1px solid #222;
+border-radius:15px;
+padding:20px;
+}
+
+.support-box{
+margin-top:30px;
+}
+
+input,
+textarea{
+width:100%;
+padding:15px;
+background:#111;
+border:1px solid #222;
+border-radius:12px;
+color:#fff;
+margin-bottom:15px;
+}
+
+textarea{
+height:140px;
+resize:none;
+}
+
+.send-btn{
+width:100%;
+padding:15px;
+border:none;
+border-radius:12px;
+background:linear-gradient(135deg,#c084fc,#9333ea);
+color:#fff;
+font-weight:700;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="contact-box">
+
+<h1>CONTACT US</h1>
+
+<div class="contact-grid">
+
+<div class="contact-card">
+<i class="ri-question-line"></i>
+FAQ
+</div>
+
+<div class="contact-card">
+<i class="ri-customer-service-2-line"></i>
+CONTACT SUPPORT
+</div>
+
+<div class="contact-card">
+<i class="ri-flashlight-line"></i>
+PARTNERSHIPS
+</div>
+
+<div class="contact-card">
+<i class="ri-discord-line"></i>
+DISCORD SUPPORT
+</div>
+
+</div>
+
+<h2>COMMON FAQS</h2>
+
+<details>
+<summary>How do I register for GT Esports tournaments?</summary>
+<p>Go to registration page and complete your team registration.</p>
+</details>
+
+<details>
+<summary>How can my team qualify for invitation events?</summary>
+<p>Perform consistently in daily scrims and tournaments.</p>
+</details>
+
+<details>
+<summary>My result is not showing?</summary>
+<p>Contact support with screenshots.</p>
+</details>
+
+<details>
+<summary>When are prize pools distributed?</summary>
+<p>Prize pools are distributed within 3-7 working days.</p>
+</details>
+
+<div class="direct-contact">
+<h3>DIRECT CONTACT</h3>
+<p>gtesportsindiabuisness@zohomail.in</p>
+</div>
+
+<div class="office-box">
+<h3>HEAD OFFICE</h3>
+<p>📍 West Bengal, India</p>
+</div>
+
+<div class="support-box">
+
+<h2>CONTACT SUPPORT</h2>
+
+<input id="supportName" type="text" placeholder="Your Name">
+
+<input id="supportEmail" type="email" placeholder="Email Address">
+
+<textarea id="supportMessage" placeholder="Your Message"></textarea>
+
+<button class="send-btn" onclick="sendMessage()">
+SEND MESSAGE
+</button>
+
+</div>
+
+</div>
+
+<script>
+async function sendMessage(){
+
+const name=document.getElementById("supportName").value;
+const email=document.getElementById("supportEmail").value;
+const message=document.getElementById("supportMessage").value;
+
+const webhookURL="YOUR_WEBHOOK_URL";
+
+await fetch(webhookURL,{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+content:
+`📩 NEW SUPPORT TICKET
+
+👤 Name: ${name}
+
+📧 Email: ${email}
+
+💬 Message:
+${message}`
+})
+});
+
+alert("Message Sent ✅");
+
+}
+</script>
+
+</body>
+</html>

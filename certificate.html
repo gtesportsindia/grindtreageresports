@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GRIND TREAGER ESPORTS CERTIFICATE</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body {
+  background: #050505;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.certificate{
+width:100%;
+max-width:1120px;
+margin:auto;
+background:linear-gradient(145deg,#0b0b0b,#121212);
+border:3px solid #b95cff;
+border-radius:20px;
+padding:40px;
+position:relative;
+box-sizing:border-box;
+}
+
+/* Glow Border */
+
+.certificate::before{
+content:"";
+position:absolute;
+top:15px;
+left:15px;
+right:15px;
+bottom:15px;
+border:1px solid rgba(185,92,255,.3);
+border-radius:20px;
+pointer-events:none;
+}
+
+/* Header */
+
+.cert-header{
+text-align:center;
+margin-bottom:40px;
+}
+
+.cert-header h1{
+font-family:'Orbitron',sans-serif;
+font-size:42px;
+font-weight:900;
+color:#b95cff;
+letter-spacing:3px;
+}
+
+.cert-header p{
+color:#999;
+letter-spacing:6px;
+margin-top:8px;
+}
+
+/* Trophy */
+
+.trophy{
+text-align:center;
+font-size:70px;
+margin-bottom:15px;
+color:#b95cff;
+}
+
+/* Title */
+
+.cert-title{
+text-align:center;
+}
+
+.cert-title h2{
+font-family:'Orbitron',sans-serif;
+font-size:50px;
+font-weight:900;
+color:#fff;
+}
+
+.cert-title p{
+margin-top:10px;
+letter-spacing:4px;
+color:#aaa;
+}
+
+/* Winner */
+
+.winner{
+margin-top:50px;
+text-align:center;
+}
+
+.winner span{
+color:#888;
+letter-spacing:4px;
+font-size:14px;
+}
+
+.winner h3{
+margin-top:20px;
+font-size:70px;
+font-family:'Orbitron',sans-serif;
+font-weight:900;
+color:#b95cff;
+text-shadow:0 0 20px rgba(185,92,255,.4);
+}
+
+/* Description */
+
+.cert-desc{
+max-width:850px;
+margin:35px auto;
+text-align:center;
+line-height:2;
+font-size:17px;
+color:#ccc;
+}
+
+/* Achievement Badge */
+
+.badge{
+width:180px;
+margin:30px auto;
+padding:12px;
+border:1px solid #b95cff;
+border-radius:50px;
+text-align:center;
+font-weight:700;
+color:#b95cff;
+}
+
+/* Footer */
+
+.cert-footer{
+margin-top:100px;
+display:flex;
+justify-content:space-between;
+align-items:flex-end;
+}
+
+.footer-box{
+text-align:center;
+}
+
+.line{
+width:220px;
+height:2px;
+background:#444;
+margin-bottom:10px;
+}
+
+.footer-box h4{
+color:#fff;
+}
+
+.footer-box p{
+color:#999;
+font-size:14px;
+}
+
+.signature{
+font-family:'Orbitron',sans-serif;
+font-size:36px;
+font-weight:900;
+color:#b95cff;
+margin-bottom:10px;
+}
+
+/* Corner Design */
+
+.corner1,
+.corner2,
+.corner3,
+.corner4{
+position:absolute;
+width:120px;
+height:120px;
+border:5px solid #b95cff;
+}
+
+.corner1{
+top:15px;
+left:15px;
+border-right:none;
+border-bottom:none;
+}
+
+.corner2{
+top:15px;
+right:15px;
+border-left:none;
+border-bottom:none;
+}
+
+.corner3{
+bottom:15px;
+left:15px;
+border-right:none;
+border-top:none;
+}
+
+.corner4{
+bottom:15px;
+right:15px;
+border-left:none;
+border-top:none;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.certificate{
+padding:18px;
+border-radius:15px;
+}
+
+.cert-header h1{
+font-size:18px;
+letter-spacing:1px;
+}
+
+.cert-header p{
+font-size:8px;
+letter-spacing:2px;
+}
+
+.trophy{
+font-size:35px;
+margin-bottom:5px;
+}
+
+.cert-title h2{
+font-size:22px;
+line-height:1.3;
+}
+
+.cert-title p{
+font-size:10px;
+}
+
+.winner{
+margin-top:15px;
+}
+
+.winner span{
+font-size:9px;
+}
+
+.winner h3{
+font-size:32px;
+}
+
+.cert-desc{
+font-size:11px;
+line-height:1.7;
+margin:12px auto;
+}
+
+.badge{
+width:130px;
+padding:7px;
+font-size:10px;
+}
+
+.cert-footer{
+margin-top:20px;
+display:flex;
+flex-direction:row;
+justify-content:space-between;
+align-items:end;
+gap:10px;
+}
+
+.line{
+width:90px;
+}
+
+.signature{
+font-size:20px;
+}
+
+.footer-box h4{
+font-size:10px;
+}
+
+.footer-box p{
+font-size:9px;
+}
+
+.corner1,
+.corner2,
+.corner3,
+.corner4{
+width:35px;
+height:35px;
+border-width:3px;
+}
+
+}
+.cert-logo{
+position:absolute;
+top:30px;
+left:40px;
+z-index:100;
+}
+
+.cert-logo img{
+height:70px;
+width:auto;
+object-fit:contain;
+}
+.cert-bottom-text{
+margin-top:25px;
+text-align:center;
+font-size:12px;
+line-height:1.8;
+color:#777;
+max-width:700px;
+margin-left:auto;
+margin-right:auto;
+}
+
+.cert-id{
+margin-top:15px;
+text-align:center;
+font-size:14px;
+letter-spacing:3px;
+color:#b95cff;
+font-weight:600;
+}
+
+@media print{
+
+body{
+margin:0;
+padding:0;
+background:white;
+}
+
+.certificate{
+width:100%;
+max-width:100%;
+border:2px solid #b95cff;
+page-break-inside:avoid;
+}
+
+}
+
+@page{
+size:A4 landscape;
+margin:10mm;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="certificate">
+
+<div class="corner1"></div>
+<div class="corner2"></div>
+<div class="corner3"></div>
+<div class="corner4"></div>
+
+<div class="cert-logo">
+<img src="logo.png" alt="GT Logo">
+</div>
+
+<div class="cert-header">
+<h1>GRIND TREAGER ESPORTS</h1>
+<p>9 PM TURNAMENT CERTIFICATE</p>
+</div>
+
+<div class="trophy">
+<i class="ri-trophy-fill"></i>
+</div>
+<div class="cert-title">
+<h2>CERTIFICATE OF ACHIEVEMENT</h2>
+<p>TOP 3 PERFORMER AWARD</p>
+</div>
+
+<div class="winner">
+<span>PROUDLY PRESENTED TO</span>
+<h3>NEXT STAR</h3>
+</div>
+
+<div class="cert-desc">
+This certificate is proudly awarded in recognition of outstanding
+performance, dedication, teamwork and excellence demonstrated during
+the official Grind Treager Esports Tournament. Your achievement
+reflects exceptional skill, discipline and competitive spirit.
+We congratulate you on this remarkable success and wish you continued
+growth and victories in your esports journey.
+</div>
+
+<div class="badge">
+CHAMPION TEAM
+</div>
+
+<div class="cert-footer">
+
+<div class="footer-box">
+<div class="line"></div>
+<h4>29 JUNE 2026</h4>
+<p>DATE</p>
+</div>
+
+<div class="footer-box">
+<div class="signature">GT DRAYX</div>
+<div class="line"></div>
+<p>Founder & CEO</p>
+<p>Grind Treager Esports</p>
+</div>
+
+</div>
+
+<div class="cert-bottom-text">
+This certificate is digitally verified and officially issued by
+Grind Treager Esports. Any unauthorized modification,
+duplication or misuse of this certificate is prohibited.
+</div>
+
+<div class="cert-id">
+CERTIFICATE ID : GTE-2026-0001
+</div>
+
+</div>
+
+
+</body>
+</html>

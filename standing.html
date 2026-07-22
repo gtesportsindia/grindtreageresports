@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GT ESPORTS - STANDINGS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body {
+  background: #050505;
+  color: #fff;
+  padding: 8px;
+}
+
+.title{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:8px;
+}
+
+.title h1{
+font-family:'Orbitron',sans-serif;
+font-size:18px;
+color:#b95cff;
+}
+
+.title span{
+font-size:10px;
+color:#ccc;
+}
+
+/* TOP 1 */
+
+.leader{
+background:#111;
+border-left:5px solid #b95cff;
+border-radius:18px;
+padding:20px;
+margin-bottom:15px;
+}
+
+.leader small{
+color:#b95cff;
+font-weight:600;
+}
+
+.leader h2{
+font-size:34px;
+margin:10px 0;
+font-weight:800;
+}
+
+.rank{
+font-size:70px;
+font-weight:900;
+color:#b95cff;
+text-align:right;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+margin-top:15px;
+gap:10px;
+}
+
+.stat{
+text-align:center;
+}
+
+.stat span{
+display:block;
+color:#999;
+font-size:12px;
+}
+
+.stat b{
+font-size:24px;
+}
+
+/* TOP 2 & 3 */
+
+.top-row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-bottom:20px;
+}
+
+.top-card{
+background:#111;
+border-left:4px solid #b95cff;
+border-radius:15px;
+padding:15px;
+}
+
+.top-card small{
+color:#b95cff;
+}
+
+.top-card h3{
+margin:8px 0;
+font-size:22px;
+}
+
+.top-card .pts{
+font-size:32px;
+font-weight:800;
+color:#b95cff;
+}
+
+/* TABLE */
+
+.table-head{
+display:grid;
+grid-template-columns:60px 1fr 60px 60px 60px 70px;
+background:linear-gradient(90deg,#b95cff,#d77cff);
+color:#000;
+font-weight:700;
+padding:14px;
+border-radius:12px;
+margin-bottom:10px;
+}
+
+.team-row{
+display:grid;
+grid-template-columns:60px 1fr 60px 60px 60px 70px;
+background:#111;
+padding:15px;
+margin-bottom:8px;
+border-radius:10px;
+align-items:center;
+}
+
+.team-row .rk{
+color:#b95cff;
+font-weight:800;
+}
+
+.team-row .pts{
+color:#b95cff;
+font-weight:800;
+}
+
+@media(max-width:700px){
+
+.leader{
+padding:15px;
+margin-bottom:10px;
+}
+
+.leader h2{
+font-size:22px;
+margin:5px 0;
+}
+
+.rank{
+font-size:60px;
+}
+
+.stats{
+grid-template-columns:repeat(4,1fr);
+gap:5px;
+margin-top:10px;
+}
+
+.stat b{
+font-size:20px;
+}
+
+.stat span{
+font-size:10px;
+}
+
+.top-row{
+grid-template-columns:1fr 1fr;
+gap:8px;
+margin-bottom:10px;
+}
+
+.top-card{
+padding:10px;
+}
+
+.top-card h3{
+font-size:15px;
+}
+
+.top-card .pts{
+font-size:24px;
+}
+
+.table-head,
+.team-row{
+font-size:11px;
+grid-template-columns:35px 1fr 35px 35px 35px 45px;
+}
+
+}
+.top-card{
+background:#111;
+border-left:4px solid #b95cff;
+border-radius:15px;
+padding:12px;
+min-height:100px;
+}
+
+.result-footer{
+margin-top:15px;
+padding-top:15px;
+border-top:1px solid #222;
+}
+
+.footer-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:15px;
+font-size:14px;
+font-weight:600;
+}
+
+.footer-date{
+display:flex;
+align-items:center;
+gap:8px;
+color:#b95cff;
+}
+
+.footer-date i{
+font-size:18px;
+}
+
+.footer-org{
+color:#fff;
+font-weight:700;
+}
+
+.social-row{
+display:flex;
+gap:8px;
+}
+
+.social-box{
+flex:1;
+display:flex;
+align-items:center;
+gap:8px;
+padding:8px;
+background:#111;
+border:1px solid #222;
+border-radius:15px;
+text-decoration:none;
+color:#fff;
+min-width:0;
+}
+
+.social-icon{
+width:38px;
+height:38px;
+border-radius:10px;
+background:linear-gradient(135deg,#d46cff,#8b3dff);
+display:flex;
+align-items:center;
+justify-content:center;
+flex-shrink:0;
+}
+
+.social-box span{
+font-size:11px;
+font-weight:600;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+}
+@page{
+    size:A4 portrait;
+    margin:5mm;
+}
+
+@media print{
+
+body{
+    padding:0 !important;
+    margin:0 !important;
+}
+
+.leader{
+    padding:10px;
+    margin-bottom:6px;
+}
+
+.top-row{
+    margin-bottom:6px;
+}
+
+.top-card{
+    padding:8px;
+    min-height:auto;
+}
+
+.table-head{
+    padding:8px;
+    margin-bottom:4px;
+    font-size:10px;
+}
+
+.team-row{
+    padding:8px;
+    margin-bottom:3px;
+    font-size:10px;
+}
+
+.result-footer{
+    margin-top:6px;
+    padding-top:6px;
+}
+
+.social-box{
+    padding:5px;
+}
+
+.social-icon{
+    width:24px;
+    height:24px;
+}
+
+body{
+    zoom:0.78;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="title">
+<h1>BATTLE OF GLORY</h1>
+<span>OVERALL STANDINGS</span>
+</div>
+
+<!-- TOP 1 -->
+
+<div class="leader">
+
+<small>CURRENT LEADER</small>
+
+<div style="display:flex;justify-content:space-between;align-items:center;">
+
+<div>
+<h2 id="leaderName">GT ESPORTS</h2>
+</div>
+
+<div class="rank">01</div>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<span>MP</span>
+<b id="leaderMP">3</b>
+</div>
+
+<div class="stat">
+<span>KP</span>
+<b id="leaderKP">30</b>
+</div>
+
+<div class="stat">
+<span>W</span>
+<b id="leaderW">1</b>
+</div>
+
+<div class="stat">
+<span>PTS</span>
+<b id="leaderPTS">55</b>
+</div>
+
+</div>
+
+</div>
+
+<!-- TOP 2 & 3 -->
+
+<div class="top-row">
+
+<div class="top-card">
+<small>02 CONTENDER</small>
+<h3 id="secondName">TEAM SOUL</h3>
+<div class="pts" id="secondPTS">50</div>
+</div>
+
+<div class="top-card">
+<small>03 CONTENDER</small>
+<h3 id="thirdName">TG ESPORTS</h3>
+<div class="pts" id="thirdPTS">45</div>
+</div>
+
+</div>
+
+<!-- TABLE -->
+
+<div class="table-head">
+<div>RK</div>
+<div>TEAM NAME</div>
+<div>MP</div>
+<div>KP</div>
+<div>W</div>
+<div>PTS</div>
+</div>
+
+<div id="tableData"></div>
+
+<!-- FOOTER -->
+
+<div class="result-footer">
+
+    <div class="footer-top">
+        <div class="footer-date">
+            <i class="ri-calendar-line"></i>
+            20 JULY // 9:00 PM
+        </div>
+
+        <div class="footer-org">
+            GT ESPORTS
+        </div>
+    </div>
+
+    <div class="social-row">
+
+        <a href="https://www.instagram.com/gt_esports_india" target="_blank" class="social-box">
+            <div class="social-icon">
+                <i class="ri-instagram-line"></i>
+            </div>
+            <span>@GT_ESPORTS_INDIA</span>
+        </a>
+
+        <a href="https://youtube.com/@gt_esports_india_official" target="_blank" class="social-box">
+            <div class="social-icon">
+                <i class="ri-youtube-fill"></i>
+            </div>
+            <span>@GT_ESPORTS_INDIA_OFFICIAL</span>
+        </a>
+
+    </div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB-EGS-CTG_pzMBUH1bAReFFvUdbBcqBNI",
+  authDomain: "grind-treager-digital-service.firebaseapp.com",
+  databaseURL: "https://grind-treager-digital-service-default-rtdb.firebaseio.com",
+  projectId: "grind-treager-digital-service",
+  storageBucket: "grind-treager-digital-service.firebasestorage.app",
+  messagingSenderId: "896348136291",
+  appId: "1:896348136291:web:ffd4e68da8ee704ea1a956",
+  measurementId: "G-X1J4328Y0E"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+onValue(ref(db,"standings"),(snapshot)=>{
+
+const data = snapshot.val();
+
+if(!data) return;
+
+let teams = Object.values(data);
+
+teams.sort((a,b)=>b.pts-a.pts);
+
+document.getElementById("leaderName").innerText=teams[0].name;
+document.getElementById("leaderMP").innerText=teams[0].mp;
+document.getElementById("leaderKP").innerText=teams[0].kp;
+document.getElementById("leaderW").innerText=teams[0].w;
+document.getElementById("leaderPTS").innerText=teams[0].pts;
+
+document.getElementById("secondName").innerText=teams[1]?.name || "-";
+document.getElementById("secondPTS").innerText=teams[1]?.pts || "-";
+
+document.getElementById("thirdName").innerText=teams[2]?.name || "-";
+document.getElementById("thirdPTS").innerText=teams[2]?.pts || "-";
+
+let html="";
+
+teams.forEach((team,index)=>{
+
+html += `
+<div class="team-row">
+<div class="rk">${String(index+1).padStart(2,'0')}</div>
+<div>${team.name}</div>
+<div>${team.mp}</div>
+<div>${team.kp}</div>
+<div>${team.w}</div>
+<div class="pts">${team.pts}</div>
+</div>
+`;
+
+});
+
+document.getElementById("tableData").innerHTML=html;
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GT ESPORTS INDIA | ROSTERS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:#050505;
+font-family:'Poppins',sans-serif;
+color:#fff;
+overflow-x:hidden;
+}
+
+.container{
+max-width:1400px;
+margin:auto;
+padding:20px;
+}
+
+/* HEADER */
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px;
+background:#0b0b0b;
+border:1px solid #181818;
+border-radius:20px;
+margin-bottom:40px;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.logo img{
+width:55px;
+}
+
+.logo h2{
+font-family:'Orbitron',sans-serif;
+font-size:15px;
+}
+
+.home-btn{
+padding:12px 24px;
+border-radius:30px;
+text-decoration:none;
+color:#fff;
+font-weight:600;
+background:linear-gradient(135deg,#c084fc,#9333ea);
+}
+
+/* HERO */
+
+.hero{
+text-align:center;
+padding:70px 20px;
+}
+
+.hero h1{
+font-family:'Orbitron',sans-serif;
+font-size:70px;
+font-weight:900;
+}
+
+.hero span{
+color:#a855f7;
+}
+
+.hero p{
+margin-top:15px;
+color:#888;
+}
+
+/* GAME TABS */
+
+.game-tabs{
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
+padding:20px;
+background:#0b0b0b;
+border:1px solid #181818;
+border-radius:20px;
+margin-bottom:25px;
+}
+
+.game-tabs button{
+background:#111;
+border:1px solid #222;
+color:#fff;
+padding:12px 20px;
+border-radius:12px;
+cursor:pointer;
+font-weight:600;
+}
+
+.game-tabs button.active{
+background:linear-gradient(135deg,#c084fc,#9333ea);
+box-shadow:0 0 20px rgba(168,85,247,.35);
+}
+
+/* TEAM SWITCH */
+
+.team-switch{
+display:flex;
+justify-content:center;
+gap:15px;
+margin-bottom:40px;
+}
+
+.team-switch button{
+background:#111;
+border:1px solid #222;
+color:#fff;
+padding:12px 22px;
+border-radius:12px;
+cursor:pointer;
+}
+
+.team-switch button.active{
+background:linear-gradient(135deg,#c084fc,#9333ea);
+}
+
+/* ROSTER GRID */
+
+.roster-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:25px;
+}
+
+.player-card{
+position:relative;
+height:520px;
+overflow:hidden;
+border-radius:28px;
+background:#0b0b0b;
+border:1px solid #181818;
+}
+
+.player-card img{
+width:100%;
+height:100%;
+object-fit:cover;
+filter:grayscale(100%);
+}
+
+.player-card::after{
+content:'';
+position:absolute;
+left:0;
+right:0;
+bottom:0;
+height:180px;
+background:linear-gradient(to top,#000,transparent);
+}
+
+.player-info{
+position:absolute;
+left:25px;
+bottom:25px;
+z-index:2;
+}
+
+.player-info span{
+font-size:12px;
+font-weight:700;
+color:#a855f7;
+letter-spacing:2px;
+}
+
+.player-info h2{
+font-family:'Orbitron',sans-serif;
+font-size:42px;
+margin-top:8px;
+}
+
+.player-card:hover{
+transform:translateY(-5px);
+border-color:#a855f7;
+transition:.3s;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:42px;
+}
+
+.player-card{
+height:430px;
+}
+
+.player-info h2{
+font-size:32px;
+}
+
+}
+
+.team-switch{
+display:flex;
+justify-content:center;
+gap:15px;
+margin-bottom:40px;
+}
+
+.team-btn{
+background:#111;
+border:1px solid #222;
+color:#fff;
+padding:12px 22px;
+border-radius:12px;
+cursor:pointer;
+font-weight:600;
+transition:.3s;
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.team-btn.active{
+background:linear-gradient(135deg,#3b82f6,#2563eb);
+border-color:#3b82f6;
+box-shadow:0 0 25px rgba(59,130,246,.45);
+}
+
+.coming-soon{
+    min-height:500px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.coming-soon h1{
+    font-family:'Orbitron',sans-serif;
+    font-size:48px;
+    color:#fff;
+}
+
+.coming-soon p{
+    color:#888;
+    margin-top:10px;
+    letter-spacing:2px;
+}
+
+#esportsRoster{
+display:block;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<div class="logo">
+<img src="logo.png">
+<h2>GT ESPORTS INDIA</h2>
+</div>
+
+<a href="index.html" class="home-btn">
+HOME
+</a>
+
+</div>
+
+<section class="hero">
+
+<h1>TEAM <span>ROSTERS</span></h1>
+
+<p>
+Official Competitive Players & Lineups
+</p>
+
+</section>
+
+<div class="game-tabs">
+
+<button class="active" onclick="showRoster('ffmRoster',this)">FREE FIRE MAX</button>
+
+<button onclick="showRoster('fifaRoster',this)">FIFA</button>
+
+<button onclick="showRoster('bgmiRoster',this)">BGMI</button>
+
+<button onclick="showRoster('mobaRoster',this)">MOBA</button>
+
+<button onclick="showRoster('valorantRoster',this)">VALORANT</button>
+
+</div>
+
+<div id="ffmRoster" class="roster-content">
+
+<div class="team-switch">
+<button class="team-btn active" onclick="showTeam('esports',this)">
+GT ESPORTS
+</button>
+
+<button class="team-btn" onclick="showTeam('girls',this)">
+GT GIRLS
+</button>
+</div>
+
+<!-- PLAYER 2 -->
+<div id="esportsRoster">
+ <div class="roster-grid">
+<div class="player-card">
+<img src="rohan.jpg" alt="GT SAMI">
+
+<div class="player-info">
+<span>RUSHER</span>
+<h2>JORD ROHAN</h2>
+</div>
+</div>
+
+<!-- PLAYER 3 -->
+<div class="player-card">
+<img src="anjan.jpg" alt="GT VENOM">
+
+<div class="player-info">
+<span>SECONDARY RUSHER</span>
+<h2>JORD ANJAN</h2>
+</div>
+</div>
+
+<!-- PLAYER 4 -->
+<div class="player-card">
+<img src="drayx.jpg" alt="GT DRAYX">
+
+<div class="player-info">
+<span>SNIPER</span>
+<h2>GT DRAYX</h2>
+</div>
+</div>
+
+<!-- PLAYER 5 -->
+<div class="player-card">
+<img src="rumor.jpg" alt="GT RUMOR">
+
+<div class="player-info">
+<span>ALL ROUNDER</span>
+<h2>GT RUMOR</h2>
+</div>
+</div>
+
+<!-- PLAYER 6 -->
+<div class="player-card">
+<img src="sami.jpg" alt="GT AURA">
+
+<div class="player-info">
+<span>PRIMARY RUSHER</span>
+<h2>GT AURA</h2>
+</div>
+</div>
+
+
+<!-- PLAYER 8 -->
+<div class="player-card">
+<img src="https://via.placeholder.com/500x700" alt="KAZI ARIFUL">
+
+<div class="player-info">
+<span>FOUNDER</span>
+<h2>KAZI ARIFUL</h2>
+</div>
+</div>
+</div> <!-- Roster-grid close -->
+</div> <!-- esportsRoster close -->
+
+<div id="girlsRoster" style="display:none;">
+
+<div class="coming-soon">
+<h1>ROSTER COMING SOON</h1>
+<p>GT GIRLS LINEUP WILL BE ANNOUNCED SOON.</p>
+</div>
+</div> <!-- ffmRoster close -->
+</div>
+
+
+
+    
+<div id="fifaRoster" class="roster-content" style="display:none;">
+<div class="coming-soon">
+<h1>ROSTER <span>COMING SOON</span></h1>
+<p>WE ARE CURRENTLY EVALUATING OUR NEW LINEUP.</p>
+</div>
+</div>
+
+
+
+<div id="bgmiRoster" class="roster-content" style="display:none;">
+<div class="coming-soon">
+<h1>ROSTER <span>COMING SOON</span></h1>
+<p>WE ARE CURRENTLY EVALUATING OUR NEW LINEUP.</p>
+</div>
+</div>
+
+<div id="mobaRoster" class="roster-content" style="display:none;">
+<div class="coming-soon">
+<h1>ROSTER <span>COMING SOON</span></h1>
+<p>WE ARE CURRENTLY EVALUATING OUR NEW LINEUP.</p>
+</div>
+</div>
+
+<div id="valorantRoster" class="roster-content" style="display:none;">
+<div class="coming-soon">
+<h1>ROSTER <span>COMING SOON</span></h1>
+<p>WE ARE CURRENTLY EVALUATING OUR NEW LINEUP.</p>
+</div>
+</div>
+  <script>
+
+const tabs = document.querySelectorAll(".game-tabs button");
+
+tabs.forEach(tab=>{
+
+tab.addEventListener("click",()=>{
+
+tabs.forEach(btn=>{
+btn.classList.remove("active");
+});
+
+tab.classList.add("active");
+
+});
+
+});
+
+</script>
+<script>
+
+const teamBtns = document.querySelectorAll(".team-switch button");
+
+teamBtns.forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+teamBtns.forEach(b=>{
+b.classList.remove("active");
+});
+
+btn.classList.add("active");
+
+});
+
+});
+
+</script>
+<script>
+
+function showRoster(id,btn){
+
+document.querySelectorAll('.roster-content').forEach(sec=>{
+sec.style.display='none';
+});
+
+document.getElementById(id).style.display='block';
+
+document.querySelectorAll('.game-tabs button').forEach(b=>{
+b.classList.remove('active');
+});
+
+btn.classList.add('active');
+
+}
+
+</script>
+
+<script>
+function showTeam(type,btn){
+
+document.querySelectorAll('.team-btn').forEach(b=>{
+b.classList.remove('active');
+});
+
+btn.classList.add('active');
+
+const esports = document.getElementById("esportsRoster");
+const girls = document.getElementById("girlsRoster");
+
+if(type==="girls"){
+    esports.style.display="none";
+    girls.style.display="block";
+}else{
+    esports.style.display="block";
+    girls.style.display="none";
+}
+
+}
+</script>
+
+ </body>
+</html>

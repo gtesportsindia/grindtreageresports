@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tournament Admin</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0f0f0f;
+color:#fff;
+padding:20px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+}
+
+.card{
+background:#1a1a1a;
+padding:20px;
+border-radius:12px;
+margin-bottom:20px;
+border:1px solid #333;
+}
+
+h1{
+text-align:center;
+margin-bottom:20px;
+}
+
+input,
+select{
+width:100%;
+padding:12px;
+margin-bottom:12px;
+border:none;
+outline:none;
+background:#252525;
+color:#fff;
+border-radius:8px;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#ff2d2d;
+border:none;
+border-radius:8px;
+color:#fff;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#ff0000;
+}
+
+#bannerPreview{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:10px;
+display:none;
+margin-bottom:15px;
+}
+
+#tournamentList{
+margin-top:20px;
+}
+
+.tournament-item{
+background:#222;
+padding:15px;
+border-radius:10px;
+margin-bottom:15px;
+border:1px solid #333;
+}
+
+.action-buttons{
+display:flex;
+gap:10px;
+margin-top:15px;
+}
+
+.action-buttons button{
+flex:1;
+}
+.meta-item{
+display:flex;
+align-items:center;
+gap:10px;
+background:#2b2b2b;
+padding:12px;
+border-radius:10px;
+}
+
+.meta-item i{
+font-size:20px;
+color:#ff3b3b;
+}
+
+.meta-item small{
+display:block;
+font-size:11px;
+color:#aaa;
+margin-bottom:3px;
+}
+
+.meta-item b{
+font-size:15px;
+color:#fff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>
+<i class="fa-solid fa-trophy"></i>
+Tournament Admin
+</h1>
+
+<div class="card">
+
+<h2>Create Tournament</h2>
+
+<input type="text" id="name" placeholder="Tournament Name">
+
+<input type="text" id="game" placeholder="Game Name">
+
+<input type="text" id="banner" placeholder="Banner Image URL">
+
+<img id="bannerPreview">
+
+<input type="number" id="prize" placeholder="Prize">
+
+<input type="number" id="entry" placeholder="Entry Fee">
+
+<input type="number" id="slots" placeholder="Slots">
+
+<input type="text" id="date" placeholder="Date">
+
+<select id="status">
+<option value="LIVE">LIVE</option>
+<option value="UPCOMING">UPCOMING</option>
+<option value="COMPLETED">COMPLETED</option>
+</select>
+
+<select id="registration">
+<option value="OPEN">Registration Open</option>
+<option value="CLOSED">Registration Closed</option>
+</select>
+
+
+<button id="saveTournament">
+<i class="fa-solid fa-plus"></i>
+Create Tournament
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>All Tournaments</h2>
+
+<input type="text" id="searchTournament" placeholder="Search Tournament">
+
+<div id="tournamentList">
+No Tournament Found
+</div>
+
+</div>
+
+</div>
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getDatabase,
+ref,
+push,
+set,
+update,
+get,
+onValue,
+remove
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig={
+apiKey:"AIzaSyAxxvbQlbvqtedhoicrijzAlljIjKeejWw",
+authDomain:"grind-treager.firebaseapp.com",
+databaseURL:"https://grind-treager-default-rtdb.firebaseio.com",
+projectId:"grind-treager",
+storageBucket:"grind-treager.firebasestorage.app",
+messagingSenderId:"236334920342",
+appId:"1:236334920342:web:5ae959f81b41541f5608b7"
+};
+
+const app=initializeApp(firebaseConfig);
+const db=getDatabase(app);
+
+const banner=document.getElementById("banner");
+const preview=document.getElementById("bannerPreview");
+const list=document.getElementById("tournamentList");
+let editingId = null;
+
+banner.oninput=()=>{
+
+if(banner.value.trim()==""){
+preview.style.display="none";
+return;
+}
+
+preview.src=banner.value;
+preview.style.display="block";
+
+};
+
+document.getElementById("saveTournament").onclick=async()=>{
+
+const data={
+
+name:document.getElementById("name").value.trim(),
+game:document.getElementById("game").value.trim(),
+banner:document.getElementById("banner").value.trim(),
+prize:document.getElementById("prize").value.trim(),
+entry:document.getElementById("entry").value.trim(),
+slots:document.getElementById("slots").value.trim(),
+date:document.getElementById("date").value.trim(),
+status:document.getElementById("status").value,
+registration:document.getElementById("registration").value,
+details:document.getElementById("details").value.trim()
+
+};
+
+for(const k in data){
+
+if(data[k]==""){
+
+alert("Please fill all fields");
+
+return;
+
+}
+
+}
+
+if (editingId) {
+  
+  await update(
+    ref(db, "tournaments/" + editingId),
+    data
+  );
+  
+  alert("Tournament Updated");
+  
+  editingId = null;
+  
+  document.getElementById("saveTournament").innerHTML =
+    '<i class="fa-solid fa-plus"></i> Create Tournament';
+  
+} else {
+
+  await set(
+    push(ref(db,"tournaments")),
+    data
+  );
+
+  alert("Tournament Created");
+
+}
+
+document.querySelectorAll("input").forEach(i=>i.value="");
+
+document.getElementById("status").value="LIVE";
+document.getElementById("registration").value="OPEN";
+
+preview.style.display="none";
+editingId = null;
+
+};
+
+onValue(ref(db,"tournaments"),snap=>{
+
+list.innerHTML="";
+
+if(!snap.exists()){
+
+list.innerHTML="No Tournament Found";
+
+return;
+
+}
+
+snap.forEach(c=>{
+
+const t=c.val();
+
+list.innerHTML += `
+
+<div class="tournament-item">
+
+<img src="${t.banner}" style="width:100%;height:180px;object-fit:cover;border-radius:12px;margin-bottom:15px;">
+
+<h3 style="margin-bottom:15px;">${t.name}</h3>
+
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
+
+<div class="meta-item">
+<i class="fa-solid fa-trophy"></i>
+<div>
+<small>Prize Pool</small>
+<b>${t.prize} GTC</b>
+</div>
+</div>
+
+<div class="meta-item">
+<i class="fa-solid fa-ticket"></i>
+<div>
+<small>Entry Fee</small>
+<b>${t.entry} GTC</b>
+</div>
+</div>
+
+<div class="meta-item">
+<i class="fa-solid fa-users"></i>
+<div>
+<small>Total Slots</small>
+<b>${t.slots} Teams</b>
+</div>
+</div>
+
+<div class="meta-item">
+<i class="fa-solid fa-calendar-days"></i>
+<div>
+<small>Tournament Date</small>
+<b>${t.date}</b>
+</div>
+</div>
+
+</div>
+
+<p style="margin:15px 0;">
+<b>Status:</b> ${t.status}
+</p>
+
+<div class="action-buttons">
+  
+  <button onclick="editTournament('${c.key}')">
+    <i class="fa-solid fa-pen"></i>
+    Edit
+  </button>
+  
+  <button onclick="deleteTournament('${c.key}')">
+    <i class="fa-solid fa-trash"></i>
+    Delete
+  </button>
+  
+</div>
+</div>
+
+`;
+});
+});
+window.deleteTournament = async function(id){
+
+if(!confirm("Delete this tournament?")) return;
+
+await remove(ref(db,"tournaments/"+id));
+
+alert("Tournament Deleted");
+
+};
+window.editTournament = async function(id){
+
+editingId = id;
+
+const snap = await get(ref(db,"tournaments/"+id));
+
+if(!snap.exists()) return;
+
+const t = snap.val();
+
+document.getElementById("name").value = t.name || "";
+document.getElementById("game").value = t.game || "";
+document.getElementById("banner").value = t.banner || "";
+document.getElementById("prize").value = t.prize || "";
+document.getElementById("entry").value = t.entry || "";
+document.getElementById("slots").value = t.slots || "";
+document.getElementById("date").value = t.date || "";
+document.getElementById("status").value = t.status || "LIVE";
+document.getElementById("registration").value = t.registration || "OPEN";
+document.getElementById("details").value = t.details || "";
+
+document.getElementById("bannerPreview").src = t.banner;
+document.getElementById("bannerPreview").style.display = "block";
+
+document.getElementById("saveTournament").innerHTML =
+'<i class="fa-solid fa-floppy-disk"></i> Update Tournament';
+
+};
+</script>
+
+</body>
+</html>

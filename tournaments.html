@@ -1,0 +1,2428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GT Esports Tournament</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+
+background:#07090F;
+color:#fff;
+
+}
+
+a{
+
+text-decoration:none;
+color:white;
+
+}
+
+.navbar{
+
+position:sticky;
+
+top:0;
+
+z-index:999;
+
+height:75px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:0 18px;
+
+background:rgba(9,12,20,.85);
+
+backdrop-filter:blur(18px);
+
+border-bottom:1px solid rgba(255,255,255,.06);
+
+}
+
+.logo{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+}
+
+.logo img{
+
+width:42px;
+
+height:42px;
+
+border-radius:12px;
+
+object-fit:cover;
+
+}
+
+.logo h2{
+
+font-size:18px;
+
+font-weight:700;
+
+}
+
+.logo p{
+
+font-size:12px;
+
+color:#8D96A8;
+
+margin-top:2px;
+
+}
+
+.nav-icons{
+
+display:flex;
+
+gap:10px;
+
+}
+
+.nav-icons button{
+
+width:42px;
+
+height:42px;
+
+border:none;
+
+outline:none;
+
+cursor:pointer;
+
+border-radius:12px;
+
+background:#151B28;
+
+color:white;
+
+font-size:17px;
+
+transition:.3s;
+
+}
+
+.nav-icons button:hover{
+
+background:#246BFF;
+
+}
+
+.container{
+
+padding:20px;
+
+}
+/* HERO */
+
+.hero{
+
+position:relative;
+
+margin-top:20px;
+
+padding:25px;
+
+min-height:280px;
+
+border-radius:22px;
+
+overflow:hidden;
+
+background:
+linear-gradient(180deg,#0F1422,#090C14);
+
+border:1px solid rgba(255,255,255,.05);
+
+}
+
+.hero::before{
+
+content:"";
+
+position:absolute;
+
+width:320px;
+
+height:320px;
+
+right:-120px;
+
+top:-80px;
+
+background:#246BFF;
+
+opacity:.18;
+
+filter:blur(100px);
+
+border-radius:50%;
+
+}
+
+.hero-content{
+
+position:relative;
+
+z-index:2;
+
+}
+
+.hero-tag{
+
+font-size:11px;
+
+letter-spacing:2px;
+
+color:#3C82FF;
+
+font-weight:600;
+
+margin-bottom:18px;
+
+}
+
+.hero h1{
+
+font-size:58px;
+
+line-height:58px;
+
+font-weight:800;
+
+letter-spacing:-2px;
+
+}
+
+.hero h1 span{
+
+color:#2D7CFF;
+
+}
+
+.hero-desc{
+
+margin-top:18px;
+
+max-width:430px;
+
+font-size:14px;
+
+line-height:25px;
+
+color:#9CA4B5;
+
+}
+
+.hero-bg{
+
+position:absolute;
+
+right:20px;
+
+top:50%;
+
+transform:translateY(-50%);
+
+font-size:180px;
+
+color:white;
+
+opacity:.04;
+
+}
+/* FILTER BAR */
+
+.filter-bar{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:12px;
+
+margin-top:22px;
+
+}
+
+.filter-bar button{
+
+height:46px;
+
+padding:0 22px;
+
+background:#111723;
+
+border:1px solid rgba(255,255,255,.06);
+
+border-radius:14px;
+
+color:#BFC6D4;
+
+font-size:13px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.filter-bar button:hover{
+
+border-color:#2D7CFF;
+
+color:#fff;
+
+}
+
+.filter-bar .active{
+
+background:#246BFF;
+
+color:#fff;
+
+}
+
+.game-filter{
+
+height:46px;
+
+padding:0 18px;
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+background:#111723;
+
+border-radius:14px;
+
+border:1px solid rgba(255,255,255,.06);
+
+color:#fff;
+
+cursor:pointer;
+
+}
+
+.game-filter i:last-child{
+
+font-size:12px;
+
+opacity:.7;
+
+}
+
+.search-box{
+
+flex:1;
+
+min-width:220px;
+
+height:46px;
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+padding:0 15px;
+
+background:#111723;
+
+border-radius:14px;
+
+border:1px solid rgba(255,255,255,.06);
+
+}
+
+.search-box i{
+
+color:#7F8798;
+
+}
+
+.search-box input{
+
+flex:1;
+
+background:none;
+
+border:none;
+
+outline:none;
+
+color:#fff;
+
+font-size:13px;
+
+}
+
+.search-box input::placeholder{
+
+color:#7F8798;
+
+}
+/* Tournament Card */
+
+.tournaments{
+    margin-top:25px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.tournament-card{
+
+background:#0F1420;
+
+border:1px solid rgba(255,255,255,.06);
+
+border-radius:20px;
+
+overflow:hidden;
+
+transition:.35s;
+
+}
+
+.tournament-card:hover{
+
+transform:translateY(-6px);
+
+border-color:#2D7CFF;
+
+box-shadow:0 0 30px rgba(45,124,255,.15);
+
+}
+
+.card-banner{
+
+position:relative;
+
+height:210px;
+
+}
+
+.card-banner img{
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+display:block;
+
+}
+
+.live-badge{
+
+position:absolute;
+
+top:15px;
+
+right:15px;
+
+padding:8px 15px;
+
+border-radius:30px;
+
+background:#ff3b30;
+
+font-size:12px;
+
+font-weight:700;
+
+}
+
+.share-btn{
+
+position:absolute;
+
+left:15px;
+
+top:15px;
+
+width:42px;
+
+height:42px;
+
+border:none;
+
+border-radius:50%;
+
+background:rgba(0,0,0,.5);
+
+color:white;
+
+cursor:pointer;
+
+}
+
+.card-content{
+
+padding:20px;
+
+}
+
+.game-name{
+
+font-size:12px;
+
+color:#2D7CFF;
+
+font-weight:700;
+
+}
+
+.card-content h2{
+
+margin-top:8px;
+
+font-size:28px;
+
+}
+
+.card-desc{
+
+margin-top:12px;
+
+color:#9AA3B5;
+
+line-height:24px;
+
+font-size:14px;
+
+}
+
+.card-info{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:12px;
+
+margin-top:20px;
+
+}
+
+.card-info div{
+
+background:#151C29;
+
+padding:14px;
+
+border-radius:14px;
+
+}
+
+.card-info span{
+
+font-size:11px;
+
+color:#8E97A8;
+
+}
+
+.card-info h4{
+
+margin-top:6px;
+
+font-size:16px;
+
+}
+
+.details-btn{
+
+width:100%;
+
+height:52px;
+
+margin-top:22px;
+
+background:#246BFF;
+
+border:none;
+
+border-radius:14px;
+
+font-size:15px;
+
+font-weight:700;
+
+color:white;
+
+cursor:pointer;
+
+}
+
+.details-btn i{
+
+margin-left:8px;
+
+}
+/* Small Card */
+
+.card-content h2{
+
+font-size:15px;
+
+line-height:20px;
+
+height:42px;
+
+overflow:hidden;
+
+}
+
+.mini-info{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-top:12px;
+
+font-size:12px;
+
+font-weight:600;
+
+color:#fff;
+
+}
+
+.upcoming-badge{
+
+position:absolute;
+
+top:10px;
+
+right:10px;
+
+background:#2563EB;
+
+padding:5px 10px;
+
+border-radius:20px;
+
+font-size:9px;
+
+font-weight:700;
+
+}
+
+.details-btn{
+
+margin-top:10px;
+
+height:38px;
+
+font-size:11px;
+
+background:#2563EB;
+
+border:none;
+
+border-radius:10px;
+
+color:#fff;
+
+width:100%;
+
+font-weight:700;
+
+}
+/* =========================
+   TOURNAMENT GRID
+========================= */
+
+.tournaments{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    margin-top:20px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.tournament-card{
+    background:#10141F;
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:16px;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.tournament-card:hover{
+    transform:translateY(-4px);
+    border-color:#2D7CFF;
+}
+
+/* =========================
+   BANNER
+========================= */
+
+.card-banner{
+    position:relative;
+    height:120px;
+}
+
+.card-banner img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.card-banner::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:50%;
+    background:linear-gradient(transparent,#10141F);
+}
+
+/* =========================
+   LIVE BADGE
+========================= */
+
+.live-badge{
+position:absolute;
+top:12px;
+right:12px;
+padding:6px 12px;
+border-radius:20px;
+font-size:12px;
+font-weight:700;
+color:#fff;
+background:#ff2d55;
+text-transform:uppercase;
+}
+/* =========================
+   CONTENT
+========================= */
+
+.card-content{
+    padding:12px;
+}
+
+.game-name{
+    color:#2D7CFF;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.5px;
+}
+
+.card-content h2{
+    font-size:16px;
+    margin-top:6px;
+    line-height:20px;
+    font-weight:700;
+}
+
+/* =========================
+   META
+========================= */
+
+.card-meta{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+    margin-top:12px;
+}
+
+.meta-item{
+    background:#171D2A;
+    border-radius:10px;
+    padding:8px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:11px;
+    color:#C8D0DF;
+}
+
+.meta-item i{
+    color:#2D7CFF;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.details-btn {
+    width: 100%;
+    margin-top: 18px;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: .3s;
+}
+
+.details-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, .35);
+}
+.filter-buttons{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding-bottom:5px;
+}
+
+.filter-buttons button{
+    padding:8px 16px;
+    font-size:13px;
+    font-weight:600;
+    border-radius:10px;
+    border:none;
+    background:#1b1b1b;
+    color:#fff;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:.3s;
+}
+
+.filter-buttons button.active{
+    background:#ff2d55;
+    color:#fff;
+}
+
+.filter-buttons button:hover{
+    background:#ff2d55;
+}
+.game-filter {
+  position: relative;
+}
+
+.game-menu {
+  display: none;
+  position: absolute;
+  top: 45px;
+  left: 0;
+  width: 180px;
+  background: #111723;
+  border-radius: 10px;
+  z-index: 9999;
+}
+.game-menu div{
+    padding:12px;
+    font-size:13px;
+    color:#fff;
+    cursor:pointer;
+}
+
+.game-menu div:hover{
+    background:#246BFF;
+}
+.menu-container{
+    position:relative;
+}
+
+.menu-btn{
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:12px;
+    background:#151B28;
+    color:#fff;
+    cursor:pointer;
+    font-size:17px;
+}
+
+.menu-dropdown{
+    display:none;
+    position:absolute;
+    top:50px;
+    right:0;
+    width:180px;
+    background:#111723;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:12px;
+    overflow:hidden;
+    z-index:9999;
+}
+
+.menu-dropdown a{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:14px;
+    color:#fff;
+    text-decoration:none;
+}
+
+.menu-dropdown a:hover{
+    background:#246BFF;
+}
+
+.team-popup{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.7);
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+}
+
+.team-popup-box{
+    width:90%;
+    max-width:350px;
+    background:#111723;
+    border-radius:16px;
+    padding:20px;
+    position:relative;
+    text-align:center;
+}
+
+.close-popup{
+    position:absolute;
+    right:15px;
+    top:10px;
+    font-size:26px;
+    cursor:pointer;
+}
+.profile-popup{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.75);
+justify-content:center;
+align-items:center;
+z-index:99999;
+}
+
+.profile-box{
+width:90%;
+max-width:360px;
+background:#111723;
+padding:25px;
+border-radius:18px;
+text-align:center;
+position:relative;
+}
+
+.profile-photo{
+width:90px;
+height:90px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid #246BFF;
+margin-bottom:15px;
+}
+
+.profile-box h2{
+margin-bottom:8px;
+}
+
+.profile-box p{
+margin:5px 0;
+color:#ccc;
+}
+
+.logout-btn{
+width:100%;
+height:45px;
+margin-top:18px;
+background:#246BFF;
+border:none;
+border-radius:10px;
+color:#fff;
+font-weight:700;
+cursor:pointer;
+}
+
+.close-popup{
+position:absolute;
+top:10px;
+right:15px;
+font-size:28px;
+cursor:pointer;
+}
+.team-box{
+width:92%;
+max-width:380px;
+background:linear-gradient(180deg,#151C2B,#0E1420);
+border:1px solid rgba(255,255,255,.08);
+border-radius:24px;
+padding:25px;
+text-align:center;
+position:relative;
+box-shadow:0 0 40px rgba(36,107,255,.25);
+animation:popup .25s ease;
+}
+
+@keyframes popup{
+from{transform:scale(.9);opacity:0;}
+to{transform:scale(1);opacity:1;}
+}
+
+.team-logo{
+width:95px;
+height:95px;
+border-radius:50%;
+object-fit:cover;
+border:4px solid #246BFF;
+box-shadow:0 0 25px #246BFF;
+margin-bottom:12px;
+}
+
+.level{
+display:inline-block;
+padding:6px 14px;
+background:#246BFF;
+border-radius:30px;
+font-size:12px;
+font-weight:700;
+margin-bottom:18px;
+}
+
+.team-stats{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+margin:20px 0;
+}
+
+.stat{
+background:#1A2233;
+padding:14px;
+border-radius:14px;
+}
+
+.stat h3{
+font-size:20px;
+margin-bottom:4px;
+}
+
+.stat span{
+font-size:12px;
+color:#9FA9BC;
+}
+
+.team-btn{
+width:100%;
+height:48px;
+border:none;
+border-radius:14px;
+background:#246BFF;
+color:#fff;
+font-weight:700;
+margin-top:12px;
+cursor:pointer;
+}
+.popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.7);
+backdrop-filter:blur(8px);
+justify-content:center;
+align-items:center;
+z-index:99999;
+}
+.popup.show{
+    display:flex !important;
+}
+
+.create-team-box{
+width:92%;
+max-width:380px;
+background:#111827;
+border-radius:22px;
+padding:25px;
+text-align:center;
+border:1px solid rgba(255,255,255,.08);
+box-shadow:0 0 35px rgba(36,107,255,.35);
+}
+
+.create-team-box h2{
+margin-bottom:20px;
+}
+
+.logo-upload img{
+width:100px;
+height:100px;
+border-radius:50%;
+border:3px solid #246BFF;
+object-fit:cover;
+cursor:pointer;
+margin-bottom:18px;
+}
+
+.create-team-box input,
+.create-team-box select{
+width:100%;
+height:48px;
+background:#1C2538;
+border:none;
+border-radius:12px;
+padding:0 15px;
+color:#fff;
+margin-bottom:15px;
+}
+
+.create-team-box button{
+width:100%;
+height:50px;
+background:#246BFF;
+border:none;
+border-radius:14px;
+font-size:16px;
+font-weight:700;
+color:#fff;
+cursor:pointer;
+}
+
+.close-btn{
+position:absolute;
+right:20px;
+top:15px;
+font-size:28px;
+cursor:pointer;
+}
+
+.team-input{
+width:100%;
+height:48px;
+background:#1A2233;
+border:none;
+border-radius:12px;
+padding:0 15px;
+color:#fff;
+margin-bottom:12px;
+font-size:15px;
+}
+.popup-content{
+    width:92%;
+    max-width:420px;
+    background:#111827;
+    border-radius:22px;
+    padding:25px;
+    position:relative;
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 0 35px rgba(36,107,255,.35);
+}
+.logo-box{
+    text-align:center;
+    margin-bottom:18px;
+}
+
+.logo-box img{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    border:3px solid #246BFF;
+    object-fit:cover;
+    cursor:pointer;
+    box-shadow:0 0 20px rgba(36,107,255,.4);
+}
+/* ===========================
+   EDIT TEAM POPUP
+=========================== */
+
+.popup{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.75);
+backdrop-filter:blur(8px);
+justify-content:center;
+align-items:center;
+z-index:99999;
+}
+
+.popup.show{
+display:flex;
+animation:fade .25s ease;
+}
+
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+.popup-content{
+width:92%;
+max-width:420px;
+background:linear-gradient(180deg,#182131,#101722);
+border:1px solid rgba(255,255,255,.08);
+border-radius:24px;
+padding:25px;
+position:relative;
+box-shadow:0 0 45px rgba(36,107,255,.35);
+animation:popup .25s ease;
+}
+
+@keyframes popup{
+from{
+transform:scale(.9);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+.close-btn{
+position:absolute;
+top:18px;
+right:18px;
+font-size:28px;
+cursor:pointer;
+color:#fff;
+}
+
+.popup-content h2{
+font-size:28px;
+margin-bottom:22px;
+font-weight:800;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.popup-content label{
+display:block;
+margin-bottom:8px;
+font-size:14px;
+font-weight:600;
+color:#C9D3E4;
+}
+
+.logo-box{
+display:flex;
+justify-content:center;
+margin-bottom:20px;
+}
+
+.logo-box img{
+width:110px;
+height:110px;
+border-radius:50%;
+object-fit:cover;
+border:4px solid #246BFF;
+cursor:pointer;
+box-shadow:0 0 30px rgba(36,107,255,.5);
+transition:.3s;
+}
+
+.logo-box img:hover{
+transform:scale(1.05);
+}
+
+.logo-box input{
+display:none;
+}
+
+.team-input,
+.popup-content select{
+width:100%;
+height:50px;
+background:#1B2436;
+border:1px solid rgba(255,255,255,.06);
+border-radius:14px;
+padding:0 15px;
+color:#fff;
+font-size:15px;
+outline:none;
+margin-bottom:18px;
+}
+
+.team-input:focus,
+.popup-content select:focus{
+border-color:#246BFF;
+box-shadow:0 0 10px rgba(36,107,255,.4);
+}
+
+.popup-content hr{
+border:none;
+height:1px;
+background:rgba(255,255,255,.08);
+margin:18px 0;
+}
+
+.popup-content h3{
+font-size:18px;
+margin-bottom:12px;
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.team-btn{
+width:100%;
+height:50px;
+border:none;
+border-radius:14px;
+background:#246BFF;
+color:#fff;
+font-size:15px;
+font-weight:700;
+cursor:pointer;
+margin-top:12px;
+transition:.3s;
+}
+
+.team-btn:hover{
+background:#1D5EEA;
+transform:translateY(-2px);
+}
+
+#playerResult{
+margin-top:15px;
+}
+
+#teamMembersList{
+margin-top:15px;
+max-height:180px;
+overflow:auto;
+padding-right:5px;
+}
+
+#teamMembersList::-webkit-scrollbar{
+width:6px;
+}
+
+#teamMembersList::-webkit-scrollbar-thumb{
+background:#246BFF;
+border-radius:20px;
+}
+
+.player-card{
+background:#1B2436;
+padding:12px;
+border-radius:14px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:10px;
+}
+
+.player-card img{
+width:42px;
+height:42px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.player-info{
+flex:1;
+margin-left:10px;
+}
+
+.player-info h4{
+font-size:15px;
+}
+
+.player-info p{
+font-size:12px;
+color:#9FA9BC;
+}
+
+.remove-btn{
+background:#ff3b30;
+border:none;
+color:#fff;
+padding:8px 12px;
+border-radius:8px;
+cursor:pointer;
+}
+.notify-count{
+position:absolute;
+top:4px;
+right:4px;
+background:red;
+color:#fff;
+width:18px;
+height:18px;
+border-radius:50%;
+font-size:11px;
+display:flex;
+justify-content:center;
+align-items:center;
+font-weight:700;
+display:none;
+}
+.nav-right{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.admin-btn{
+width:45px;
+height:45px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+background:rgba(255,255,255,0.08);
+border:1px solid rgba(255,255,255,0.15);
+color:#fff;
+font-size:20px;
+text-decoration:none;
+transition:.3s;
+}
+
+.admin-btn:hover{
+background:#ff3b3b;
+transform:scale(1.08);
+box-shadow:0 0 15px rgba(255,59,59,.6);
+}
+.card-meta{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+margin:18px 0;
+}
+
+.meta-item{
+display:flex;
+align-items:center;
+gap:12px;
+padding:14px;
+background:#161d2d;
+border-radius:12px;
+}
+
+.meta-item i{
+font-size:20px;
+color:#3b82f6;
+min-width:20px;
+}
+
+.meta-item small{
+display:block;
+font-size:11px;
+color:#9ca3af;
+margin-bottom:4px;
+}
+
+.meta-item strong{
+display:block;
+font-size:15px;
+color:#fff;
+font-weight:700;
+}
+</style>
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+<div class="logo">
+
+<img src="logo.png">
+
+<div>
+
+<h2>GT ESPORTS</h2>
+
+<p>Tournament Platform</p>
+
+</div>
+
+</div>
+
+<div class="nav-icons">
+<div class="nav-right">
+
+    <a href="admin-panel.html" class="admin-btn" title="Admin Panel">
+        <i class="fa-solid fa-user-shield"></i>
+    </a>
+
+</div>
+<button onclick="openNotifications()">
+    <i class="fa-regular fa-bell"></i>
+    <span id="notificationCount" class="notify-count">0</span>
+</button>
+
+<div class="menu-container">
+
+    <button class="menu-btn" onclick="toggleMenu()">
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+    </button>
+
+<div class="menu-dropdown" id="menuDropdown">
+<a href="#" onclick="openProfile()">
+    <i class="fa-solid fa-user"></i>
+    My Profile
+</a>
+
+<a href="#" onclick="openTeamProfile()">
+    <i class="fa-solid fa-user-plus"></i>
+    Team Profile 
+</a>
+
+<a href="#" onclick="openCreateTeam()">
+    <i class="fa-solid fa-user-plus"></i>
+    Create Team
+</a>
+<a href="checkout.html" onclick="openWallet()"> <i class="fa-solid fa-wallet"></i>
+
+Wallet
+
+</a>
+   <a href="#" onclick="openHelp()">
+        <i class="fa-solid fa-circle-question"></i>
+        Help
+    </a>
+</div>
+</div>
+
+</header>
+
+<div class="container">
+
+<!-- HERO SECTION -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<p class="hero-tag">
+ACTIVE BATTLEFIELDS TOURNAMENTS
+</p>
+
+<h1>
+COMPETITIVE
+<br>
+<span>ARENA</span>
+</h1>
+
+<p class="hero-desc">
+
+Browse active tournaments, view results and secure your team's entry into GT Esports official events.
+
+</p>
+
+</div>
+
+<div class="hero-bg">
+
+<i class="fa-solid fa-trophy"></i>
+
+</div>
+
+</section>
+<!-- FILTER BAR -->
+
+<section class="filter-bar">
+
+<button class="active">
+ALL
+</button>
+
+<button>
+UPCOMING
+</button>
+
+<button>
+COMPLETED
+</button>
+<div class="game-filter" onclick="toggleGames()">
+
+    <i class="fa-solid fa-gamepad"></i>
+
+    <span id="selectedGame">ALL GAMES</span>
+
+    <i class="fa-solid fa-chevron-down"></i>
+
+    <div class="game-menu" id="gameMenu">
+        <div onclick="selectGame('ALL GAMES')">ALL GAMES</div>
+        <div onclick="selectGame('FREE FIRE MAX')">FREE FIRE MAX</div>
+        <div onclick="selectGame('BGMI')">BGMI</div>
+        <div onclick="selectGame('VALORANT')">VALORANT</div>
+    </div>
+
+</div>
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+placeholder="SEARCH THE ARENA">
+
+</div>
+
+</section>
+<section class="tournaments" id="tournamentContainer">
+
+</section>
+<section class="tournaments">
+  
+  
+</div>
+</section>
+</div>
+<script>
+    function toggleGames() {
+        const menu = document.getElementById("gameMenu");
+        menu.style.display =
+            menu.style.display === "block" ? "none" : "block";
+    }
+    
+    function selectGame(game) {
+        document.getElementById("selectedGame").innerText = game;
+        document.getElementById("gameMenu").style.display = "none";
+    }
+</script>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById("menuDropdown");
+        menu.style.display =
+            menu.style.display === "block" ? "none" : "block";
+    }
+    
+    document.addEventListener("click", function(e) {
+        
+        if (!e.target.closest(".menu-container")) {
+            document.getElementById("menuDropdown").style.display = "none";
+        }
+        
+        if (!e.target.closest(".game-filter")) {
+            document.getElementById("gameMenu").style.display = "none";
+        }
+        
+    });
+</script>
+
+
+<div id="profilePopup" class="profile-popup">
+
+  <div class="profile-box">
+
+    <span class="close-popup" onclick="closeProfilePopup()">&times;</span>
+
+    <img id="profilePhoto" class="profile-photo" src="default-avatar.png">
+
+    <h2 id="profileName">Guest User</h2>
+
+    <p id="profileEmail">Not Logged In</p>
+
+    <p id="profileUid"></p>
+
+    <button class="logout-btn" onclick="logout()">Logout</button>
+
+  </div>
+
+</div>
+<script>
+
+
+window.openEditTeam = function() {
+    
+    const popup = document.getElementById("editTeamPopup");
+    
+    if (!popup) {
+        console.error("editTeamPopup not found");
+        return;
+    }
+    
+    popup.classList.add("show");
+};
+
+window.closeEditTeam = function() {
+    
+    const popup = document.getElementById("editTeamPopup");
+    
+    if (popup) {
+        popup.classList.remove("show");
+    }
+};
+
+function closeTeamPopup(){
+    document.getElementById("teamPopup").style.display = "none";
+}
+
+function openCreateTeam(){
+    document.getElementById("createTeamPopup").style.display="flex";
+}
+
+function closeCreateTeam(){
+    document.getElementById("createTeamPopup").style.display="none";
+}
+
+document.getElementById("createTeamLogo").onchange = function(e){
+    const file = e.target.files[0];
+    if(file){
+        document.getElementById("createTeamLogoPreview").src =
+            URL.createObjectURL(file);
+    }
+}
+
+function openWallet(){
+    window.location.href="wallet.html";
+}
+
+function openHelp(){
+    window.location.href="help.html";
+}
+</script>
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getDatabase,
+  ref,
+  get,
+  set,
+  update,
+  remove,
+  onValue
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAxxvbQlbvqtedhoicrijzAlljIjKeejWw",
+  authDomain: "grind-treager.firebaseapp.com",
+  databaseURL: "https://grind-treager-default-rtdb.firebaseio.com",
+  projectId: "grind-treager",
+  storageBucket: "grind-treager.firebasestorage.app",
+  messagingSenderId: "236334920342",
+  appId: "1:236334920342:web:5ae959f81b41541f5608b7"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getDatabase(app);
+const tournamentRef = ref(db,"tournaments");
+
+onValue(tournamentRef,(snapshot)=>{
+
+const container = document.getElementById("tournamentContainer");
+
+if(!container) return;
+
+container.innerHTML="";
+
+snapshot.forEach((child)=>{
+
+const id = child.key;
+const t = child.val();
+
+container.innerHTML += `
+
+<div class="tournament-card">
+
+<div class="card-banner">
+
+<img src="${t.banner}" alt="${t.name}">
+
+<div class="live-badge">
+${t.status}
+</div>
+
+</div>
+
+<div class="card-content">
+
+<span class="game-name">
+${t.game}
+</span>
+
+<h2>
+${t.name}
+</h2>
+
+<div class="card-meta">
+
+<div class="meta-item">
+<i class="fa-solid fa-trophy"></i>
+<div>
+<small>Prize Pool</small>
+<strong>${t.prize} GTC</strong>
+</div>
+</div>
+
+<div class="meta-item">
+<i class="fa-solid fa-ticket"></i>
+<div>
+<small>Entry Fee</small>
+<strong>${t.entry} GTC</strong>
+</div>
+</div>
+
+<div class="meta-item">
+<i class="fa-solid fa-users"></i>
+<div>
+<small>Total Slots</small>
+<strong>${t.slots} Teams</strong>
+</div>
+</div>
+
+<div class="meta-item">
+<i class="fa-solid fa-calendar-days"></i>
+<div>
+<small>Tournament Date</small>
+<strong>${t.date}</strong>
+</div>
+</div>
+
+</div>
+
+<button
+class="details-btn"
+onclick="location.href='details.html?id=${id}'">
+
+VIEW DETAILS
+
+<i class="fa-solid fa-arrow-right"></i>
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+});
+
+let currentUser = null;
+
+window.openTeamProfile = async function(){
+
+    if(!currentUser){
+        alert("Please login first.");
+        return;
+    }
+
+    const snap = await get(ref(db,"teams/"+currentUser.uid));
+
+    if(!snap.exists()){
+        alert("You don't have a team.");
+        return;
+    }
+
+    const team = snap.val();
+
+    document.getElementById("profileTeamName").textContent = team.teamName;
+    document.getElementById("profileTeamId").textContent = team.teamId;
+
+    document.getElementById("teamPopup").style.display = "flex";
+};
+
+onAuthStateChanged(auth, (user) => {
+    currentUser = user;
+});
+
+window.openProfile = function () {
+
+    if (!currentUser) {
+        alert("Please login first.");
+        window.location.href = "index.html";
+        return;
+    }
+
+    document.getElementById("profileName").textContent =
+        currentUser.displayName || "GT Player";
+
+    document.getElementById("profileEmail").textContent =
+        currentUser.email || "";
+
+    document.getElementById("profileUid").textContent =
+        "UID : " + currentUser.uid;
+
+    document.getElementById("profilePhoto").src =
+    currentUser.photoURL || "https://ui-avatars.com/api/?name=GT+Player&background=246BFF&color=fff";
+
+    document.getElementById("profilePopup").style.display = "flex";
+};
+
+window.closeProfilePopup = function () {
+    document.getElementById("profilePopup").style.display = "none";
+};
+
+window.logout = async function () {
+
+    await signOut(auth);
+
+    localStorage.removeItem("gtUser");
+localStorage.removeItem("gtName");
+localStorage.removeItem("gtPhoto");
+localStorage.removeItem("gtUid");
+
+    window.location.href = "index.html";
+};
+
+window.createTeam = async function () {
+
+    if (!currentUser) {
+        alert("Please login first.");
+        return;
+    }
+
+    const teamName = document.getElementById("createTeamName").value.trim();
+    const game = document.getElementById("teamGame").value;
+
+    if (teamName === "") {
+        alert("Enter Team Name");
+        return;
+    }
+
+    try {
+
+        // Ek account = Ek team
+        const myTeamRef = ref(db, "teams/" + currentUser.uid);
+        const myTeamSnap = await get(myTeamRef);
+
+        if (myTeamSnap.exists()) {
+            alert("You already have a team.");
+            return;
+        }
+
+        // Counter Read
+        const counterRef = ref(db, "teamCounter");
+        const counterSnap = await get(counterRef);
+
+        let counter = counterSnap.exists() ? counterSnap.val() : 0;
+        counter++;
+
+        const teamId = "GT" + String(counter).padStart(6, "0");
+
+        // Counter Update
+        await set(counterRef, counter);
+
+        // Team Save
+await set(myTeamRef, {
+    teamId: teamId,
+    teamName: teamName,
+    game: game,
+    captain: currentUser.displayName || "GT Player",
+    captainUid: currentUser.uid,
+    players: 1,
+    wins: 0,
+    matches: 0,
+
+    members: {
+        [currentUser.uid]: {
+            uid: currentUser.uid,
+            role: "Captain"
+        }
+    }
+});
+
+        // Popup Update
+        document.getElementById("profileTeamName").textContent = teamName;
+
+        alert("✅ Team Created Successfully");
+
+        closeCreateTeam();
+        openTeamProfile();
+
+    } catch (err) {
+        console.error(err);
+        alert("Error : " + err.message);
+    }
+
+};
+
+window.searchPlayer = async function () {
+
+    const uid = document.getElementById("searchPlayerUid").value.trim();
+
+    if (!uid) {
+        alert("Enter Player UID");
+        return;
+    }
+
+    try {
+
+        const snap = await get(ref(db, "users/" + uid));
+
+        if (!snap.exists()) {
+            document.getElementById("playerResult").innerHTML =
+                "<p style='color:red'>Player not found.</p>";
+            return;
+        }
+
+        const player = snap.val();
+
+        document.getElementById("playerResult").innerHTML = `
+<div class="player-card">
+
+    <div class="player-info">
+        <h4>${player.fullname}</h4>
+        <p>${player.username}</p>
+        <small>${player.team}</small>
+    </div>
+
+    <button class="team-btn"
+        onclick="sendJoinRequest('${uid}')">
+        Send Request
+    </button>
+
+</div>
+`;
+
+    } catch (e) {
+        alert(e.message);
+    }
+
+};
+
+window.sendJoinRequest = async function(playerUid){
+
+    if(!currentUser){
+        alert("Login first");
+        return;
+    }
+
+    try{
+
+        const requestId = Date.now().toString();
+
+        await set(ref(db,"notifications/"+playerUid+"/"+requestId),{
+
+            type:"team_request",
+
+            captainUid:currentUser.uid,
+
+            captainName:currentUser.displayName || "GT Player",
+
+            teamName:document.getElementById("profileTeamName").textContent,
+
+            status:"pending",
+
+            time:Date.now()
+
+        });
+
+        alert("✅ Join Request Sent");
+
+    }catch(err){
+
+        alert(err.message);
+
+    }
+
+}
+window.openNotifications = function(){
+
+    document.getElementById("notificationPopup")
+    .classList.add("show");
+
+};
+
+window.closeNotifications = function(){
+
+    document.getElementById("notificationPopup")
+    .classList.remove("show");
+
+};
+window.acceptRequest = async function(requestId){
+
+    if(!currentUser) return;
+
+    try{
+
+        const reqRef = ref(db,"notifications/"+currentUser.uid+"/"+requestId);
+        const reqSnap = await get(reqRef);
+
+        if(!reqSnap.exists()){
+            alert("Request not found");
+            return;
+        }
+
+        const req = reqSnap.val();
+
+        // Captain Team
+        const teamRef = ref(db,"teams/"+req.captainUid);
+        const teamSnap = await get(teamRef);
+
+        if(!teamSnap.exists()){
+            alert("Team not found");
+            return;
+        }
+
+        const team = teamSnap.val();
+
+        // Add Player
+        await set(
+            ref(db,"teams/"+req.captainUid+"/members/"+currentUser.uid),
+            {
+                uid:currentUser.uid,
+                role:"Player"
+            }
+        );
+
+        // Update Player Count
+        await update(teamRef,{
+            players:(team.players || 1)+1
+        });
+
+        // Update User Team
+        await update(ref(db,"users/"+currentUser.uid),{
+            team:team.teamName
+        });
+
+        // Delete Notification
+        await remove(reqRef);
+
+        alert("✅ Team Joined Successfully");
+
+    }catch(e){
+
+        alert(e.message);
+
+    }
+
+};
+
+onAuthStateChanged(auth,(user)=>{
+
+    if(!user) return;
+
+    onValue(ref(db,"notifications/"+user.uid),snap=>{
+
+        let html="";
+
+        let count=0;
+
+        if(snap.exists()){
+
+            snap.forEach(child=>{
+
+                count++;
+
+                const n=child.val();
+
+                html+=`
+                <div class="player-card">
+
+                    <div class="player-info">
+
+                        <h4>${n.teamName}</h4>
+
+                        <p>${n.captainName}</p>
+
+                    </div>
+
+                    <button class="team-btn"
+                    onclick="acceptRequest('${child.key}')">
+                    Accept
+                    </button>
+
+                </div>
+                `;
+
+            });
+
+        }else{
+
+            html="<p>No Notifications</p>";
+
+        }
+
+        document.getElementById("notificationList").innerHTML=html;
+
+        const badge=document.getElementById("notificationCount");
+
+        if(count>0){
+
+            badge.style.display="flex";
+
+            badge.textContent=count;
+
+        }else{
+
+            badge.style.display="none";
+
+        }
+
+    });
+
+});
+
+</script>
+<div id="teamPopup" class="profile-popup">
+    
+    <div class="team-box">
+        
+        <span class="close-popup" onclick="closeTeamPopup()">&times;</span>
+        
+        <img id="profileTeamLogo" class="team-logo" src="team-logo.png">
+
+<h2 id="profileTeamName">GT ESPORTS</h2>
+        
+    
+        
+<div class="level">
+    <i class="fa-solid fa-shield-halved"></i>
+    LEVEL 15
+</div>        
+<p><i class="fa-solid fa-crown"></i> <b>Captain:</b> GT DRAYX</p>
+
+<p>
+    <i class="fa-solid fa-id-card"></i>
+    <b>Team ID:</b>
+    <span id="profileTeamId">Loading...</span>
+</p>
+        
+        <div class="team-stats">
+            
+            <div class="stat">
+                <h3>4</h3>
+                <span>Players</span>
+            </div>
+            
+            <div class="stat">
+                <h3>15</h3>
+                <span>Matches</span>
+            </div>
+            
+            <div class="stat">
+                <h3>8</h3>
+                <span>Wins</span>
+            </div>
+            
+            <div class="stat">
+                <h3>53%</h3>
+                <span>Win Rate</span>
+            </div>
+            
+        </div>
+        
+<button class="team-btn" onclick="viewPlayers()">
+    <i class="fa-solid fa-users"></i>
+    View Players
+</button>
+
+<button class="team-btn" onclick="openEditTeam()">
+    <i class="fa-solid fa-pen-to-square"></i>
+    Edit Team
+</button>
+        
+    </div>
+    
+</div>
+
+<!-- Create Team Popup -->
+<div id="createTeamPopup" class="popup">
+
+  <div class="create-team-box">
+
+    <span class="close-btn" onclick="closeCreateTeam()">&times;</span>
+
+    <h2>Create Team</h2>
+
+    <div class="logo-upload">
+      <img id="createTeamLogoPreview"
+src="https://via.placeholder.com/100"
+onclick="document.getElementById('createTeamLogo').click()">
+
+<input type="file"
+id="createTeamLogo"
+accept="image/*"
+hidden>
+
+<input type="text"
+id="createTeamName"
+placeholder="Team Name">
+
+
+    <select id="teamGame">
+      <option value="FREE FIRE MAX">FREE FIRE MAX</option>
+    </select>
+
+    <button onclick="createTeam()">
+      Create Team
+    </button>
+
+  </div>
+
+</div>
+</div>
+<div id="editTeamPopup" class="popup">
+
+  <div class="popup-content">
+
+    <span class="close-btn" onclick="closeEditTeam()">&times;</span>
+
+    <h2><i class="fa-solid fa-pen-to-square"></i> Edit Team</h2>
+
+    <!-- Team Logo -->
+    <div class="logo-box">
+      <img id="editTeamLogoPreview"
+           src="https://via.placeholder.com/120"
+           alt="Logo">
+
+      <input type="file"
+             id="editTeamLogo"
+             accept="image/*">
+    </div>
+
+    <!-- Team Name -->
+    <label>Team Name</label>
+
+    <input
+      type="text"
+      id="editTeamName"
+      class="team-input"
+      placeholder="Enter Team Name">
+
+    <!-- Game -->
+    <label>Game</label>
+
+    <select id="editTeamGame" class="team-input">
+
+      <option value="FREE FIRE MAX">
+        FREE FIRE MAX
+      </option>
+
+      <option value="BGMI">
+        BGMI
+      </option>
+
+      <option value="VALORANT">
+        VALORANT
+      </option>
+
+    </select>
+
+    <hr>
+
+    <h3>
+      <i class="fa-solid fa-user-plus"></i>
+      Add Player
+    </h3>
+
+    <input
+      type="text"
+      id="searchPlayerUid"
+      class="team-input"
+      placeholder="Enter Player UID">
+
+    <button
+      class="team-btn"
+      onclick="searchPlayer()">
+
+      <i class="fa-solid fa-magnifying-glass"></i>
+      Search Player
+
+    </button>
+
+    <div id="playerResult"></div>
+
+    <hr>
+
+    <h3>
+      <i class="fa-solid fa-users"></i>
+      Team Members
+    </h3>
+
+    <div id="teamMembersList">
+
+      Loading...
+
+    </div>
+
+    <button
+      class="team-btn"
+      onclick="saveTeamChanges()">
+
+      <i class="fa-solid fa-floppy-disk"></i>
+      Save Changes
+
+    </button>
+
+  </div>
+
+</div>
+
+<div id="notificationPopup" class="popup">
+
+  <div class="popup-content">
+
+    <span class="close-btn"
+          onclick="closeNotifications()">&times;</span>
+
+    <h2>
+      <i class="fa-solid fa-bell"></i>
+      Notifications
+    </h2>
+
+    <div id="notificationList">
+      No Notifications
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>

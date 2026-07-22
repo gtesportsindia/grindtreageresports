@@ -1,0 +1,430 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GT ESPORTS INDIA | CREATORS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:#050505;
+font-family:'Poppins',sans-serif;
+color:#fff;
+overflow-x:hidden;
+}
+
+.container{
+max-width:1400px;
+margin:auto;
+padding:20px;
+}
+
+/* HEADER */
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px;
+background:#0b0b0b;
+border:1px solid #181818;
+border-radius:20px;
+margin-bottom:40px;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.logo img{
+width:55px;
+}
+
+.logo h2{
+font-family:'Orbitron',sans-serif;
+font-size:15px;
+}
+
+.home-btn{
+padding:12px 24px;
+border-radius:30px;
+text-decoration:none;
+color:#fff;
+font-weight:600;
+background:linear-gradient(135deg,#c084fc,#9333ea);
+}
+
+/* HERO */
+
+.hero{
+text-align:center;
+padding:60px 20px;
+}
+
+.hero h1{
+font-family:'Orbitron',sans-serif;
+font-size:65px;
+font-weight:900;
+}
+
+.hero span{
+color:#a855f7;
+}
+
+.hero p{
+margin-top:15px;
+color:#888;
+}
+
+/* CREATOR GRID */
+
+.creator-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:22px;
+}
+
+/* CARD */
+
+.creator-card{
+background:#0b0b0b;
+border:1px solid #181818;
+border-radius:25px;
+padding:15px;
+position:relative;
+overflow:hidden;
+transition:.3s;
+}
+
+.creator-card:hover{
+transform:translateY(-5px);
+border-color:#a855f7;
+box-shadow:0 0 30px rgba(168,85,247,.25);
+}
+
+.subs{
+position:absolute;
+top:15px;
+left:15px;
+background:#111;
+padding:6px 12px;
+border-radius:20px;
+font-size:12px;
+z-index:2;
+}
+
+.subs i{
+color:red;
+}
+
+.creator-img{
+width:100%;
+height:320px;
+object-fit:cover;
+border-radius:20px;
+background:#111;
+}
+
+.creator-info{
+text-align:center;
+margin-top:15px;
+}
+
+.creator-info p{
+font-size:11px;
+letter-spacing:2px;
+color:#a855f7;
+}
+
+.creator-info h3{
+font-family:'Orbitron',sans-serif;
+margin-top:8px;
+font-size:22px;
+}
+
+.btn{
+display:block;
+text-align:center;
+margin-top:10px;
+padding:12px;
+border-radius:12px;
+text-decoration:none;
+color:#fff;
+background:#111;
+border:1px solid #222;
+transition:.3s;
+}
+
+.youtube:hover{
+background:#ff0000;
+}
+
+.instagram:hover{
+background:#c13584;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:42px;
+}
+
+.creator-img{
+height:260px;
+}
+
+}
+
+.footer-social{
+display:flex;
+justify-content:center;
+gap:18px;
+margin-top:20px;
+}
+
+.footer-social a{
+width:55px;
+height:55px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:15px;
+font-size:26px;
+text-decoration:none;
+transition:.3s;
+}
+
+.footer-social .yt{
+background:#ff000020;
+color:#ff0000;
+box-shadow:0 0 10px currentColor;
+}
+
+.footer-social .ig{
+background:#c1358420;
+color:#e1306c;
+box-shadow:0 0 10px #e1306c55;
+
+}
+
+.footer-social .dc{
+background:#5865f220;
+color:#5865f2;
+box-shadow:0 0 10px #5865f255;
+
+}
+
+.footer-social .wa{
+background:#25d36620;
+color:#25d366;
+box-shadow:0 0 10px #25d36655;
+}
+
+.footer-social a:hover{
+transform:translateY(-5px) scale(1.08);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<div class="logo">
+<img src="logo.png">
+<h2>GT ESPORTS INDIA</h2>
+</div>
+
+<a href="index.html" class="home-btn">
+HOME
+</a>
+
+</div>
+
+<section class="hero">
+
+<h1>CONTENT <span>CREATORS</span></h1>
+
+<p>
+Official GT ESPORTS INDIA Partner Creators
+</p>
+
+</section>
+
+<div class="creator-grid">
+  <!-- CREATOR 1 -->
+<div class="creator-card">
+
+<div class="subs">
+<i class="ri-youtube-fill"></i> 2.1M
+</div>
+
+<img src="drayx.jpg" class="creator-img">
+
+<div class="creator-info">
+<p>FREE FIRE MAX</p>
+<h3>GT DRAYX</h3>
+</div>
+
+<a href="https://youtube.com/@gt_esports_india_official?si=dYqDlXhtOO9dfVrd" class="btn youtube">
+<i class="ri-youtube-fill"></i> YOUTUBE
+</a>
+
+<a href="https://www.instagram.com/gt_esports_india?igsh=MXd2MXhyanZnNWM2eQ==" class="btn instagram">
+<i class="ri-instagram-fill"></i> INSTAGRAM
+</a>
+
+</div>
+
+<!-- CREATOR 2 -->
+<div class="creator-card">
+
+<div class="subs">
+<i class="ri-youtube-fill"></i> 557K
+</div>
+
+<img src="sami.jpg" class="creator-img">
+
+<div class="creator-info">
+<p>FREE FIRE MAX</p>
+<h3>GT AURA</h3>
+</div>
+
+<a href="#" class="btn youtube">
+<i class="ri-youtube-fill"></i> YOUTUBE
+</a>
+
+<a href="#" class="btn instagram">
+<i class="ri-instagram-fill"></i> INSTAGRAM
+</a>
+
+</div>
+
+<!-- CREATOR 3 -->
+<div class="creator-card">
+
+<div class="subs">
+<i class="ri-youtube-fill"></i> 45K+
+</div>
+
+<img src="rumor.jpg" class="creator-img">
+
+<div class="creator-info">
+<p>FREE FIRE MAX</p>
+<h3>GT RUMOR</h3>
+</div>
+
+<a href="#" class="btn youtube">
+<i class="ri-youtube-fill"></i> YOUTUBE
+</a>
+
+<a href="#" class="btn instagram">
+<i class="ri-instagram-fill"></i> INSTAGRAM
+</a>
+
+</div>
+
+<!-- JOIN THE SQUAD -->
+<div class="creator-card">
+
+<div style="height:320px;display:flex;align-items:center;justify-content:center;flex-direction:column;">
+
+<i class="ri-star-line" style="font-size:50px;color:#a855f7;"></i>
+
+<h2 style="margin-top:20px;font-family:'Orbitron';">
+JOIN THE SQUAD
+</h2>
+
+<p style="color:#888;margin-top:10px;">
+BECOME PART OF THE LEGENDS
+</p>
+
+<a href="contact.html" class="btn" style="margin-top:25px;">
+APPLY NOW
+</a>
+
+</div>
+
+</div>
+</div> <!-- creator-grid -->
+
+<footer style="
+margin-top:60px;
+padding:30px;
+text-align:center;
+border-top:1px solid #181818;
+">
+
+<h3 style="
+font-family:'Orbitron';
+color:#a855f7;
+margin-bottom:10px;
+">
+GT ESPORTS INDIA
+</h3>
+
+<p style="color:#888;">
+Official Creator Program
+</p>
+
+<div style="
+margin-top:20px;
+display:flex;
+justify-content:center;
+gap:18px;
+flex-wrap:wrap;
+">
+
+<div class="footer-social">
+
+<a href="https://youtube.com/@gt_esports_india_official?si=dYqDlXhtOO9dfVrd" class="yt">
+<i class="ri-youtube-fill"></i>
+</a>
+
+<a href="https://www.instagram.com/gt_esports_india?igsh=MXd2MXhyanZnNWM2eQ==" class="ig">
+<i class="ri-instagram-fill"></i>
+</a>
+
+<a href="https://discord.gg/9feyYrVN4" class="dc">
+<i class="ri-discord-fill"></i>
+</a>
+
+<a href="https://chat.whatsapp.com/FT5gvPH4faMHiZlK3AOFmH?s=cl&p=a&ilr=1" class="wa">
+<i class="ri-whatsapp-fill"></i>
+</a>
+
+</div>
+
+<p style="
+margin-top:20px;
+color:#666;
+font-size:14px;
+">
+© 2026 GT ESPORTS INDIA. All Rights Reserved.
+</p>
+
+</footer>
+
+</div> <!-- container -->
+
+</body>
+</html>

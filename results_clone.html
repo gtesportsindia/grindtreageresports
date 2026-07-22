@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GT ESPORTS RESULTS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:#050505;
+color:#fff;
+font-family:Arial,sans-serif;
+}
+
+/* NAVBAR */
+
+.navbar{
+position:sticky;
+top:0;
+z-index:999;
+height:75px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:0 18px;
+background:rgba(5,5,5,.95);
+backdrop-filter:blur(15px);
+border-bottom:1px solid #1f1f1f;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.logo img{
+height:38px;
+width:auto;
+}
+
+.logo h2{
+font-family:'Orbitron',sans-serif;
+font-size:14px;
+font-weight:700;
+color:#fff;
+}
+
+.nav-right{
+display:flex;
+gap:10px;
+}
+
+.nav-right a{
+width:42px;
+height:42px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+background:#111;
+border:1px solid #222;
+text-decoration:none;
+color:#a855f7;
+font-size:20px;
+transition:.3s;
+}
+
+.nav-right a:hover{
+background:#a855f7;
+color:#fff;
+}
+
+.page-title{
+padding:30px 20px;
+font-size:30px;
+font-family:'Orbitron',sans-serif;
+}
+
+.filter-section{
+display:grid;
+grid-template-columns:2fr 1fr 1fr 1fr;
+gap:12px;
+padding:20px;
+align-items:center;
+}
+
+@media(max-width:768px){
+.filter-section{
+grid-template-columns:1fr 1fr;
+}
+}
+
+.search-box,
+.filter-box{
+height:65px;
+background:#0a0a0a;
+border:1px solid rgba(255,255,255,.08);
+border-radius:18px;
+display:flex;
+align-items:center;
+padding:0 18px;
+color:#fff;
+backdrop-filter:blur(20px);
+box-shadow:
+0 0 20px rgba(168,85,247,.05),
+inset 0 0 10px rgba(255,255,255,.02);
+}
+
+.search-box i,
+.filter-box i:first-child{
+font-size:22px;
+color:#a855f7;
+margin-right:12px;
+}
+
+.search-box input{
+width:100%;
+background:none;
+border:none;
+outline:none;
+color:#fff;
+font-size:14px;
+}
+
+.filter-box{
+justify-content:space-between;
+cursor:pointer;
+}
+
+.filter-box span{
+flex:1;
+font-size:14px;
+font-weight:600;
+letter-spacing:1px;
+}
+
+.filter-box:hover{
+border-color:#a855f7;
+box-shadow:0 0 25px rgba(168,85,247,.25);
+}
+
+.slot-dropdown{
+position:relative;
+}
+
+.slot-menu{
+display:none;
+position:absolute;
+top:75px;
+left:0;
+width:280px;
+background:#0a0a0a;
+border:1px solid #222;
+border-radius:25px;
+padding:15px;
+z-index:999;
+box-shadow:0 0 30px rgba(168,85,247,.25);
+}
+
+.slot-menu div{
+padding:18px;
+margin-bottom:10px;
+border-radius:18px;
+cursor:pointer;
+font-weight:700;
+color:#aaa;
+}
+
+.slot-menu div:hover{
+background:linear-gradient(135deg,#c084fc,#9333ea);
+color:#fff;
+}
+
+.slot-menu.show{
+display:block;
+animation:fadeIn .25s ease;
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(-10px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+.game-menu{
+display:none;
+position:absolute;
+top:75px;
+left:0;
+width:280px;
+background:#0a0a0a;
+border:1px solid #222;
+border-radius:25px;
+padding:15px;
+z-index:999;
+box-shadow:0 0 30px rgba(168,85,247,.25);
+}
+
+.game-menu div{
+padding:18px;
+margin-bottom:10px;
+border-radius:18px;
+cursor:pointer;
+font-weight:700;
+color:#aaa;
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.game-menu div:hover{
+background:linear-gradient(135deg,#c084fc,#9333ea);
+color:#fff;
+}
+
+.game-menu.show{
+display:block;
+}
+
+.result-card{
+background:#0a0a0a;
+border:1px solid #1f1f1f;
+border-radius:28px;
+overflow:hidden;
+box-shadow:0 0 30px rgba(168,85,247,.08);
+}
+
+.result-card{
+background:#0a0a0a;
+border:1px solid #1b1b1b;
+border-radius:28px;
+overflow:hidden;
+margin:20px;
+}
+
+.result-img{
+width:100%;
+height:auto;
+display:block;
+border-radius:20px 20px 0 0;
+}
+
+.result-bottom{
+padding:20px;
+}
+
+.result-bottom{
+padding:18px;
+}
+
+.tag{
+display:inline-block;
+background:#22112f;
+color:#c084fc;
+padding:8px 12px;
+border-radius:10px;
+font-size:12px;
+font-weight:700;
+}
+
+.date{
+font-size:12px;
+color:#777;
+margin-left:10px;
+}
+
+.result-bottom h3{
+margin-top:15px;
+font-family:Orbitron;
+font-size:24px;
+}
+
+.result-footer{
+margin-top:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.result-footer a{
+color:#c084fc;
+text-decoration:none;
+font-weight:700;
+}
+.popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.95);
+z-index:9999;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+padding:20px;
+}
+
+.popup img{
+max-width:95%;
+max-height:80vh;
+border-radius:20px;
+object-fit:contain;
+}
+
+.popup-actions{
+margin-top:20px;
+display:flex;
+gap:15px;
+}
+
+.popup-actions a,
+.popup-actions button{
+background:#111;
+border:1px solid #333;
+color:#fff;
+padding:12px 25px;
+border-radius:40px;
+font-size:14px;
+cursor:pointer;
+text-decoration:none;
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.close-btn{
+position:absolute;
+top:20px;
+right:20px;
+font-size:40px;
+color:#fff;
+cursor:pointer;
+}
+
+.slot-btn{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+
+width:100%;
+margin-top:12px;
+padding:12px;
+
+background:linear-gradient(90deg,#b95cff,#d77cff);
+color:#fff;
+text-decoration:none;
+
+border-radius:12px;
+font-weight:700;
+font-size:13px;
+
+box-shadow:0 0 15px rgba(185,92,255,.3);
+}
+
+.slot-btn i{
+font-size:18px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+<div class="logo">
+<img src="logo.png">
+<h2>GRIND TREAGER ESPORTS</h2>
+</div>
+
+<div class="nav-right">
+
+<a href="index.html">
+<i class="ri-home-5-line"></i>
+</a>
+
+<a href="tournaments.html">
+<i class="ri-trophy-line"></i>
+</a>
+
+<a href="profile.html">
+<i class="ri-user-3-line"></i>
+</a>
+
+</div>
+
+</div>
+
+<h1 class="page-title">
+MATCH RESULTS
+</h1>
+
+<div class="filter-section">
+
+<div class="search-box">
+<i class="ri-search-line"></i>
+<input type="text" placeholder="SEARCH BY EVENT TITLE OR GAME...">
+</div>
+
+<div class="filter-box" onclick="document.getElementById('datePicker').showPicker()">
+
+<i class="ri-calendar-line"></i>
+
+<span id="dateText">ALL DATES</span>
+
+<input
+type="date"
+id="datePicker"
+style="display:none"
+onchange="
+document.getElementById('dateText').innerHTML=this.value;
+filterResults();
+">
+
+</div>
+
+<div class="slot-dropdown">
+
+<div class="filter-box" onclick="toggleSlots()">
+<i class="ri-time-line"></i>
+<span id="slotText">ALL SLOTS</span>
+<i class="ri-filter-3-line"></i>
+</div>
+
+<div class="slot-menu" id="slotMenu">
+
+<div onclick="selectSlot('ALL SLOTS')">
+● ALL SLOTS
+</div>
+
+<div onclick="selectSlot('3:00 PM')">
+● 3:00 PM
+</div>
+
+<div onclick="selectSlot('5:00 PM')">
+● 5:00 PM
+</div>
+
+<div onclick="selectSlot('9:00 PM')">
+● 9:00 PM
+</div>
+
+</div>
+
+</div>
+
+<div class="slot-dropdown">
+
+<div class="filter-box" onclick="toggleGames()">
+<i class="ri-gamepad-line"></i>
+<span id="gameText">ALL GAMES</span>
+<i class="ri-filter-3-line"></i>
+</div>
+
+<div class="game-menu" id="gameMenu">
+
+<div onclick="selectGame('ALL GAMES')">
+<span style="color:#d8b4fe;">●</span>
+ALL GAMES
+</div>
+
+<div onclick="selectGame('FREE FIRE MAX')">
+<span style="color:#ff4d4d;">●</span>
+FREE FIRE MAX
+</div>
+
+<div onclick="selectGame('BGMI')">
+<span style="color:#4da6ff;">●</span>
+BGMI
+</div>
+
+<div onclick="selectGame('VALORANT')">
+<span style="color:#ff3b6b;">●</span>
+VALORANT
+</div>
+
+<div onclick="selectGame('MOBA')">
+<span style="color:#a855f7;">●</span>
+MOBA
+</div>
+
+<div onclick="selectGame('FIFA')">
+<span style="color:#c084fc;">●</span>
+FIFA
+</div>
+
+</div>
+
+</div>
+  <a href="slotlist.html" class="slot-btn">
+<i class="ri-list-check-3"></i>
+VIEW SLOT LIST
+</a>
+  </div> <!-- filter-section end -->
+
+<div id="resultsContainer"></div>
+
+
+<!-- POPUP -->
+
+<div id="popup" class="popup">
+
+  <span class="close-btn" onclick="closeResult()">✕</span>
+
+  <img id="popupImg">
+
+  <div class="popup-actions">
+
+<button onclick="downloadResult()">
+  <i class="ri-download-line"></i>
+  SAVE
+</button>
+
+    <button onclick="shareResult()">
+      <i class="ri-share-line"></i>
+      SHARE
+    </button>
+
+  </div>
+
+</div>
+<div id="noResults" style="display:none;text-align:center;padding:60px 20px;color:#888;">
+
+  <i class="ri-file-search-line"
+     style="font-size:70px;color:#a855f7;"></i>
+
+  <h2 style="margin-top:15px;color:#fff;">
+    NO RECORD FOUND
+  </h2>
+
+  <p style="margin-top:10px;">
+    No results available for selected filters.
+  </p>
+
+</div>
+
+<script>
+
+function toggleSlots(){
+document.getElementById("slotMenu")
+.classList.toggle("show");
+}
+
+function selectSlot(time){
+
+document.getElementById("slotText")
+.innerText = time;
+
+document.getElementById("slotMenu")
+.classList.remove("show");
+
+filterResults();
+
+}
+
+function toggleGames(){
+document.getElementById("gameMenu")
+.classList.toggle("show");
+}
+
+function selectGame(game){
+
+document.getElementById("gameText")
+.innerText = game;
+
+document.getElementById("gameMenu")
+.classList.remove("show");
+
+filterResults();
+
+}
+
+function openResult(img){
+
+document.getElementById("popup")
+.style.display = "flex";
+
+document.getElementById("popupImg")
+.src = img;
+
+}
+
+function closeResult(){
+
+document.getElementById("popup")
+.style.display = "none";
+
+}
+
+function downloadResult(){
+
+const img =
+document.getElementById("popupImg").src;
+
+const a =
+document.createElement("a");
+
+a.href = img;
+
+a.download = "GT_RESULT.jpg";
+
+document.body.appendChild(a);
+
+a.click();
+
+document.body.removeChild(a);
+
+}
+
+async function shareResult(){
+
+const img =
+document.getElementById("popupImg").src;
+
+if(navigator.share){
+
+navigator.share({
+title:"GT ESPORTS RESULT",
+text:"Check this result",
+url:img
+});
+
+}else{
+
+alert("Share not supported");
+
+}
+
+}
+
+function filterResults(){
+
+let selectedDate =
+document.getElementById("datePicker").value;
+
+let selectedSlot =
+document.getElementById("slotText").innerText;
+
+let selectedGame =
+document.getElementById("gameText").innerText;
+
+let cards =
+document.querySelectorAll(".result-card");
+
+let found = false;
+
+cards.forEach(card=>{
+
+let show = true;
+
+/* Date mandatory */
+if(!selectedDate){
+show = false;
+}
+
+if(selectedDate &&
+card.dataset.date !== selectedDate){
+show = false;
+}
+
+if(selectedSlot !== "ALL SLOTS" &&
+card.dataset.slot !== selectedSlot){
+show = false;
+}
+
+if(selectedGame !== "ALL GAMES" &&
+card.dataset.game !== selectedGame){
+show = false;
+}
+
+card.style.display =
+show ? "block" : "none";
+
+if(show){
+found = true;
+}
+
+});
+
+document.getElementById("noResults")
+.style.display =
+found ? "none" : "block";
+
+}
+
+/* Page load pe sab hide */
+
+window.onload = function(){
+
+document.querySelectorAll(".result-card")
+.forEach(card=>{
+card.style.display = "none";
+});
+
+document.getElementById("noResults")
+.style.display = "none";
+
+};
+
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script>
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAxxvbQlbvqtedhoicrijzAlljIjKeejWw",
+  authDomain: "grind-treager.firebaseapp.com",
+  databaseURL: "https://grind-treager-default-rtdb.firebaseio.com",
+  projectId: "grind-treager",
+  storageBucket: "grind-treager.firebasestorage.app",
+  messagingSenderId: "236334920342",
+  appId: "1:236334920342:web:5ae959f81b41541f5608b7"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.database();
+
+</script>
+<script>
+
+db.ref("results").on("value", snap => {
+
+let data = snap.val();
+
+let html = "";
+
+if(data){
+
+for(let id in data){
+
+let item = data[id];
+
+html += `
+<div class="result-card"
+data-date="${item.date}"
+data-slot="${item.slot}"
+data-game="${item.game}"
+style="display:none;">
+
+<img src="${item.image}" class="result-img">
+
+<div class="result-bottom">
+
+<div class="tag">SCRIM RESULTS</div>
+
+<span class="date">${item.date}</span>
+
+<h3>${item.title}</h3>
+
+<div class="result-footer">
+
+<span>
+<i class="ri-image-line"></i>
+IMAGE STANDINGS
+</span>
+
+<a href="#"
+onclick="openResult('${item.image}')">
+VIEW STANDINGS
+</a>
+
+</div>
+
+</div>
+
+</div>
+`;
+
+}
+
+}
+
+document.getElementById("resultsContainer").innerHTML = html;
+
+});
+
+</script>
+</body>
+</html>

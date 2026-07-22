@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GTC BANK</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<style>
+  *{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+background:#07090F;
+color:#fff;
+overflow-x:hidden;
+}
+
+a{
+text-decoration:none;
+color:#fff;
+}
+
+.navbar{
+position:sticky;
+top:0;
+z-index:999;
+height:75px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 18px;
+background:rgba(9,12,20,.85);
+backdrop-filter:blur(18px);
+border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.logo img{
+width:45px;
+height:45px;
+border-radius:12px;
+object-fit:cover;
+}
+
+.logo h2{
+font-size:18px;
+font-weight:700;
+}
+
+.logo p{
+font-size:12px;
+color:#8D96A8;
+margin-top:2px;
+}
+
+.nav-icons{
+display:flex;
+gap:10px;
+}
+
+.nav-icons button{
+width:42px;
+height:42px;
+border:none;
+outline:none;
+cursor:pointer;
+border-radius:12px;
+background:#151B28;
+color:#fff;
+font-size:18px;
+transition:.3s;
+}
+
+.nav-icons button:hover{
+background:#246BFF;
+}
+
+.container{
+padding:20px;
+}
+
+/* HERO */
+
+.hero{
+position:relative;
+padding:30px;
+margin-top:20px;
+border-radius:22px;
+overflow:hidden;
+background:linear-gradient(180deg,#0F1422,#090C14);
+border:1px solid rgba(255,255,255,.05);
+}
+
+.hero::before{
+content:"";
+position:absolute;
+width:320px;
+height:320px;
+right:-120px;
+top:-80px;
+background:#246BFF;
+opacity:.18;
+filter:blur(100px);
+border-radius:50%;
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+}
+
+.hero-tag{
+font-size:11px;
+letter-spacing:2px;
+color:#3C82FF;
+font-weight:700;
+margin-bottom:18px;
+}
+
+.hero h1{
+font-size:60px;
+line-height:58px;
+font-weight:800;
+}
+
+.hero h1 span{
+color:#246BFF;
+}
+
+.hero-desc{
+margin-top:18px;
+font-size:14px;
+line-height:25px;
+color:#9CA4B5;
+max-width:450px;
+}
+
+.hero-bg{
+position:absolute;
+right:25px;
+top:50%;
+transform:translateY(-50%);
+font-size:180px;
+opacity:.05;
+}
+
+.start-btn{
+display:inline-flex;
+align-items:center;
+gap:12px;
+margin-top:28px;
+padding:15px 28px;
+background:#246BFF;
+border-radius:14px;
+font-weight:700;
+transition:.3s;
+}
+
+.start-btn:hover{
+transform:translateY(-3px);
+box-shadow:0 0 30px rgba(36,107,255,.35);
+}
+
+/* POLICY GRID */
+
+.policy-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:18px;
+margin-top:28px;
+}
+
+.policy-card{
+background:#0F1420;
+border:1px solid rgba(255,255,255,.06);
+border-radius:20px;
+padding:22px;
+transition:.35s;
+}
+
+.policy-card:hover{
+transform:translateY(-6px);
+border-color:#246BFF;
+box-shadow:0 0 30px rgba(36,107,255,.15);
+}
+
+.policy-card i{
+width:58px;
+height:58px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:16px;
+background:#151C29;
+font-size:24px;
+color:#246BFF;
+margin-bottom:18px;
+}
+
+.policy-card h3{
+font-size:20px;
+margin-bottom:12px;
+}
+
+.policy-card p{
+font-size:14px;
+line-height:24px;
+color:#9CA4B5;
+margin-bottom:20px;
+}
+
+.policy-card button{
+width:100%;
+height:48px;
+border:none;
+border-radius:14px;
+background:#246BFF;
+color:#fff;
+font-size:15px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+}
+
+.policy-card button:hover{
+background:#1B5FEA;
+}
+
+@media(max-width:768px){
+
+.hero{
+padding:22px;
+}
+
+.hero h1{
+font-size:44px;
+line-height:46px;
+}
+
+.hero-bg{
+font-size:120px;
+right:10px;
+}
+
+.policy-grid{
+grid-template-columns:1fr;
+}
+
+}
+.hero-coin{
+
+position:absolute;
+
+top:50px;
+
+left:240px;
+
+width:95px;
+
+z-index:5;
+
+}
+
+.hero-coin img{
+
+width:100%;
+
+display:block;
+
+filter:drop-shadow(0 0 18px rgba(255,215,0,.35));
+
+}
+/*==========================
+GTC BANK POPUP
+==========================*/
+
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.65);
+backdrop-filter:blur(8px);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:99999;
+padding:18px;
+}
+
+.popup-box{
+width:100%;
+max-width:430px;
+background:#0F1420;
+border:1px solid rgba(255,255,255,.08);
+border-radius:22px;
+overflow:hidden;
+box-shadow:0 15px 45px rgba(0,0,0,.45);
+animation:popup .25s ease;
+}
+
+@keyframes popup{
+from{
+opacity:0;
+transform:scale(.92);
+}
+to{
+opacity:1;
+transform:scale(1);
+}
+}
+
+.popup-header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:18px 22px;
+background:#151C29;
+border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.popup-header h2{
+color:#fff;
+font-size:22px;
+font-weight:700;
+}
+
+.popup-header span{
+width:38px;
+height:38px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#246BFF;
+color:#fff;
+border-radius:12px;
+cursor:pointer;
+font-size:18px;
+transition:.25s;
+}
+
+.popup-header span:hover{
+transform:rotate(90deg);
+}
+
+.account-card{
+margin:18px;
+padding:18px;
+background:#151C29;
+border-radius:18px;
+border:1px solid rgba(255,255,255,.05);
+}
+
+.label{
+font-size:13px;
+color:#9ca3af;
+margin-bottom:5px;
+}
+
+.account-card h3{
+color:#fff;
+font-size:23px;
+margin-bottom:15px;
+}
+
+.account-card h4{
+color:#2D7CFF;
+font-size:18px;
+margin-bottom:15px;
+}
+
+.wallet-card{
+margin:18px;
+padding:20px;
+background:linear-gradient(135deg,#246BFF,#2D7CFF);
+border-radius:20px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+color:#fff;
+}
+
+.wallet-left p{
+font-size:14px;
+opacity:.9;
+}
+
+.wallet-left h2{
+font-size:32px;
+margin:8px 0;
+}
+
+.wallet-left span{
+font-size:15px;
+}
+
+.wallet-icon{
+font-size:45px;
+opacity:.9;
+}
+
+.deposit-box,
+.withdraw-box{
+margin:18px;
+padding:18px;
+background:#151C29;
+border-radius:18px;
+border:1px solid rgba(255,255,255,.05);
+}
+
+.deposit-box h3,
+.withdraw-box h3{
+display:flex;
+align-items:center;
+gap:10px;
+color:#fff;
+margin-bottom:12px;
+}
+
+.deposit-box p,
+.withdraw-box p{
+color:#b9c1cf;
+font-size:14px;
+margin-bottom:16px;
+}
+
+.deposit-btn,
+.withdraw-btn{
+width:100%;
+height:50px;
+border:none;
+border-radius:14px;
+background:#246BFF;
+color:#fff;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
+transition:.25s;
+}
+
+.deposit-btn:hover,
+.withdraw-btn:hover{
+background:#2D7CFF;
+transform:translateY(-2px);
+}
+
+.rate-box{
+margin:18px;
+padding:14px;
+text-align:center;
+background:#246BFF20;
+border:1px solid #246BFF;
+border-radius:14px;
+color:#2D7CFF;
+font-weight:700;
+font-size:15px;
+}
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.admin-btn{
+    width:38px;
+    height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    color:#fff;
+    background:#111827;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:10px;
+    transition:.3s;
+}
+
+.admin-btn:hover{
+    background:#246BFF;
+}
+</style>
+
+<header class="navbar">
+
+<div class="logo">
+
+<img src="logo.png">
+
+<div>
+
+<h2>GT ESPORTS</h2>
+
+<p>GTC BANK</p>
+
+</div>
+
+</div>
+<div class="nav-right">
+    
+<a href="admin-present.html" class="admin-btn" title="Admin Panel">
+    <i class="fa-solid fa-user-shield"></i>
+</a>
+<div class="nav-icons">
+
+<button>
+
+<i class="fa-regular fa-circle-question"></i>
+
+</button>
+
+</div>
+
+</header>
+
+<div class="container">
+
+<section class="hero">
+
+<div class="hero-content">
+
+<p class="hero-tag">
+
+OFFICIAL GT ESPORTS DIGITAL BANK
+
+</p>
+
+<h1>
+
+GTC
+
+<br>
+
+<span>BANK</span>
+
+</h1>
+
+<p class="hero-desc">
+
+Manage your GT Currency, join tournaments, receive rewards and securely control all your tournament payments from one place.
+
+</p>
+
+<a href="javascript:void(0)" class="start-btn" onclick="openWallet()">
+GET STARTED
+<i class="fa-solid fa-arrow-right"></i>
+</a>
+
+</div>
+<div class="hero-coin">
+
+<img src="gtc-coin.png" alt="GTC Coin">
+
+</div>
+<div class="hero-bg">
+
+<i class="fa-solid fa-building-columns"></i>
+
+</div>
+
+</section>
+
+<section class="policy-grid">
+
+<div class="policy-card">
+
+<i class="fa-solid fa-coins"></i>
+
+<h3>What is GTC Coin?</h3>
+
+<p>
+
+Learn what GT Currency is, how it works, where to use it and how to earn rewards.
+
+</p>
+
+<button onclick="openPage('gtc.html')">
+
+Read More
+
+</button>
+
+</div>
+
+<div class="policy-card">
+
+<i class="fa-solid fa-file-contract"></i>
+
+<h3>Terms & Conditions</h3>
+
+<p>
+
+Read all official rules before using GTC Bank services.
+
+</p>
+
+<button onclick="openPage('terms.html')">
+
+Read More
+
+</button>
+
+</div>
+
+<div class="policy-card">
+
+<i class="fa-solid fa-user-shield"></i>
+
+<h3>Privacy Policy</h3>
+
+<p>
+
+Understand how GT Esports stores and protects your account information.
+
+</p>
+
+<button onclick="openPage('privacy.html')">
+
+Read More
+
+</button>
+
+</div>
+
+<div class="policy-card">
+
+<i class="fa-solid fa-money-bill-wave"></i>
+
+<h3>Refund Policy</h3>
+
+<p>
+
+Read refund eligibility, cancellation rules and payment disputes.
+
+</p>
+
+<button onclick="openPage('refund.html')">
+
+Read More
+
+</button>
+
+</div>
+
+<div class="policy-card">
+
+<i class="fa-solid fa-building-columns"></i>
+
+<h3>Bank Policy</h3>
+
+<p>
+
+Official wallet rules, deposit, withdrawal and account security.
+
+</p>
+
+<button onclick="openPage('bank-policy.html')">
+
+Read More
+
+</button>
+
+</div>
+
+<div class="policy-card">
+
+<i class="fa-solid fa-credit-card"></i>
+
+<h3>Payment Policy</h3>
+
+<p>
+
+Manual payment verification, UTR process and payment approval policy.
+
+</p>
+
+<button onclick="openPage('payment-policy.html')">
+
+Read More
+
+</button>
+
+</div>
+<!-- =========================
+GTC BANK POPUP
+========================= -->
+
+<div class="popup" id="walletPopup">
+
+<div class="popup-box">
+
+<div class="popup-header">
+
+<h2><i class="fa-solid fa-building-columns"></i> GTC BANK</h2>
+<span onclick="closeWallet()">
+<i class="fa-solid fa-xmark"></i>
+</span>
+
+</div>
+
+<div class="account-card">
+
+<p class="label">Team Account</p>
+<h3 id="walletTeamName">Loading...</h3>
+
+<p class="label">Team ID</p>
+<h4 id="walletTeamId">Loading...</h4>
+
+</div>
+
+<div class="wallet-card">
+
+<div class="wallet-left">
+
+<p>Wallet Balance</p>
+
+<h2 id="walletBalance">0 GTC</h2>
+
+<span id="walletInr">≈ ₹0</span>
+
+</div>
+
+<i class="fa-solid fa-wallet wallet-icon"></i>
+
+</div>
+
+<div class="deposit-box">
+
+<h3>
+
+<i class="fa-solid fa-circle-plus"></i>
+
+Deposit
+
+</h3>
+
+<p>
+
+Minimum Deposit :
+<b>1 GTC (₹10)</b>
+
+</p>
+
+<button class="deposit-btn" onclick="openDeposit()">
+BUY GTC
+</button>
+
+</div>
+
+<div class="withdraw-box">
+
+<h3>
+
+<i class="fa-solid fa-money-bill-transfer"></i>
+
+Withdrawal
+
+</h3>
+
+<p>
+
+Minimum Withdrawal :
+<b>10 GTC (₹100)</b>
+
+</p>
+
+<button class="withdraw-btn">
+
+WITHDRAW
+
+</button>
+
+</div>
+
+<div class="rate-box">
+
+1 GTC = ₹10 INR
+
+</div>
+
+</div>
+</section>
+
+</div>
+<!-- =========================
+DEPOSIT POPUP
+========================= -->
+
+<div class="popup" id="depositPopup">
+
+    <div class="popup-box">
+
+        <div class="popup-header">
+
+            <h2>
+                <i class="fa-solid fa-circle-plus"></i>
+                Deposit GTC
+            </h2>
+
+            <span onclick="closeDeposit()">
+                <i class="fa-solid fa-xmark"></i>
+            </span>
+
+        </div>
+
+        <div class="account-card">
+
+            <p class="label">Team Account</p>
+            <h3 id="depositTeamName">Loading...</h3>
+
+            <p class="label">Team ID</p>
+            <h4 id="depositTeamId">Loading...</h4>
+
+        </div>
+
+        <div class="deposit-box">
+
+            <label>Deposit Amount (GTC)</label>
+
+          <input
+type="number"
+id="depositAmount"
+placeholder="Minimum 1 GTC"
+min="1"
+oninput="calculateDeposit()"
+style="width:100%;height:50px;border:none;outline:none;background:#0F1420;color:#fff;border-radius:14px;padding:0 15px;margin-top:10px;">
+
+            <p style="margin-top:15px;color:#9CA4B5;">
+                1 GTC = ₹10
+            </p>
+
+            <h3 id="depositPrice">Total : ₹0</h3>
+
+<button class="deposit-btn" onclick="openPayment()">
+    CONTINUE
+</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- PAYMENT POPUP -->
+
+<div class="popup" id="paymentPopup">
+
+<div class="popup-box">
+
+<div class="popup-header">
+
+<h2>
+<i class="fa-solid fa-credit-card"></i>
+Payment
+</h2>
+
+
+
+<span onclick="closePayment()">
+<i class="fa-solid fa-xmark"></i>
+</span>
+
+</div>
+
+<div class="account-card">
+
+<p class="label">Team Account</p>
+<h3 id="paymentTeamName">Loading...</h3>
+
+<p class="label">Team ID</p>
+<h4 id="paymentTeamId">Loading...</h4>
+
+</div>
+
+<div class="deposit-box">
+
+<p class="label">Pay Amount</p>
+
+<h2 id="paymentAmount">₹0</h2>
+
+<p style="margin-top:10px;color:#9CA4B5;">
+Scan QR or pay using UPI.
+</p>
+
+<img src="payment-qr.jpg"
+style="width:220px;display:block;margin:20px auto;">
+<div style="text-align:center;margin-top:15px;">
+
+<p style="color:#9CA4B5;font-size:14px;">
+UPI ID
+</p>
+
+<h3 id="upiId"
+style="margin:8px 0;color:#fff;">
+Q019241922@ybl
+</h3>
+
+<button
+onclick="copyUpi()"
+class="deposit-btn"
+style="height:45px;">
+<i class="fa-solid fa-copy"></i>
+Copy UPI ID
+</button>
+
+</div>
+<input
+type="text"
+id="utrNumber"
+placeholder="Enter UTR Number"
+style="width:100%;height:50px;background:#0F1420;border:none;color:#fff;border-radius:14px;padding:15px;">
+
+<button class="deposit-btn" onclick="submitDeposit()">
+    SUBMIT PAYMENT
+</button>
+
+</div>
+
+</div>
+
+</div>
+<!-- =========================
+WITHDRAW POPUP
+========================= -->
+
+<div class="popup" id="withdrawPopup">
+
+<div class="popup-box">
+
+<div class="popup-header">
+
+<h2>
+<i class="fa-solid fa-money-bill-transfer"></i>
+Withdraw GTC
+</h2>
+
+<span onclick="closeWithdraw()">
+<i class="fa-solid fa-xmark"></i>
+</span>
+
+</div>
+
+<div class="account-card">
+
+<p class="label">Team Account</p>
+<h3 id="withdrawTeamName">Loading...</h3>
+
+<p class="label">Team ID</p>
+<h4 id="withdrawTeamId">Loading...</h4>
+
+</div>
+
+<div class="wallet-card">
+
+<div class="wallet-left">
+
+<p>Available Balance</p>
+
+<h2 id="withdrawBalance">0 GTC</h2>
+
+<span id="withdrawInr">≈ ₹0</span>
+
+</div>
+
+<i class="fa-solid fa-wallet wallet-icon"></i>
+
+</div>
+
+<div class="deposit-box">
+
+<label>Withdraw Amount (GTC)</label>
+
+<input
+type="number"
+id="withdrawAmount"
+placeholder="Minimum 10 GTC"
+min="10"
+oninput="calculateWithdraw()"
+style="width:100%;height:50px;border:none;outline:none;background:#0F1420;color:#fff;border-radius:14px;padding:15px;">
+
+<p style="margin-top:15px;color:#9CA4B5;">
+Minimum Withdrawal : 10 GTC
+</p>
+
+<h3 id="withdrawTotal">
+Total : ₹0
+</h3>
+
+<input
+type="text"
+id="upiNumber"
+placeholder="Enter Your UPI ID"
+style="width:100%;height:50px;border:none;outline:none;background:#0F1420;color:#fff;border-radius:14px;padding:15px;margin-top:15px;">
+
+<button class="withdraw-btn"
+onclick="submitWithdraw()">
+
+REQUEST WITHDRAW
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getDatabase,
+  ref,
+  get,
+  set,
+  update
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import {
+  getAuth,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAxxvbQlbvqtedhoicrijzAlljIjKeejWw",
+  authDomain: "grind-treager.firebaseapp.com",
+  databaseURL: "https://grind-treager-default-rtdb.firebaseio.com",
+  projectId: "grind-treager",
+  storageBucket: "grind-treager.firebasestorage.app",
+  messagingSenderId: "236334920342",
+  appId: "1:236334920342:web:5ae959f81b41541f5608b7"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getDatabase(app);
+
+let currentUser = null;
+
+onAuthStateChanged(auth, (user) => {
+    currentUser = user;
+});
+
+function openPage(page){
+
+window.location.href=page;
+
+}
+
+window.openWallet = async function () {
+
+    if (!currentUser) {
+        alert("Please login first.");
+        return;
+    }
+
+    try {
+
+        const teamRef = ref(db, "teams/" + currentUser.uid);
+        const teamSnap = await get(teamRef);
+
+        if (!teamSnap.exists()) {
+            alert("Please create your team first.");
+            return;
+        }
+
+        const team = teamSnap.val();
+
+        document.getElementById("walletTeamName").textContent = team.teamName;
+        document.getElementById("walletTeamId").textContent = team.teamId;
+        const walletRef = ref(db, "wallets/" + currentUser.uid);
+const walletSnap = await get(walletRef);
+
+let balance = 0;
+
+if (walletSnap.exists()) {
+    balance = walletSnap.val().balance || 0;
+}
+
+document.getElementById("walletBalance").textContent = balance + " GTC";
+document.getElementById("walletInr").textContent = "≈ ₹" + (balance * 10);
+
+        document.getElementById("walletPopup").style.display = "flex";
+
+    } catch (err) {
+        console.error(err);
+        alert(err.message);
+    }
+
+}
+
+window.closeWallet = function () {
+    document.getElementById("walletPopup").style.display = "none";
+}
+window.openDeposit = function () {
+
+    document.getElementById("depositTeamName").textContent =
+        document.getElementById("walletTeamName").textContent;
+
+    document.getElementById("depositTeamId").textContent =
+        document.getElementById("walletTeamId").textContent;
+
+    document.getElementById("walletPopup").style.display = "none";
+    document.getElementById("depositPopup").style.display = "flex";
+}
+
+window.closeDeposit = function () {
+
+    document.getElementById("depositPopup").style.display = "none";
+    document.getElementById("walletPopup").style.display = "flex";
+}
+window.calculateDeposit = function () {
+
+    let gtc = parseInt(document.getElementById("depositAmount").value) || 0;
+
+    let inr = gtc * 10;
+
+    document.getElementById("depositPrice").textContent =
+        "Total : ₹" + inr;
+
+}
+
+window.openPayment = function () {
+
+    const gtc = parseInt(document.getElementById("depositAmount").value) || 0;
+
+    if (gtc < 1) {
+        alert("Minimum Deposit 1 GTC");
+        return;
+    }
+
+    const inr = gtc * 10;
+
+    document.getElementById("paymentTeamName").textContent =
+        document.getElementById("depositTeamName").textContent;
+
+    document.getElementById("paymentTeamId").textContent =
+        document.getElementById("depositTeamId").textContent;
+
+    document.getElementById("paymentAmount").textContent = "₹" + inr;
+
+    document.getElementById("depositPopup").style.display = "none";
+    document.getElementById("paymentPopup").style.display = "flex";
+};
+
+window.closePayment = function () {
+    document.getElementById("paymentPopup").style.display = "none";
+    document.getElementById("depositPopup").style.display = "flex";
+};
+
+window.submitWithdraw = async function () {
+
+    const gtc = parseInt(document.getElementById("withdrawAmount").value) || 0;
+    const upi = document.getElementById("upiNumber").value.trim();
+
+    if (gtc < 10) {
+        alert("Minimum Withdrawal is 10 GTC");
+        return;
+    }
+
+    if (upi === "") {
+        alert("Enter UPI ID");
+        return;
+    }
+
+    const walletSnap = await get(ref(db, "wallets/" + currentUser.uid));
+
+    let balance = 0;
+
+    if (walletSnap.exists()) {
+        balance = walletSnap.val().balance || 0;
+    }
+
+    if (gtc > balance) {
+        alert("❌ Insufficient Balance\nAvailable : " + balance + " GTC");
+        return;
+    }
+
+    const requestId = Date.now().toString();
+
+    await set(ref(db, "withdrawRequests/" + requestId), {
+
+        requestId,
+        uid: currentUser.uid,
+        teamName: document.getElementById("withdrawTeamName").textContent,
+        teamId: document.getElementById("withdrawTeamId").textContent,
+        gtc,
+        amount: gtc * 10,
+        upiId: upi,
+        status: "Pending",
+        time: Date.now()
+
+    });
+
+    alert("✅ Withdrawal Request Submitted");
+
+    closeWithdraw();
+
+};
+window.openWithdraw = async function () {
+
+    document.getElementById("withdrawTeamName").textContent =
+        document.getElementById("walletTeamName").textContent;
+
+    document.getElementById("withdrawTeamId").textContent =
+        document.getElementById("walletTeamId").textContent;
+
+    const walletSnap = await get(ref(db, "wallets/" + currentUser.uid));
+
+    let balance = 0;
+
+    if (walletSnap.exists()) {
+        balance = walletSnap.val().balance || 0;
+    }
+
+    document.getElementById("withdrawBalance").textContent =
+        balance + " GTC";
+
+    document.getElementById("withdrawInr").textContent =
+        "≈ ₹" + (balance * 10);
+
+    document.getElementById("walletPopup").style.display = "none";
+    document.getElementById("withdrawPopup").style.display = "flex";
+
+};
+
+window.closeWithdraw = function () {
+
+    document.getElementById("withdrawPopup").style.display = "none";
+    document.getElementById("walletPopup").style.display = "flex";
+
+};
+
+window.calculateWithdraw = function () {
+
+    const gtc =
+        parseInt(document.getElementById("withdrawAmount").value) || 0;
+
+    document.getElementById("withdrawTotal").textContent =
+        "Total : ₹" + (gtc * 10);
+
+};
+window.submitDeposit = async function () {
+
+    const gtc = parseInt(document.getElementById("depositAmount").value) || 0;
+    const utr = document.getElementById("utrNumber").value.trim();
+
+    if (gtc < 1) {
+        alert("Minimum Deposit is 1 GTC");
+        return;
+    }
+
+    if (utr === "") {
+        alert("Enter UTR Number");
+        return;
+    }
+
+    const requestId = Date.now().toString();
+
+    await set(ref(db, "depositRequests/" + requestId), {
+
+        requestId,
+        uid: currentUser.uid,
+        teamName: document.getElementById("paymentTeamName").textContent,
+        teamId: document.getElementById("paymentTeamId").textContent,
+        gtc,
+        amount: gtc * 10,
+        utr,
+        status: "Pending",
+        time: Date.now()
+
+    });
+
+    alert("✅ Deposit Request Submitted Successfully");
+
+    closePayment();
+
+};
+</script>
+
+</body>
+
+</html>

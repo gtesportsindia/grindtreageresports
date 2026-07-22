@@ -1,0 +1,134 @@
+<!DOCTYPE html><html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>GT ESPORTS ADMIN</title><style>
+body{
+background:#050505;
+font-family:Poppins,sans-serif;
+color:#fff;
+padding:15px;
+}
+
+.card{
+max-width:700px;
+margin:auto;
+background:#111;
+padding:20px;
+border-radius:15px;
+border:1px solid #b95cff;
+}
+
+h1{
+text-align:center;
+color:#b95cff;
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-bottom:10px;
+background:#1a1a1a;
+border:1px solid #333;
+border-radius:10px;
+color:#fff;
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:10px;
+background:#b95cff;
+color:#fff;
+font-weight:700;
+cursor:pointer;
+margin-bottom:10px;
+}
+
+.team{
+background:#1a1a1a;
+padding:12px;
+margin-top:10px;
+border-radius:10px;
+}
+</style></head>
+<body><div class="card"><h1>GT ESPORTS ADMIN</h1><input type="text" id="name" placeholder="Team Name">
+<input type="number" id="mp" placeholder="MP">
+<input type="number" id="kp" placeholder="KP">
+<input type="number" id="w" placeholder="Wins">
+<input type="number" id="pts" placeholder="Points"><button onclick="saveTeam()">SAVE TEAM</button>
+
+<div id="teams"></div></div><script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+getDatabase,
+ref,
+push,
+set,
+remove,
+onValue
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+apiKey:"AIzaSyB-EGS-CTG_pzMBUH1bAReFFvUdbBcqBNI",
+authDomain:"grind-treager-digital-service.firebaseapp.com",
+databaseURL:"https://grind-treager-digital-service-default-rtdb.firebaseio.com",
+projectId:"grind-treager-digital-service",
+storageBucket:"grind-treager-digital-service.firebasestorage.app",
+messagingSenderId:"896348136291",
+appId:"1:896348136291:web:ffd4e68da8ee704ea1a956"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+window.saveTeam = function(){
+
+const teamRef = push(ref(db,"standings"));
+
+set(teamRef,{
+name:document.getElementById("name").value,
+mp:Number(document.getElementById("mp").value),
+kp:Number(document.getElementById("kp").value),
+w:Number(document.getElementById("w").value),
+pts:Number(document.getElementById("pts").value)
+});
+
+alert("Saved");
+
+};
+
+onValue(ref(db,"standings"),snapshot=>{
+
+const data=snapshot.val()||{};
+let html="";
+
+for(let id in data){
+
+html+=`
+<div class="team">
+<b>${data[id].name}</b><br>
+MP: ${data[id].mp} |
+KP: ${data[id].kp} |
+W: ${data[id].w} |
+PTS: ${data[id].pts}
+<br><br>
+<button onclick="deleteTeam('${id}')">DELETE</button>
+</div>
+`;
+
+}
+
+document.getElementById("teams").innerHTML=html;
+
+});
+
+window.deleteTeam=function(id){
+remove(ref(db,"standings/"+id));
+}
+
+</script></body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GT ESPORTS SLOT ADMIN</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#050505;
+padding:15px;
+color:#fff;
+}
+
+.card{
+max-width:900px;
+margin:auto;
+background:#111;
+padding:20px;
+border-radius:15px;
+border:1px solid #b95cff;
+}
+
+h1{
+text-align:center;
+font-family:'Orbitron',sans-serif;
+color:#b95cff;
+margin-bottom:20px;
+}
+
+.input-box{
+display:flex;
+align-items:center;
+background:#1a1a1a;
+border:1px solid #333;
+border-radius:10px;
+padding:0 12px;
+margin-bottom:10px;
+}
+
+.input-box i{
+color:#b95cff;
+font-size:18px;
+margin-right:10px;
+}
+
+.input-box input,
+.input-box select{
+width:100%;
+padding:12px 0;
+background:transparent;
+border:none;
+outline:none;
+color:#fff;
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:10px;
+background:#b95cff;
+color:#fff;
+font-weight:700;
+cursor:pointer;
+margin-bottom:10px;
+}
+
+.slot{
+background:#1a1a1a;
+padding:12px;
+border-radius:10px;
+margin-bottom:10px;
+}
+
+.slot b{
+color:#b95cff;
+}
+
+.delete{
+background:#ff2d55;
+margin-top:8px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="card">
+
+<h1>GT ESPORTS SLOT ADMIN</h1>
+
+<div class="input-box">
+<i class="ri-calendar-line"></i>
+<input type="date" id="matchDate">
+</div>
+
+<div class="input-box">
+<i class="ri-gamepad-line"></i>
+<select id="lobbySelect">
+<option value="5PM">5 PM LOBBY</option>
+<option value="6PM">6 PM LOBBY</option>
+<option value="9PM">9 PM LOBBY</option>
+</select>
+</div>
+
+<div class="input-box">
+<i class="ri-hashtag"></i>
+<input type="number" id="slotNo" placeholder="Slot Number (1-12)">
+</div>
+
+<div class="input-box">
+<i class="ri-team-line"></i>
+<input type="text" id="teamName" placeholder="Team Name">
+</div>
+
+<button onclick="saveSlot()">
+SAVE SLOT
+</button>
+
+<div id="slotList"></div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+getDatabase,
+ref,
+set,
+remove,
+get
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+apiKey:"AIzaSyB-EGS-CTG_pzMBUH1bAReFFvUdbBcqBNI",
+authDomain:"grind-treager-digital-service.firebaseapp.com",
+databaseURL:"https://grind-treager-digital-service-default-rtdb.firebaseio.com",
+projectId:"grind-treager-digital-service",
+storageBucket:"grind-treager-digital-service.firebasestorage.app",
+messagingSenderId:"896348136291",
+appId:"1:896348136291:web:ffd4e68da8ee704ea1a956"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+window.saveSlot = async function(){
+
+const date = document.getElementById("matchDate").value;
+const lobby = document.getElementById("lobbySelect").value;
+const slotNo = document.getElementById("slotNo").value;
+const teamName = document.getElementById("teamName").value;
+
+if(!date || !lobby || !slotNo || !teamName){
+alert("Fill All Fields");
+return;
+}
+
+await set(
+ref(db,`slots/${date}/${lobby}/${slotNo}`),
+{
+team:teamName
+}
+);
+
+alert("Slot Saved Successfully");
+
+document.getElementById("slotNo").value="";
+document.getElementById("teamName").value="";
+
+loadSlots();
+
+}
+
+window.deleteSlot = async function(id){
+
+const date = document.getElementById("matchDate").value;
+const lobby = document.getElementById("lobbySelect").value;
+
+if(!date || !lobby){
+alert("Select Date & Lobby");
+return;
+}
+
+await remove(
+ref(db,`slots/${date}/${lobby}/${id}`)
+);
+
+loadSlots();
+
+}
+
+window.loadSlots = async function(){
+
+const date = document.getElementById("matchDate").value;
+const lobby = document.getElementById("lobbySelect").value;
+
+if(!date || !lobby) return;
+
+const snapshot =
+await get(ref(db,`slots/${date}/${lobby}`));
+
+const data = snapshot.val() || {};
+
+let html = "";
+
+for(let i=1;i<=12;i++){
+
+html += `
+<div class="slot">
+
+<b>SLOT ${i}</b><br>
+
+${data[i]?.team || "AVAILABLE"}
+
+<button
+class="delete"
+onclick="deleteSlot('${i}')">
+DELETE SLOT
+</button>
+
+</div>
+`;
+
+}
+
+document.getElementById("slotList").innerHTML = html;
+
+}
+
+document
+.getElementById("matchDate")
+.addEventListener("change",loadSlots);
+
+document
+.getElementById("lobbySelect")
+.addEventListener("change",loadSlots);
+
+</script>
+
+</div>
+
+</body>
+</html>

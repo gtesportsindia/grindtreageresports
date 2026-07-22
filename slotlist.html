@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GT ESPORTS - SLOT LIST</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#050505;
+padding:10px;
+color:#fff;
+}
+
+.title{
+text-align:center;
+margin-bottom:12px;
+}
+
+.title h1{
+font-family:'Orbitron',sans-serif;
+font-size:18px;
+color:#b95cff;
+}
+
+.filter-bar{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-bottom:12px;
+}
+
+.input-box{
+flex:1;
+min-width:110px;
+height:42px;
+background:#111;
+border:1px solid #222;
+border-radius:10px;
+display:flex;
+align-items:center;
+padding:0 10px;
+}
+
+.input-box i{
+color:#b95cff;
+font-size:18px;
+margin-right:8px;
+}
+
+.input-box input,
+.input-box select{
+width:100%;
+height:100%;
+background:transparent;
+border:none;
+outline:none;
+color:#fff;
+font-size:12px;
+}
+
+#searchBtn{
+width:100%;
+height:42px;
+border:none;
+border-radius:10px;
+background:#b95cff;
+color:#fff;
+font-weight:700;
+cursor:pointer;
+margin-bottom:12px;
+}
+
+.slot-card{
+width:95%;
+margin:0 auto 8px auto;
+background:#111;
+border:1px solid #222;
+border-left:3px solid #b95cff;
+border-radius:12px;
+padding:10px 12px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+min-height:48px;
+}
+
+.slot{
+font-family:'Orbitron',sans-serif;
+font-weight:800;
+color:#b95cff;
+}
+
+.team{
+font-weight:600;
+text-align:right;
+max-width:70%;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+}
+
+.notfound{
+background:#111;
+padding:20px;
+border-radius:10px;
+text-align:center;
+color:#888;
+border:1px solid #222;
+}
+
+.notfound{
+background:#111;
+padding:20px;
+border-radius:12px;
+text-align:center;
+border:1px solid #222;
+}
+
+.notfound i{
+font-size:50px;
+color:#b95cff;
+display:block;
+margin-bottom:10px;
+}
+
+.notfound h3{
+color:#fff;
+margin-bottom:5px;
+font-family:'Orbitron',sans-serif;
+}
+
+.notfound small{
+color:#888;
+}
+
+.slot-left{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.slot-badge{
+width:28px;
+height:28px;
+border-radius:8px;
+background:#b95cff;
+color:#fff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:12px;
+font-weight:700;
+}
+
+.slot-text{
+color:#b95cff;
+font-weight:700;
+font-family:'Orbitron',sans-serif;
+}
+
+.page-header{
+text-align:center;
+margin-bottom:15px;
+}
+
+.page-header h1{
+font-family:'Orbitron',sans-serif;
+font-size:18px;
+color:#b95cff;
+margin-bottom:4px;
+}
+
+.page-header p{
+font-size:11px;
+color:#888;
+letter-spacing:.5px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="title">
+<h1>GT ESPORTS SLOT LIST</h1>
+</div>
+
+<div class="filter-bar">
+
+<div class="input-box">
+<i class="ri-calendar-line"></i>
+<input type="date" id="matchDate">
+</div>
+
+<div class="input-box">
+<i class="ri-gamepad-line"></i>
+<select id="lobbySelect">
+<option value="5PM">5 PM</option>
+<option value="6PM">6 PM</option>
+<option value="9PM">9 PM</option>
+</select>
+</div>
+
+<div class="input-box">
+<i class="ri-search-line"></i>
+<input
+type="text"
+id="searchSlot"
+placeholder="Search Team..."
+onkeyup="searchTeam()">
+</div>
+
+</div>
+
+<button id="searchBtn" onclick="loadSlots()">
+🔍 SEARCH SLOT
+</button>
+
+<div class="page-header">
+
+<h1>GT ESPORTS OFFICIAL SLOT LIST</h1>
+
+<p>
+Select Match Date & Lobby Time To View Confirmed Slots
+</p>
+
+</div>
+
+<div id="slotList"></div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+apiKey:"AIzaSyB-EGS-CTG_pzMBUH1bAReFFvUdbBcqBNI",
+authDomain:"grind-treager-digital-service.firebaseapp.com",
+databaseURL:"https://grind-treager-digital-service-default-rtdb.firebaseio.com",
+projectId:"grind-treager-digital-service",
+storageBucket:"grind-treager-digital-service.firebasestorage.app",
+messagingSenderId:"896348136291",
+appId:"1:896348136291:web:ffd4e68da8ee704ea1a956"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+window.loadSlots = async function(){
+
+const date =
+document.getElementById("matchDate").value;
+
+const lobby =
+document.getElementById("lobbySelect").value;
+
+if(!date || !lobby){
+alert("Select Date & Lobby");
+return;
+}
+
+const snapshot =
+await get(ref(db,`slots/${date}/${lobby}`));
+
+const data = snapshot.val();
+
+if(!data){
+
+document.getElementById("slotList").innerHTML = `
+<div class="notfound">
+<i class="ri-file-search-line"></i>
+<h3>SLOT NOT FOUND</h3>
+<small>No Slots Available For Selected Date & Lobby</small>
+</div>
+`;
+
+return;
+}
+
+let html="";
+
+for(let i=1;i<=12;i++){
+
+const team =
+data[i]?.team || "AVAILABLE";
+
+html += `
+<div class="slot-card">
+
+<div class="slot-left">
+<span class="slot-badge">
+${String(i).padStart(2,'0')}
+</span>
+
+<span class="slot-text">
+SLOT ${i}
+</span>
+</div>
+
+<div class="team">
+${team}
+</div>
+
+</div>
+`;
+
+}
+
+document.getElementById("slotList").innerHTML = html;
+
+}
+
+window.searchTeam = function(){
+
+const value =
+document.getElementById("searchSlot")
+.value.toLowerCase();
+
+document
+.querySelectorAll(".slot-card")
+.forEach(card=>{
+
+card.style.display =
+card.innerText.toLowerCase().includes(value)
+? "flex"
+: "none";
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
