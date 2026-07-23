@@ -291,8 +291,8 @@ color:#fff;
 
 <header class="header">
 
-<div class="back">
-<i class="fa-solid fa-arrow-left"></i>
+<div class="back" onclick="location.href='tournament.html'">
+    <i class="fa-solid fa-arrow-left"></i>
 </div>
 
 <div class="logo">
@@ -591,10 +591,6 @@ document.getElementById("rulesList").innerHTML=`
 
 const joinBtn=document.getElementById("joinTournament");
 const popup = document.getElementById("registerPopup");
-
-document.querySelector(".back").onclick = () => {
-    location.href = "tournament.html";
-};
 
 joinBtn.onclick = () => {
     popup.style.display = "flex";
