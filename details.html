@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -17,134 +18,89 @@ box-sizing:border-box;
 font-family:Inter,Arial,sans-serif;
 }
 
-body {
-    background: #060B14;
-    color: #fff;
-    font-weight: 500;
-}
-
 :root{
-
 --bg:#060B14;
 --card:#101827;
 --card2:#141E30;
 --border:rgba(255,255,255,.06);
 --blue:#3B82F6;
 --blue2:#2563EB;
---text:#ffffff;
+--text:#fff;
 --sub:#9CA3AF;
+}
 
+body{
+background:var(--bg);
+color:#fff;
+padding-bottom:100px;
 }
 
 .header{
-
 height:70px;
-
 display:flex;
 align-items:center;
 justify-content:space-between;
-
 padding:0 18px;
-
 background:#0A111F;
-
 border-bottom:1px solid var(--border);
-
 position:sticky;
 top:0;
 z-index:999;
-
 }
 
 .back{
-
 width:42px;
 height:42px;
-
 display:flex;
 align-items:center;
 justify-content:center;
-
-border-radius:12px;
-
 background:#121C2D;
-
+border-radius:12px;
 font-size:18px;
-
 cursor:pointer;
-
 }
 
 .logo{
-
 font-size:20px;
 font-weight:700;
-
 }
 
 .wallet{
-
 padding:10px 14px;
-
-border-radius:12px;
-
 background:#121C2D;
-
 border:1px solid var(--border);
-
-font-weight:600;
-
+border-radius:12px;
+font-weight:700;
 }
 
 .container{
-
 padding:16px;
-
 }
 
 .hero{
-
 background:linear-gradient(135deg,#13203A,#0A111F);
-
 border-radius:20px;
-
 padding:22px;
-
 border:1px solid var(--border);
-
-margin-bottom:18px;
-
-overflow:hidden;
-
 position:relative;
-
+overflow:hidden;
+margin-bottom:18px;
 }
 
 .hero::after{
-
 content:"🏆";
-
 position:absolute;
-
 right:18px;
 top:12px;
-
 font-size:90px;
-
-opacity:.06;
-
+opacity:.05;
 }
 
 .game{
-
 font-size:12px;
-
-color:#6EA8FF;
-
 letter-spacing:2px;
-
 text-transform:uppercase;
-
+color:#60A5FA;
 }
 
 .title{
@@ -155,114 +111,178 @@ line-height:40px;
 }
 
 .desc{
-
 margin-top:14px;
-
-color:var(--sub);
-
-font-size:14px;
-
+color:#B9C4D8;
 line-height:24px;
-
+font-size:15px;
 }
 
 .status{
-
-display:inline-flex;
-
 margin-top:18px;
-
+display:inline-flex;
 padding:8px 16px;
-
-border-radius:30px;
-
 background:#1E293B;
-
+border-radius:30px;
 font-size:13px;
-
-font-weight:600;
-
-color:#8BFFB8;
-
+font-weight:700;
+color:#4ADE80;
 }
 
 .card{
-
-background:var(--card);
-
-border:1px solid var(--border);
-
+background:linear-gradient(180deg,#111827,#0F172A);
+border:1px solid rgba(59,130,246,.25);
 border-radius:18px;
-
 padding:18px;
-
 margin-bottom:16px;
-
+box-shadow:0 8px 25px rgba(0,0,0,.35);
 }
 
 .cardTitle{
 font-size:18px;
 font-weight:700;
-color:#fff;
+margin-bottom:16px;
 }
 
 .grid{
-
 display:grid;
-
 grid-template-columns:1fr 1fr;
-
 gap:14px;
-
 }
 
 .box{
-
 background:#162033;
-
-border-radius:14px;
-
 padding:14px;
-
+border-radius:14px;
 }
 
 .label{
 font-size:13px;
-font-weight:600;
 color:#AAB8D4;
 margin-bottom:8px;
+font-weight:600;
 }
 
-.value {
-    font-size: 19px;
-    font-weight: 700;
-    color: #fff;
+.value{
+font-size:19px;
+font-weight:700;
 }
 
-.value.blue{
+.green{color:#4ADE80;}
+.blue{color:#60A5FA;}
 
+.joinBtn{
+width:220px;
+height:56px;
+border:none;
+border-radius:14px;
+background:linear-gradient(135deg,#2563EB,#38BDF8);
+color:#fff;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
+transition:.25s;
+box-shadow:0 10px 35px rgba(37,99,235,.35);
+}
+
+.resourceNav{
+display:flex;
+gap:12px;
+margin-top:20px;
+}
+
+.navItem{
+flex:1;
+background:#162033;
+border:1px solid rgba(255,255,255,.06);
+border-radius:14px;
+padding:14px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:8px;
+cursor:pointer;
+}
+
+.navItem i{
+font-size:22px;
 color:#60A5FA;
-
 }
 
-.value.green{
-
-color:#4ADE80;
-
+.navItem span{
+font-size:13px;
+font-weight:600;
 }
 
-.value.blue{
-
-color:#60A5FA;
-
+.rule{
+background:#162033;
+padding:14px;
+border-radius:14px;
+margin-top:10px;
+line-height:24px;
 }
-.card{
-background:linear-gradient(180deg,#111827,#0F172A);
-border:1px solid rgba(59,130,246,.25);
+.popup{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.7);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:99999;
+}
+
+.popupBox{
+width:92%;
+max-width:400px;
+background:#111827;
+padding:22px;
 border-radius:18px;
-box-shadow:0 8px 25px rgba(0,0,0,.35);
+border:1px solid rgba(255,255,255,.08);
 }
 
+.popupBox h2{
+margin-bottom:18px;
+text-align:center;
+}
+
+.popupBox input{
+width:100%;
+height:50px;
+margin-bottom:12px;
+border:none;
+outline:none;
+padding:0 15px;
+border-radius:12px;
+background:#1F2937;
+color:#fff;
+font-size:15px;
+}
+
+.popupBtns{
+display:flex;
+gap:10px;
+margin-top:10px;
+}
+
+.popupBtns button{
+flex:1;
+height:48px;
+border:none;
+border-radius:12px;
+font-size:15px;
+font-weight:700;
+cursor:pointer;
+}
+
+#cancelPopup{
+background:#374151;
+color:#fff;
+}
+
+#confirmJoin{
+background:#2563EB;
+color:#fff;
+}
 </style>
 
 </head>
@@ -280,13 +300,8 @@ Tournament
 </div>
 
 <div class="wallet">
-
 <i class="fa-solid fa-coins"></i>
-
-<span id="wallet">
-0
-</span>
-
+<span id="wallet">0</span>
 </div>
 
 </header>
@@ -296,32 +311,59 @@ Tournament
 <div class="hero">
 
 <div class="game">
-
 FREE FIRE MAX
-
 </div>
 
-<div
-class="title"
-id="tournamentName">
-
+<div class="title" id="tournamentName">
 Loading...
-
 </div>
 
-<div
-class="desc"
-id="description">
-
-Loading tournament...
-
+<div class="desc" id="description">
+Loading Tournament...
 </div>
 
-<div
-class="status"
-id="status">
+<div class="status" id="status">
+Loading...
+</div>
 
-Loading
+</div>
+<div class="card">
+
+<div class="cardTitle">
+Tournament Information
+</div>
+
+<div class="grid">
+
+<div class="box">
+<div class="label">Prize Pool</div>
+<div class="value green" id="prizePool">--</div>
+</div>
+
+<div class="box">
+<div class="label">Entry Fee</div>
+<div class="value blue" id="entryFee">--</div>
+</div>
+
+<div class="box">
+<div class="label">Mode</div>
+<div class="value" id="mode">--</div>
+</div>
+
+<div class="box">
+<div class="label">Map</div>
+<div class="value" id="map">--</div>
+</div>
+
+<div class="box">
+<div class="label">Date</div>
+<div class="value" id="date">--</div>
+</div>
+
+<div class="box">
+<div class="label">Slots</div>
+<div class="value blue" id="slots">--</div>
+</div>
 
 </div>
 
@@ -330,145 +372,50 @@ Loading
 <div class="card">
 
 <div class="cardTitle">
-
-Tournament Information
-
+Tournament Entry
 </div>
 
-<div class="grid">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;">
 
-<div class="box">
+<div>
 
-<div class="label">
-
-Prize Pool
-
-</div>
-
-<div
-class="value green"
-id="prizePool">
-
---
-
-</div>
-
-</div>
-
-<div class="box">
-
-<div class="label">
-
+<div style="font-size:13px;color:#9CA3AF;">
 Entry Fee
-
 </div>
 
-<div class="value blue" id="entryFee">
-
---
-
-</div>
-
-</div>
-
-<div class="box">
-
-<div class="label">
-
-Mode
-
-</div>
-
-<div
-class="value"
-id="mode">
-
---
-
+<div id="bottomEntry"
+style="font-size:28px;font-weight:700;color:#60A5FA;">
+0 GTC
 </div>
 
 </div>
 
-<div class="box">
-
-<div class="label">
-
-Map
+<button class="joinBtn" id="joinTournament">
+JOIN TOURNAMENT
+</button>
 
 </div>
 
-<div
-class="value"
-id="map">
+<div id="resourceNav" class="resourceNav" style="display:none;">
 
---
-
+<div class="navItem" id="slotBtn">
+<i class="fa-solid fa-list-check"></i>
+<span>Slot List</span>
 </div>
 
+<div class="navItem" id="roomBtn">
+<i class="fa-solid fa-key"></i>
+<span>ID & Password</span>
 </div>
 
-<div class="box">
-
-<div class="label">
-
-Date
-
-</div>
-
-<div
-class="value"
-id="date">
-
---
-
-</div>
-
-</div>
-
-<div class="box">
-
-<div class="label">
-
-Slots
-
-</div>
-
-<div
-class="value blue"
-id="slots">
-
---
-
+<div class="navItem" id="pointBtn">
+<i class="fa-solid fa-table-list"></i>
+<span>Point Table</span>
 </div>
 
 </div>
 
 </div>
-
-</div>
-
-
-<div class="card">
-
-    <div class="cardTitle">Tournament Entry</div>
-
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;">
-
-        <div>
-            <div style="font-size:13px;color:#9CA3AF;">Entry Fee</div>
-            <div id="bottomEntry" style="font-size:28px;font-weight:700;color:#60A5FA;">
-                0 GTC
-            </div>
-        </div>
-
-        <button class="joinBtn" id="joinTournament">
-            JOIN TOURNAMENT
-        </button>
-
-    </div>
-
-</div>
-<!-- Registration Status -->
 
 <div class="card">
 
@@ -479,35 +426,40 @@ Registration Status
 <div class="grid">
 
 <div class="box">
-<div class="label">Registered Teams</div>
+<div class="label">
+Registered Teams
+</div>
 <div class="value blue">
 <span id="registeredTeams">0</span>
 </div>
 </div>
 
 <div class="box">
-<div class="label">Available Slots</div>
+<div class="label">
+Available Slots
+</div>
 <div class="value green">
 <span id="availableSlots">0</span>
 </div>
 </div>
 
 <div class="box">
-<div class="label">Registration Ends</div>
+<div class="label">
+Registration Ends
+</div>
 <div class="value" id="regEnd">--</div>
 </div>
 
 <div class="box">
-<div class="label">Tournament Starts</div>
+<div class="label">
+Tournament Starts
+</div>
 <div class="value" id="startTime">--</div>
 </div>
 
 </div>
 
 </div>
-
-
-<!-- Rules -->
 
 <div class="card">
 
@@ -522,370 +474,254 @@ Tournament Rules
 </div>
 
 </div>
-
-
-
-<style>
-
-#rulesList{
-
-display:flex;
-
-flex-direction:column;
-
-gap:12px;
-
-}
-
-.rule{
-
-background:#162033;
-
-border:1px solid rgba(255,255,255,.05);
-
-border-radius:14px;
-
-padding:14px;
-
-font-size:14px;
-
-line-height:24px;
-
-color:#C9D2E3;
-
-}
-
-.bottomBar{
-
-position:fixed;
-
-left:0;
-right:0;
-bottom:0;
-
-height:82px;
-
-background:#0A111F;
-
-border-top:1px solid rgba(255,255,255,.08);
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:0 18px;
-
-z-index:999;
-
-}
-
-.priceBox{
-
-display:flex;
-
-flex-direction:column;
-
-}
-
-.priceBox small{
-
-color:#8B96A7;
-
-font-size:12px;
-
-}
-
-.priceBox b{
-
-font-size:22px;
-
-color:#38BDF8;
-
-margin-top:3px;
-
-}
-
-.joinBtn {
-  width: 220px;
-  height: 56px;
-  border: none;
-  border-radius: 14px;
-  background: linear-gradient(90deg, #2563EB, #3B82F6);
-  color: #fff;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 8px 30px rgba(59, 130, 246, .35);
-  transition: .25s;
-}
-
-.joinBtn:active {
-  transform: scale(.98);
-}
-
-.joinBtn:active{
-
-transform:scale(.97);
-
-}
-
-body{
-
-padding-bottom:100px;
-
-}
-.joinBtn{
-background:linear-gradient(135deg,#2563EB,#38BDF8);
-border:1px solid rgba(56,189,248,.4);
-box-shadow:0 10px 35px rgba(37,99,235,.35);
-}
-.desc{
-margin-top:14px;
-color:#B9C4D8;
-font-size:15px;
-font-weight:500;
-line-height:24px;
-}
-
-</style>
-
-
-
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 import {
-  getDatabase,
-  ref,
-  get,
-  set,
-  runTransaction
+getDatabase,
+ref,
+get,
+set,
+runTransaction
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
 import {
-  getAuth
+getAuth,
+onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-
-// FIREBASE CONFIG 
 const firebaseConfig = {
-  apiKey: "AIzaSyAxxvbQlbvqtedhoicrijzAlljIjKeejWw",
-  authDomain: "grind-treager.firebaseapp.com",
-  databaseURL: "https://grind-treager-default-rtdb.firebaseio.com",
-  projectId: "grind-treager",
-  storageBucket: "grind-treager.firebasestorage.app",
-  messagingSenderId: "236334920342",
-  appId: "1:236334920342:web:5ae959f81b41541f5608b7"
+apiKey: "AIzaSyAxxvbQlbvqtedhoicrijzAlljIjKeejWw",
+authDomain: "grind-treager.firebaseapp.com",
+databaseURL: "https://grind-treager-default-rtdb.firebaseio.com",
+projectId: "grind-treager",
+storageBucket: "grind-treager.firebasestorage.app",
+messagingSenderId: "236334920342",
+appId: "1:236334920342:web:5ae959f81b41541f5608b7"
 };
 
 const app = initializeApp(firebaseConfig);
-
 const db = getDatabase(app);
 const auth = getAuth(app);
 
-/* Tournament ID */
-
 const params = new URLSearchParams(location.search);
-
 const tournamentId = params.get("id");
 
 if(!tournamentId){
-
 alert("Tournament Not Found");
-
 location.href="tournament.html";
-
 }
 
-
-/* Load Tournament */
+onAuthStateChanged(auth,()=>{
+loadTournament();
+});
 
 async function loadTournament(){
 
-const snapshot = await get(
-    ref(db, "tournaments/" + tournamentId)
-);
+const snapshot=await get(ref(db,"tournaments/"+tournamentId));
 
 if(!snapshot.exists()){
-    alert("Tournament Not Found");
-    return;
+alert("Tournament Not Found");
+return;
 }
 
-const t = snapshot.val();
-const user = auth.currentUser;
+const t=snapshot.val();
+const user=auth.currentUser;
 
-if (user) {
-    const walletSnap = await get(ref(db, "wallets/" + user.uid + "/balance"));
+if(user){
 
-    if (walletSnap.exists()) {
-        document.getElementById("wallet").innerText = walletSnap.val();
-    } else {
-        document.getElementById("wallet").innerText = 0;
-    }
+const walletSnap=await get(
+ref(db,"wallets/"+user.uid+"/balance")
+);
+
+document.getElementById("wallet").innerText=
+walletSnap.exists()?walletSnap.val():0;
+
+const entrySnap=await get(
+ref(db,"tournamentEntries/"+tournamentId+"/"+user.uid)
+);
+
+if(entrySnap.exists()){
+
+document.getElementById("joinTournament").style.display="none";
+document.getElementById("resourceNav").style.display="flex";
+
+}else{
+
+document.getElementById("joinTournament").style.display="block";
+document.getElementById("resourceNav").style.display="none";
+
 }
-document.getElementById("date").innerText = t.date;
 
+}else{
+
+document.getElementById("joinTournament").style.display="block";
+document.getElementById("resourceNav").style.display="none";
+
+}
 
 document.getElementById("tournamentName").innerText=t.name;
+document.getElementById("description").innerText=t.details;
+document.getElementById("status").innerText=t.status;
+document.getElementById("prizePool").innerText=t.prize+" GTC";
+document.getElementById("entryFee").innerText=t.entry+" GTC";
+document.getElementById("bottomEntry").innerText=t.entry+" GTC";
+document.getElementById("mode").innerText="Squad";
+document.getElementById("map").innerText="Bermuda";
+document.getElementById("date").innerText=t.date;
+document.getElementById("slots").innerText=t.slots;
 
-document.getElementById("description").innerText = t.details;
+document.getElementById("registeredTeams").innerText=
+t.registeredTeams||0;
 
-document.getElementById("prizePool").innerText = t.prize + " GTC";
+document.getElementById("availableSlots").innerText=
+Number(t.slots)-Number(t.registeredTeams||0);
 
-document.getElementById("entryFee").innerText = t.entry + " GTC";
+document.getElementById("regEnd").innerText=t.registration;
+document.getElementById("startTime").innerText=t.date;
 
-document.getElementById("bottomEntry").innerText = t.entry + " GTC";
-
-document.getElementById("mode").innerText = "Squad";
-
-document.getElementById("map").innerText = "Bermuda";
-
-document.getElementById("slots").innerText = t.slots;
-
-document.getElementById("registeredTeams").innerText =
-    t.registeredTeams || 0;
-
-document.getElementById("availableSlots").innerText =
-    Number(t.slots) - Number(t.registeredTeams || 0);
-
-document.getElementById("regEnd").innerText = t.registration;
-
-document.getElementById("startTime").innerText = t.date;
-
-document.getElementById("rulesList").innerHTML = `
+document.getElementById("rulesList").innerHTML=`
 <div class="rule">Only registered teams are allowed to participate in the tournament.</div>
-
-<div class="rule">All players must join the custom room before the scheduled match time.</div>
-
-<div class="rule">Any form of hacking, cheating, exploiting or unfair gameplay will result in immediate disqualification and permanent ban.</div>
-
-<div class="rule">Players must use the same IGN and UID that were submitted during registration.</div>
-
-<div class="rule">Failure to join the room before the match starts may result in slot cancellation without refund.</div>
-
-<div class="rule">The tournament organizer reserves the right to modify the schedule if required.</div>
-
-<div class="rule">The organizer's decision will be final in case of any dispute.</div>
-
-<div class="rule">Maintain respectful behavior throughout the tournament. Toxicity and abuse are strictly prohibited.</div>
+<div class="rule">Join the room before match time.</div>
+<div class="rule">Hack, cheat or exploit = Permanent Ban.</div>
+<div class="rule">Use registered IGN & UID only.</div>
+<div class="rule">Organizer decision will be final.</div>
 `;
 
 const joinBtn=document.getElementById("joinTournament");
+const popup = document.getElementById("registerPopup");
 
-joinBtn.onclick=async()=>{
+document.querySelector(".back").onclick = () => {
+    location.href = "tournament.html";
+};
 
-const user=auth.currentUser;
+joinBtn.onclick = () => {
+    popup.style.display = "flex";
+};
+document.getElementById("confirmJoin").onclick = async () => {
+
+const teamName = document.getElementById("teamName").value.trim();
+const iglName = document.getElementById("iglName").value.trim();
+const iglUid = document.getElementById("iglUid").value.trim();
+const whatsapp = document.getElementById("whatsapp").value.trim();
+
+if(!teamName || !iglName || !iglUid || !whatsapp){
+    alert("Please fill all fields");
+    return;
+}
+if(!/^[6-9]\d{9}$/.test(whatsapp)){
+    alert("Enter a valid 10-digit WhatsApp Number");
+    return;
+}
+const user = auth.currentUser;
 
 if(!user){
-
-alert("Please Login First");
-
-return;
-
+    alert("Please Login First");
+    return;
 }
 
-const uid=user.uid;
+const uid = user.uid;
 
-/* User Wallet */
-
-const walletRef=ref(db, "wallets/" + uid + "/balance");
-
-const walletSnap=await get(walletRef);
+const walletRef = ref(db,"wallets/"+uid+"/balance");
+const walletSnap = await get(walletRef);
 
 if(!walletSnap.exists()){
-
-alert("Wallet Not Found");
-
-return;
-
+    alert("Wallet Not Found");
+    return;
 }
 
-let wallet=walletSnap.val();
+const wallet = Number(walletSnap.val());
 
-/* Tournament */
+const tourSnap = await get(ref(db,"tournaments/"+tournamentId));
+const tour = tourSnap.val();
 
-const tourSnap=await get(
+if(wallet < Number(tour.entry)){
+    alert("Insufficient GTC Coin");
+    return;
+}
 
-ref(db,"tournaments/"+tournamentId)
+const joinedRef = ref(db,"tournamentEntries/"+tournamentId+"/"+uid);
 
-);
-
-const tour=tourSnap.val();
-
-/* Already Joined? */
-
-const joinedRef=ref(
-
-db,
-
-"tournamentEntries/"+tournamentId+"/"+uid
-
-);
-
-const joinedSnap=await get(joinedRef);
+const joinedSnap = await get(joinedRef);
 
 if(joinedSnap.exists()){
-
-alert("Already Joined");
-
-return;
-
-}
-
-/* Balance Check */
-
-if (wallet < Number(tour.entry)) {
-
-    alert("Insufficient GTC Coin");
-
+    alert("Already Registered");
     return;
-
 }
 
-await runTransaction(walletRef, (coin) => {
-
-    return Number(coin || 0) - Number(tour.entry);
-
-});
-/* Save Entry */
-
-await set(joinedRef,{
-
-uid:uid,
-
-time:Date.now(),
-
-status:"Registered"
-
+await runTransaction(walletRef,(coin)=>{
+    return Number(coin||0)-Number(tour.entry);
 });
 
-/* Registered Count */
+await set(joinedRef, {
+    uid: uid,
+    
+    tournamentId: tournamentId,
+    tournamentName: tour.name,
+    
+    teamName: teamName,
+    iglName: iglName,
+    iglUid: iglUid,
+    whatsapp: whatsapp,
+    
+    entryFee: tour.entry,
+    prizePool: tour.prize,
+    
+    status: "Registered",
+    
+    registeredAt: new Date().toLocaleString(),
+    
+    time: Date.now()
+});
 
 await runTransaction(
-
-ref(db,
-
-"tournaments/"+tournamentId+"/registeredTeams"),
-
+ref(db,"tournaments/"+tournamentId+"/registeredTeams"),
 (value)=>{
-
-return (value||0)+1;
-
+    return (value||0)+1;
 }
-
 );
 
-alert("Tournament Joined Successfully");
+popup.style.display="none";
 
+alert("Registration Successful");
 location.reload();
 
 };
+document.getElementById("cancelPopup").onclick = () => {
+    popup.style.display = "none";
+};
+
+
 }
-loadTournament();
 
 </script>
+<!-- Registration Popup -->
+
+<div id="registerPopup" class="popup">
+
+<div class="popupBox">
+
+<h2>Tournament Registration</h2>
+
+<input type="text" id="teamName" placeholder="Team Name">
+
+<input type="text" id="iglName" placeholder="IGL Name">
+
+<input type="number" id="iglUid" placeholder="IGL UID">
+
+<input type="tel" id="whatsapp" placeholder="WhatsApp Number">
+
+<div class="popupBtns">
+
+<button id="cancelPopup">Cancel</button>
+
+<button id="confirmJoin">Confirm</button>
+
+</div>
+
+</div>
+
+</div>
 </body>
 </html>
