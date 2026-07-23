@@ -17,9 +17,10 @@ box-sizing:border-box;
 font-family:Inter,Arial,sans-serif;
 }
 
-body{
-background:#060B14;
-color:#fff;
+body {
+    background: #060B14;
+    color: #fff;
+    font-weight: 500;
 }
 
 :root{
@@ -147,15 +148,10 @@ text-transform:uppercase;
 }
 
 .title{
-
 font-size:34px;
-
-font-weight:800;
-
+font-weight:900;
 margin-top:8px;
-
-line-height:38px;
-
+line-height:40px;
 }
 
 .desc{
@@ -205,13 +201,9 @@ margin-bottom:16px;
 }
 
 .cardTitle{
-
 font-size:18px;
-
 font-weight:700;
-
-margin-bottom:18px;
-
+color:#fff;
 }
 
 .grid{
@@ -235,21 +227,16 @@ padding:14px;
 }
 
 .label{
-
-font-size:12px;
-
-color:var(--sub);
-
+font-size:13px;
+font-weight:600;
+color:#AAB8D4;
 margin-bottom:8px;
-
 }
 
-.value{
-
-font-size:18px;
-
-font-weight:700;
-
+.value {
+    font-size: 19px;
+    font-weight: 700;
+    color: #fff;
 }
 
 .value.blue{
@@ -264,10 +251,16 @@ color:#4ADE80;
 
 }
 
-.value.yellow{
+.value.blue{
 
-color:#FACC15;
+color:#60A5FA;
 
+}
+.card{
+background:linear-gradient(180deg,#111827,#0F172A);
+border:1px solid rgba(59,130,246,.25);
+border-radius:18px;
+box-shadow:0 8px 25px rgba(0,0,0,.35);
 }
 
 </style>
@@ -370,9 +363,7 @@ Entry Fee
 
 </div>
 
-<div
-class="value yellow"
-id="entryFee">
+<div class="value blue" id="entryFee">
 
 --
 
@@ -455,41 +446,28 @@ id="slots">
 </div>
 
 </div>
-<!-- Prize Distribution -->
+
 
 <div class="card">
 
-<div class="cardTitle">
-Prize Distribution
-</div>
+    <div class="cardTitle">Tournament Entry</div>
 
-<div class="grid">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;">
 
-<div class="box">
-<div class="label">🥇 Champion</div>
-<div class="value green" id="firstPrize">--</div>
-</div>
+        <div>
+            <div style="font-size:13px;color:#9CA3AF;">Entry Fee</div>
+            <div id="bottomEntry" style="font-size:28px;font-weight:700;color:#60A5FA;">
+                0 GTC
+            </div>
+        </div>
 
-<div class="box">
-<div class="label">🥈 Runner Up</div>
-<div class="value blue" id="secondPrize">--</div>
-</div>
+        <button class="joinBtn" id="joinTournament">
+            JOIN TOURNAMENT
+        </button>
 
-<div class="box">
-<div class="label">🥉 Third Place</div>
-<div class="value" id="thirdPrize">--</div>
-</div>
-
-<div class="box">
-<div class="label">Total Teams</div>
-<div class="value" id="totalTeams">--</div>
-</div>
+    </div>
 
 </div>
-
-</div>
-
-
 <!-- Registration Status -->
 
 <div class="card">
@@ -623,36 +601,28 @@ font-size:12px;
 
 font-size:22px;
 
-color:#FACC15;
+color:#38BDF8;
 
 margin-top:3px;
 
 }
 
-.joinBtn{
+.joinBtn {
+  width: 220px;
+  height: 56px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(90deg, #2563EB, #3B82F6);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(59, 130, 246, .35);
+  transition: .25s;
+}
 
-width:190px;
-
-height:52px;
-
-border:none;
-
-border-radius:14px;
-
-font-size:15px;
-
-font-weight:700;
-
-color:white;
-
-cursor:pointer;
-
-background:linear-gradient(90deg,#2563EB,#3B82F6);
-
-box-shadow:0 8px 30px rgba(59,130,246,.35);
-
-transition:.25s;
-
+.joinBtn:active {
+  transform: scale(.98);
 }
 
 .joinBtn:active{
@@ -666,34 +636,22 @@ body{
 padding-bottom:100px;
 
 }
+.joinBtn{
+background:linear-gradient(135deg,#2563EB,#38BDF8);
+border:1px solid rgba(56,189,248,.4);
+box-shadow:0 10px 35px rgba(37,99,235,.35);
+}
+.desc{
+margin-top:14px;
+color:#B9C4D8;
+font-size:15px;
+font-weight:500;
+line-height:24px;
+}
 
 </style>
 
 
-
-<div class="bottomBar">
-
-<div class="priceBox">
-
-<small>Entry Fee</small>
-
-<b id="bottomEntry">
-
-0 GTC
-
-</b>
-
-</div>
-
-<button
-class="joinBtn"
-id="joinTournament">
-
-JOIN TOURNAMENT
-
-</button>
-
-</div>
 
 <script type="module">
 
@@ -726,7 +684,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const db = getDatabase(app);
-
+const auth = getAuth(app);
 
 /* Tournament ID */
 
@@ -748,99 +706,64 @@ location.href="tournament.html";
 async function loadTournament(){
 
 const snapshot = await get(
-
-ref(db,"tournaments/"+tournamentId)
-
+    ref(db, "tournaments/" + tournamentId)
 );
 
 if(!snapshot.exists()){
-
-alert("Tournament Not Found");
-
-return;
-
+    alert("Tournament Not Found");
+    return;
 }
 
 const t = snapshot.val();
 
+document.getElementById("date").innerText = t.date;
+
 
 document.getElementById("tournamentName").innerText=t.name;
 
-document.getElementById("description").innerText=t.description;
+document.getElementById("description").innerText = t.details;
 
-document.getElementById("status").innerText=t.status;
+document.getElementById("prizePool").innerText = t.prize + " GTC";
 
-document.getElementById("prizePool").innerText=t.prizePool+" GTC";
+document.getElementById("entryFee").innerText = t.entry + " GTC";
 
-document.getElementById("entryFee").innerText=t.entryFee+" GTC";
+document.getElementById("bottomEntry").innerText = t.entry + " GTC";
 
-document.getElementById("bottomEntry").innerText=t.entryFee+" GTC";
+document.getElementById("mode").innerText = "Squad";
 
-document.getElementById("mode").innerText=t.mode;
+document.getElementById("map").innerText = "Bermuda";
 
-document.getElementById("map").innerText=t.map;
+document.getElementById("slots").innerText = t.slots;
 
-document.getElementById("date").innerText=t.date;
+document.getElementById("totalTeams").innerText = t.slots;
 
-document.getElementById("slots").innerText=t.totalSlots;
+document.getElementById("registeredTeams").innerText =
+    t.registeredTeams || 0;
 
-document.getElementById("firstPrize").innerText=t.firstPrize+" GTC";
+document.getElementById("availableSlots").innerText =
+    Number(t.slots) - Number(t.registeredTeams || 0);
 
-document.getElementById("secondPrize").innerText=t.secondPrize+" GTC";
+document.getElementById("regEnd").innerText = t.registration;
 
-document.getElementById("thirdPrize").innerText=t.thirdPrize+" GTC";
+document.getElementById("startTime").innerText = t.date;
 
-document.getElementById("registeredTeams").innerText=t.registeredTeams;
+document.getElementById("rulesList").innerHTML = `
+<div class="rule">Only registered teams are allowed to participate in the tournament.</div>
 
-document.getElementById("availableSlots").innerText=t.totalSlots-t.registeredTeams;
+<div class="rule">All players must join the custom room before the scheduled match time.</div>
 
-document.getElementById("totalTeams").innerText=t.totalSlots;
+<div class="rule">Any form of hacking, cheating, exploiting or unfair gameplay will result in immediate disqualification and permanent ban.</div>
 
-document.getElementById("regEnd").innerText=t.registrationEnd;
+<div class="rule">Players must use the same IGN and UID that were submitted during registration.</div>
 
-document.getElementById("startTime").innerText=t.startTime;
+<div class="rule">Failure to join the room before the match starts may result in slot cancellation without refund.</div>
 
+<div class="rule">The tournament organizer reserves the right to modify the schedule if required.</div>
 
-/* Rules */
+<div class="rule">The organizer's decision will be final in case of any dispute.</div>
 
-const rulesBox=document.getElementById("rulesList");
-
-rulesBox.innerHTML="";
-
-if(Array.isArray(t.rules)){
-
-t.rules.forEach(rule=>{
-
-rulesBox.innerHTML+=`
-
-<div class="rule">
-
-${rule}
-
-</div>
-
+<div class="rule">Maintain respectful behavior throughout the tournament. Toxicity and abuse are strictly prohibited.</div>
 `;
-
-});
-
-}
-
-}
-
-loadTournament();
-
-const auth = getAuth(app);
-auth.onAuthStateChanged(async (user) => {
-
-  if (!user) return;
-
-  const walletSnap = await get(ref(db, "wallets/" + user.uid + "/balance"));
-
-  if (walletSnap.exists()) {
-    document.getElementById("wallet").innerText = walletSnap.val();
-  }
-
-});
 
 const joinBtn=document.getElementById("joinTournament");
 
@@ -906,22 +829,19 @@ return;
 
 /* Balance Check */
 
-if(wallet<tour.entryFee){
+if (wallet < Number(tour.entry)) {
 
-alert("Insufficient GTC Coin");
+    alert("Insufficient GTC Coin");
 
-return;
+    return;
 
 }
 
-/* Deduct Coin */
+await runTransaction(walletRef, (coin) => {
 
-await runTransaction(walletRef,(coin)=>{
-
-return coin - tour.entryFee;
+    return Number(coin || 0) - Number(tour.entry);
 
 });
-
 /* Save Entry */
 
 await set(joinedRef,{
@@ -955,6 +875,8 @@ alert("Tournament Joined Successfully");
 location.reload();
 
 };
+}
+loadTournament();
 
 </script>
 </body>
