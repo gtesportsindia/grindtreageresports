@@ -715,7 +715,17 @@ if(!snapshot.exists()){
 }
 
 const t = snapshot.val();
+const user = auth.currentUser;
 
+if (user) {
+    const walletSnap = await get(ref(db, "wallets/" + user.uid + "/balance"));
+
+    if (walletSnap.exists()) {
+        document.getElementById("wallet").innerText = walletSnap.val();
+    } else {
+        document.getElementById("wallet").innerText = 0;
+    }
+}
 document.getElementById("date").innerText = t.date;
 
 
