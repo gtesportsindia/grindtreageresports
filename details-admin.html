@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GT Admin Panel</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#050505;
+color:#fff;
+}
+
+:root{
+
+--purple:#a855f7;
+--card:#111111;
+--border:rgba(168,85,247,.25);
+
+}
+
+.loginPage{
+
+width:100%;
+height:100vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+}
+
+.loginBox{
+
+width:92%;
+max-width:400px;
+
+background:var(--card);
+
+border:1px solid var(--border);
+
+padding:30px;
+
+border-radius:20px;
+
+box-shadow:0 0 25px rgba(168,85,247,.25);
+
+}
+
+.loginBox h2{
+
+text-align:center;
+
+margin-bottom:25px;
+
+color:var(--purple);
+
+}
+
+input{
+
+width:100%;
+
+height:55px;
+
+background:#1b1b1b;
+
+border:none;
+
+outline:none;
+
+color:#fff;
+
+padding:0 15px;
+
+border-radius:15px;
+
+margin-bottom:15px;
+
+}
+
+button{
+
+width:100%;
+
+height:55px;
+
+border:none;
+
+border-radius:15px;
+
+background:linear-gradient(90deg,#7c3aed,#c026d3);
+
+color:#fff;
+
+font-size:16px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+#dashboard{
+
+display:none;
+
+}
+
+.topbar{
+
+height:70px;
+
+background:#111;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:0 20px;
+
+border-bottom:1px solid var(--border);
+
+}
+
+.logo{
+
+font-size:22px;
+
+font-weight:bold;
+
+color:var(--purple);
+
+}
+
+.logout{
+
+width:45px;
+height:45px;
+
+border-radius:12px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+background:#1b1b1b;
+
+cursor:pointer;
+
+}
+
+.navbar{
+
+display:flex;
+
+overflow:auto;
+
+background:#101010;
+
+border-bottom:1px solid var(--border);
+
+}
+
+.navbar button{
+
+flex:none;
+
+width:170px;
+
+height:60px;
+
+background:none;
+
+border:none;
+
+border-right:1px solid var(--border);
+
+color:#fff;
+
+font-size:15px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:10px;
+
+cursor:pointer;
+
+}
+
+.navbar button:hover{
+
+background:#191919;
+
+}
+
+.page{
+
+padding:20px;
+
+}
+
+select{
+
+width:100%;
+height:55px;
+
+background:#1b1b1b;
+
+color:#fff;
+
+border:1px solid rgba(168,85,247,.35);
+
+outline:none;
+
+border-radius:15px;
+
+padding:0 15px;
+
+margin-bottom:15px;
+
+font-size:16px;
+
+appearance:none;
+-webkit-appearance:none;
+-moz-appearance:none;
+
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='%23a855f7' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 5.5 8 12l6.5-6.5z'/%3E%3C/svg%3E");
+
+background-repeat:no-repeat;
+
+background-position:right 15px center;
+
+background-size:18px;
+
+}
+
+select:focus{
+
+border-color:#a855f7;
+
+box-shadow:0 0 15px rgba(168,85,247,.35);
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="loginPage" id="loginPage">
+
+<div class="loginBox">
+
+<h2>GT ADMIN LOGIN</h2>
+
+<input
+type="password"
+id="password"
+placeholder="Enter Password">
+
+<button onclick="login()">
+
+LOGIN
+
+</button>
+
+</div>
+
+</div>
+
+<div id="dashboard">
+
+<div class="topbar">
+
+<div class="logo">
+
+GT ADMIN PANEL
+
+</div>
+
+<div class="logout"
+onclick="logout()">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+</div>
+
+</div>
+
+<div class="navbar">
+
+
+<button id="roundPage">
+
+<i class="fa-solid fa-layer-group"></i>
+
+<span>Round Create</span>
+
+</button>
+
+<button id="slotPage">
+
+<i class="fa-solid fa-list"></i>
+
+<span>Slot List</span>
+
+</button>
+<button id="roomPage">
+
+<i class="fa-solid fa-key"></i>
+
+<span>Room ID & Pass</span>
+
+</button>
+
+<button id="pointPage">
+
+<i class="fa-solid fa-table"></i>
+
+<span>Point Table</span>
+
+</button>
+
+<button id="qualifyPage">
+
+<i class="fa-solid fa-link"></i>
+
+<span>Qualify Team</span>
+
+</button>
+<button id="schedulePage">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+<span>Match Schedule</span>
+
+</button>
+
+</div>
+
+<div class="page" id="content">
+
+<h2>Welcome Admin</h2>
+
+<p>
+
+Select any option from the top menu.
+
+</p>
+
+</div>
+
+</div>
+
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+getDatabase,
+ref,
+set,
+get,
+update,
+remove,
+push,
+onValue
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAxxvbQlbvqtedhoicrijzAlljIjKeejWw",
+  authDomain: "grind-treager.firebaseapp.com",
+  databaseURL: "https://grind-treager-default-rtdb.firebaseio.com",
+  projectId: "grind-treager",
+  storageBucket: "grind-treager.firebasestorage.app",
+  messagingSenderId: "236334920342",
+  appId: "1:236334920342:web:5ae959f81b41541f5608b7"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const ADMIN_PASSWORD="GTDRAYX";
+
+const loginPage=document.getElementById("loginPage");
+const dashboard=document.getElementById("dashboard");
+const content=document.getElementById("content");
+
+const roundOrder=[
+"Round_1",
+"Round_2",
+"Quarter_Final",
+"Semi_Final",
+"Grand_Final"
+];
+
+function getNextRound(current){
+
+const index=roundOrder.indexOf(current);
+
+if(index==-1)return null;
+
+return roundOrder[index+1]||null;
+
+}
+
+window.login=function(){
+
+const pass=document.getElementById("password").value.trim();
+
+if(pass!==ADMIN_PASSWORD){
+
+alert("Wrong Password");
+return;
+
+}
+
+loginPage.style.display="none";
+dashboard.style.display="block";
+
+showRoundPage();
+
+};
+
+window.logout=function(){
+
+location.reload();
+
+};
+
+async function loadTournamentList(selectId){
+
+const select=document.getElementById(selectId);
+
+if(!select)return;
+
+select.innerHTML=`<option value="">Select Tournament</option>`;
+
+const snap=await get(ref(db,"tournaments"));
+
+if(!snap.exists())return;
+
+snap.forEach(child=>{
+
+select.innerHTML+=`
+<option value="${child.key}">
+${child.val().name}
+</option>
+`;
+
+});
+
+}
+
+function showRoundPage(){
+
+content.innerHTML=`
+
+<h2>Create Round</h2>
+
+<select id="tournamentSelect">
+<option value="">Select Tournament</option>
+</select>
+
+<input
+id="roundName"
+placeholder="Example : Round_1">
+
+<input
+id="groupCount"
+type="number"
+placeholder="Total Groups (Example : 7)">
+
+<button id="createRoundBtn">
+Create Round
+</button>
+
+<div id="roundMsg"></div>
+
+`;
+
+loadTournamentList("tournamentSelect");
+
+document.getElementById("createRoundBtn").onclick=createRound;
+
+}
+
+async function createRound(){
+
+const tournamentId=document.getElementById("tournamentSelect").value;
+
+const roundName=document.getElementById("roundName").value.trim();
+
+const groupCount=parseInt(document.getElementById("groupCount").value);
+
+if(!tournamentId||!roundName||!groupCount){
+
+alert("Fill all fields");
+return;
+
+}
+
+for(let i=0;i<groupCount;i++){
+
+const groupName="Group "+String.fromCharCode(65+i);
+
+await set(
+ref(db,`slotLists/${tournamentId}/${roundName}/${groupName}`),
+{
+created:true
+}
+);
+
+await set(
+ref(db,`pointTables/${tournamentId}/${roundName}/${groupName}`),
+{
+created:true
+}
+);
+
+await set(
+ref(db,`roomDetails/${tournamentId}/${roundName}/${groupName}`),
+{
+created:true
+}
+);
+
+await set(
+ref(db,`matchSchedule/${tournamentId}/${roundName}/${groupName}`),
+{
+created:true
+}
+);
+
+}
+
+document.getElementById("roundMsg").innerHTML="✅ Round & Groups Created Successfully";
+
+}
+function showSlotPage(){
+
+content.innerHTML=`
+
+<h2>Slot List</h2>
+
+<select id="slotTournament">
+<option value="">Select Tournament</option>
+</select>
+
+<select id="slotRound">
+<option value="">Select Round</option>
+</select>
+
+<select id="slotGroup">
+<option value="">Select Group</option>
+</select>
+
+<div id="slotInputs"></div>
+
+<button id="loadSlots">
+Load Slots
+</button>
+
+<button id="saveSlots">
+Save Slot List
+</button>
+
+`;
+
+loadTournamentList("slotTournament");
+
+document.getElementById("slotTournament").onchange=loadSlotRounds;
+
+document.getElementById("slotRound").onchange=loadSlotGroups;
+
+let html="";
+
+for(let i=1;i<=12;i++){
+
+html+=`
+
+<input
+id="slot${i}"
+placeholder="Slot ${i} Team Name">
+
+`;
+
+}
+
+document.getElementById("slotInputs").innerHTML=html;
+
+document.getElementById("loadSlots").onclick=loadSlots;
+
+document.getElementById("saveSlots").onclick=saveSlots;
+
+}
+
+async function loadSlotRounds(){
+
+const tournament=document.getElementById("slotTournament").value;
+
+const select=document.getElementById("slotRound");
+
+select.innerHTML=`<option value="">Select Round</option>`;
+
+document.getElementById("slotGroup").innerHTML=
+`<option value="">Select Group</option>`;
+
+if(!tournament)return;
+
+const snap=await get(ref(db,`slotLists/${tournament}`));
+
+if(!snap.exists())return;
+
+snap.forEach(child=>{
+
+select.innerHTML+=`
+<option value="${child.key}">
+${child.key}
+</option>
+`;
+
+});
+
+}
+
+async function loadSlotGroups(){
+
+const tournament=document.getElementById("slotTournament").value;
+
+const round=document.getElementById("slotRound").value;
+
+const select=document.getElementById("slotGroup");
+
+select.innerHTML=`<option value="">Select Group</option>`;
+
+if(!tournament||!round)return;
+
+const snap=await get(
+ref(db,`slotLists/${tournament}/${round}`)
+);
+
+if(!snap.exists())return;
+
+snap.forEach(child=>{
+
+select.innerHTML+=`
+<option value="${child.key}">
+${child.key}
+</option>
+`;
+
+});
+
+}
+
+async function loadSlots(){
+
+const tournament=document.getElementById("slotTournament").value;
+
+const round=document.getElementById("slotRound").value;
+
+const group=document.getElementById("slotGroup").value;
+
+if(!tournament||!round||!group){
+
+alert("Select Tournament, Round & Group");
+
+return;
+
+}
+
+const snap=await get(
+ref(db,`slotLists/${tournament}/${round}/${group}`)
+);
+
+if(!snap.exists())return;
+
+const data=snap.val();
+
+for(let i=1;i<=12;i++){
+
+document.getElementById("slot"+i).value=
+data["slot"+i]||"";
+
+}
+
+}
+
+async function saveSlots(){
+
+const tournament=document.getElementById("slotTournament").value;
+
+const round=document.getElementById("slotRound").value;
+
+const group=document.getElementById("slotGroup").value;
+
+if(!tournament||!round||!group){
+
+alert("Select Tournament, Round & Group");
+
+return;
+
+}
+
+let data={};
+
+for(let i=1;i<=12;i++){
+
+data["slot"+i]=
+document.getElementById("slot"+i).value;
+
+}
+
+await set(
+ref(db,`slotLists/${tournament}/${round}/${group}`),
+data
+);
+
+alert("Slot List Saved");
+
+}
+function showRoomPage(){
+
+content.innerHTML=`
+
+<h2>Room ID & Password</h2>
+
+<select id="roomTournament">
+<option value="">Select Tournament</option>
+</select>
+
+<select id="roomRound">
+<option value="">Select Round</option>
+</select>
+
+<select id="roomGroup">
+<option value="">Select Group</option>
+</select>
+
+<input
+id="roomId"
+placeholder="Enter Room ID">
+
+<input
+id="roomPassword"
+placeholder="Enter Room Password">
+
+<button id="saveRoomBtn">
+Save Room Details
+</button>
+
+<div id="roomMsg"></div>
+
+`;
+
+loadTournamentList("roomTournament");
+
+document.getElementById("roomTournament").onchange=loadRoomRounds;
+document.getElementById("roomRound").onchange=loadRoomGroups;
+document.getElementById("roomGroup").onchange=loadRoomDetails;
+
+document.getElementById("saveRoomBtn").onclick=saveRoomDetails;
+
+}
+
+async function loadRoomRounds(){
+
+const tournament=document.getElementById("roomTournament").value;
+
+const select=document.getElementById("roomRound");
+
+select.innerHTML=`<option value="">Select Round</option>`;
+
+document.getElementById("roomGroup").innerHTML=
+`<option value="">Select Group</option>`;
+
+if(!tournament)return;
+
+const snap=await get(ref(db,`slotLists/${tournament}`));
+
+if(!snap.exists())return;
+
+snap.forEach(child=>{
+
+select.innerHTML+=`
+<option value="${child.key}">
+${child.key}
+</option>
+`;
+
+});
+
+}
+
+async function loadRoomGroups(){
+
+const tournament=document.getElementById("roomTournament").value;
+
+const round=document.getElementById("roomRound").value;
+
+const select=document.getElementById("roomGroup");
+
+select.innerHTML=`<option value="">Select Group</option>`;
+
+if(!tournament||!round)return;
+
+const snap=await get(ref(db,`slotLists/${tournament}/${round}`));
+
+if(!snap.exists())return;
+
+snap.forEach(child=>{
+
+select.innerHTML+=`
+<option value="${child.key}">
+${child.key}
+</option>
+`;
+
+});
+
+}
+
+async function saveRoomDetails(){
+
+const tournament=document.getElementById("roomTournament").value;
+
+const round=document.getElementById("roomRound").value;
+
+const group=document.getElementById("roomGroup").value;
+
+const roomId=document.getElementById("roomId").value.trim();
+
+const roomPassword=document.getElementById("roomPassword").value.trim();
+
+if(!tournament||!round||!group||!roomId||!roomPassword){
+
+alert("Fill all fields");
+return;
+
+}
+
+await update(
+ref(db,`roomDetails/${tournament}/${round}/${group}`),
+{
+roomId,
+roomPassword
+}
+);
+
+document.getElementById("roomMsg").innerHTML=
+"✅ Room Details Saved";
+
+}
+
+async function loadRoomDetails(){
+
+const tournament=document.getElementById("roomTournament").value;
+
+const round=document.getElementById("roomRound").value;
+
+const group=document.getElementById("roomGroup").value;
+
+if(!tournament||!round||!group)return;
+
+const snap=await get(
+ref(db,`roomDetails/${tournament}/${round}/${group}`)
+);
+
+if(!snap.exists()){
+
+document.getElementById("roomId").value="";
+document.getElementById("roomPassword").value="";
+return;
+
+}
+
+const data=snap.val();
+
+document.getElementById("roomId").value=
+data.roomId||"";
+
+document.getElementById("roomPassword").value=
+data.roomPassword||"";
+
+}
+
+function showPointPage(){
+
+content.innerHTML=`
+
+<h2>Point Table</h2>
+
+<select id="pointTournament">
+<option value="">Select Tournament</option>
+</select>
+
+<select id="pointRound">
+<option value="">Select Round</option>
+</select>
+
+<select id="pointGroup">
+<option value="">Select Group</option>
+</select>
+
+<div id="pointInputs"></div>
+
+<button id="loadPointBtn">
+Load Point Table
+</button>
+
+<button id="savePointBtn">
+Save Point Table
+</button>
+
+`;
+
+loadTournamentList("pointTournament");
+
+document.getElementById("pointTournament").onchange=loadPointRounds;
+
+document.getElementById("pointRound").onchange=loadPointGroups;
+document.getElementById("pointGroup").onchange=loadPointTable;
+let html="";
+
+for(let i=1;i<=12;i++){
+
+html+=`
+
+<h3 style="margin:15px 0 10px;">Slot ${i}</h3>
+
+<input id="team${i}" placeholder="Team Name">
+
+<input id="match${i}" type="number" placeholder="Match">
+
+<input id="kill${i}" type="number" placeholder="Kills">
+
+<input id="placement${i}" type="number" placeholder="Placement Points">
+
+<input id="total${i}" type="number" placeholder="Total Points">
+
+`;
+
+}
+
+document.getElementById("pointInputs").innerHTML=html;
+
+document.getElementById("loadPointBtn").onclick=loadPointTable;
+
+document.getElementById("savePointBtn").onclick=savePointTable;
+
+}
+
+async function loadPointRounds(){
+
+const tournament=document.getElementById("pointTournament").value;
+
+const select=document.getElementById("pointRound");
+
+select.innerHTML=`<option value="">Select Round</option>`;
+
+document.getElementById("pointGroup").innerHTML=
+`<option value="">Select Group</option>`;
+
+if(!tournament)return;
+
+const snap=await get(ref(db,`slotLists/${tournament}`));
+
+if(!snap.exists())return;
+
+snap.forEach(child=>{
+
+select.innerHTML+=`
+<option value="${child.key}">
+${child.key}
+</option>
+`;
+
+});
+
+}
+
+async function loadPointGroups(){
+
+const tournament=document.getElementById("pointTournament").value;
+
+const round=document.getElementById("pointRound").value;
+
+const select=document.getElementById("pointGroup");
+
+select.innerHTML=`<option value="">Select Group</option>`;
+
+if(!tournament||!round)return;
+
+const snap=await get(
+ref(db,`slotLists/${tournament}/${round}`)
+);
+
+if(!snap.exists())return;
+
+snap.forEach(child=>{
+
+select.innerHTML+=`
+<option value="${child.key}">
+${child.key}
+</option>
+`;
+
+});
+
+}
+
+async function loadPointTable(){
+
+const tournament=document.getElementById("pointTournament").value;
+
+const round=document.getElementById("pointRound").value;
+
+const group=document.getElementById("pointGroup").value;
+
+if(!tournament||!round||!group){
+
+alert("Select Tournament, Round & Group");
+return;
+
+}
+
+const snap=await get(
+ref(db,`pointTables/${tournament}/${round}/${group}`)
+);
+
+if(!snap.exists())return;
+
+const data=snap.val();
+
+for(let i=1;i<=12;i++){
+
+const team=data["slot"+i]||{};
+
+document.getElementById("team"+i).value=team.team||"";
+document.getElementById("match"+i).value=team.match||"";
+document.getElementById("kill"+i).value=team.kill||"";
+document.getElementById("placement"+i).value=team.placement||"";
+document.getElementById("total"+i).value=team.total||"";
+
+}
+
+}
+
+async function savePointTable(){
+
+const tournament=document.getElementById("pointTournament").value;
+
+const round=document.getElementById("pointRound").value;
+
+const group=document.getElementById("pointGroup").value;
+
+if(!tournament||!round||!group){
+
+alert("Select Tournament, Round & Group");
+return;
+
+}
+
+let data={};
+
+for(let i=1;i<=12;i++){
+
+data["slot"+i]={
+
+team:document.getElementById("team"+i).value,
+match:document.getElementById("match"+i).value,
+kill:document.getElementById("kill"+i).value,
+placement:document.getElementById("placement"+i).value,
+total:document.getElementById("total"+i).value
+
+};
+
+}
+
+await set(
+ref(db,`pointTables/${tournament}/${round}/${group}`),
+data
+);
+
+alert("Point Table Saved");
+
+}
+
+function showSchedulePage(){
+
+content.innerHTML=`
+
+<h2>Match Schedule</h2>
+
+<select id="scheduleTournament">
+<option value="">Select Tournament</option>
+</select>
+
+<select id="scheduleRound">
+<option value="">Select Round</option>
+</select>
+
+<select id="scheduleGroup">
+<option value="">Select Group</option>
+</select>
+
+<input
+type="date"
+id="matchDate">
+
+<input
+type="time"
+id="matchTime">
+
+<button id="saveScheduleBtn">
+Save Match Schedule
+</button>
+
+<div id="scheduleMsg"></div>
+
+`;
+
+loadTournamentList("scheduleTournament");
+
+document.getElementById("scheduleTournament").onchange=loadScheduleRounds;
+
+document.getElementById("scheduleRound").onchange=loadScheduleGroups;
+
+document.getElementById("scheduleGroup").onchange=loadSchedule;
+
+document.getElementById("saveScheduleBtn").onclick=saveSchedule;
+
+}
+
+async function loadScheduleRounds(){
+
+const tournament=document.getElementById("scheduleTournament").value;
+
+const select=document.getElementById("scheduleRound");
+
+select.innerHTML=`<option value="">Select Round</option>`;
+
+document.getElementById("scheduleGroup").innerHTML=
+`<option value="">Select Group</option>`;
+
+if(!tournament)return;
+
+const snap=await get(ref(db,`slotLists/${tournament}`));
+
+if(!snap.exists())return;
+
+snap.forEach(child=>{
+
+select.innerHTML+=`
+<option value="${child.key}">
+${child.key}
+</option>
+`;
+
+});
+
+}
+async function loadScheduleGroups(){
+
+const tournament=document.getElementById("scheduleTournament").value;
+
+const round=document.getElementById("scheduleRound").value;
+
+const select=document.getElementById("scheduleGroup");
+
+select.innerHTML=`<option value="">Select Group</option>`;
+
+if(!tournament||!round)return;
+
+const snap=await get(
+ref(db,`slotLists/${tournament}/${round}`)
+);
+
+if(!snap.exists())return;
+
+snap.forEach(child=>{
+
+select.innerHTML+=`
+<option value="${child.key}">
+${child.key}
+</option>
+`;
+
+});
+
+}
+async function loadSchedule(){
+
+const tournament=document.getElementById("scheduleTournament").value;
+
+const round=document.getElementById("scheduleRound").value;
+
+const group=document.getElementById("scheduleGroup").value;
+
+if(!tournament||!round||!group)return;
+
+const snap=await get(
+ref(db,`matchSchedule/${tournament}/${round}/${group}`)
+);
+
+if(!snap.exists()){
+
+document.getElementById("matchDate").value="";
+document.getElementById("matchTime").value="";
+return;
+
+}
+
+const data=snap.val();
+
+document.getElementById("matchDate").value=data.date||"";
+document.getElementById("matchTime").value=data.time||"";
+
+}
+async function saveSchedule(){
+
+const tournament=document.getElementById("scheduleTournament").value;
+
+const round=document.getElementById("scheduleRound").value;
+
+const group=document.getElementById("scheduleGroup").value;
+
+const date=document.getElementById("matchDate").value;
+
+const time=document.getElementById("matchTime").value;
+
+if(!tournament||!round||!group||!date||!time){
+
+alert("Fill all fields");
+return;
+
+}
+
+await update(
+
+ref(db,`matchSchedule/${tournament}/${round}/${group}`),
+
+{
+date,
+time
+}
+
+);
+
+document.getElementById("scheduleMsg").innerHTML=
+"✅ Match Schedule Saved";
+
+}
+function showQualifyPage(){
+
+content.innerHTML=`
+
+<h2>Qualify Teams</h2>
+
+<select id="qualifyTournament">
+<option value="">Select Tournament</option>
+</select>
+
+<select id="qualifyRound">
+<option value="">Select Current Round</option>
+</select>
+
+<select id="qualifyGroup">
+<option value="">Select Group</option>
+</select>
+
+<h3 style="margin:15px 0 10px;">Target Round</h3>
+
+<select id="targetRound">
+<option value="">Select Target Round</option>
+</select>
+
+<h3 style="margin:15px 0 10px;">Target Group</h3>
+
+<select id="targetGroup">
+<option value="">Select Target Group</option>
+</select>
+
+<div id="teamList"></div>
+
+<button id="qualifyBtn">
+✅ QUALIFY SELECTED TEAMS
+</button>
+
+<div id="qualifyMsg"></div>
+
+`;
+
+loadTournamentList("qualifyTournament");
+
+document.getElementById("qualifyTournament").onchange=loadQualifyRounds;
+
+document.getElementById("qualifyRound").onchange=loadQualifyGroups;
+
+document.getElementById("qualifyGroup").onchange=loadRegisteredTeams;
+
+document.getElementById("qualifyBtn").onclick=qualifySelectedTeams;
+
+}
+
+async function loadQualifyRounds() {
+  
+  const tournament = document.getElementById("qualifyTournament").value;
+  
+  const select = document.getElementById("qualifyRound");
+  
+  const target = document.getElementById("targetRound");
+  
+  select.innerHTML = `<option value="">Select Round</option>`;
+  target.innerHTML = `<option value="">Select Target Round</option>`;
+  
+  document.getElementById("qualifyGroup").innerHTML =
+    `<option value="">Select Group</option>`;
+  
+  document.getElementById("targetGroup").innerHTML =
+    `<option value="">Select Target Group</option>`;
+  
+  if (!tournament) return;
+  
+  const snap = await get(ref(db, `slotLists/${tournament}`));
+  
+  if (!snap.exists()) return;
+  
+  snap.forEach(child => {
+    
+    select.innerHTML += `
+<option value="${child.key}">
+${child.key}
+</option>
+`;
+    
+    target.innerHTML += `
+<option value="${child.key}">
+${child.key}
+</option>
+`;
+    
+  });
+  
+  document.getElementById("targetRound").onchange = loadTargetGroups;
+  
+}
+
+
+async function loadQualifyGroups(){
+
+const tournament=document.getElementById("qualifyTournament").value;
+
+const round=document.getElementById("qualifyRound").value;
+
+const select=document.getElementById("qualifyGroup");
+
+select.innerHTML=`<option value="">Select Group</option>`;
+
+if(!tournament||!round)return;
+
+const snap=await get(ref(db,`slotLists/${tournament}/${round}`));
+
+if(!snap.exists())return;
+
+snap.forEach(child=>{
+
+select.innerHTML+=`
+<option value="${child.key}">
+${child.key}
+</option>
+`;
+
+});
+
+}
+
+
+async function loadTargetGroups(){
+
+const tournament=document.getElementById("qualifyTournament").value;
+
+const round=document.getElementById("targetRound").value;
+
+const select=document.getElementById("targetGroup");
+
+select.innerHTML=`<option value="">Select Target Group</option>`;
+
+if(!tournament||!round)return;
+
+const snap=await get(ref(db,`slotLists/${tournament}/${round}`));
+
+if(!snap.exists())return;
+
+snap.forEach(child=>{
+
+select.innerHTML+=`
+<option value="${child.key}">
+${child.key}
+</option>
+`;
+
+});
+
+}
+
+async function loadRegisteredTeams(){
+
+const tournament=document.getElementById("qualifyTournament").value;
+
+const group=document.getElementById("qualifyGroup").value;
+
+const list=document.getElementById("teamList");
+
+list.innerHTML="Loading...";
+
+const snap=await get(ref(db,"tournamentEntries"));
+
+if(!snap.exists()){
+
+list.innerHTML="No Teams Found";
+return;
+
+}
+
+let html="";
+
+snap.forEach(tournamentSnap=>{
+
+tournamentSnap.forEach(child=>{
+
+const team = child.val();
+
+const round=document.getElementById("qualifyRound").value;
+
+if(
+team.tournamentId===tournament &&
+team.currentRound===round &&
+team.group===group
+){
+
+html+=`
+
+<label style="
+display:flex;
+align-items:center;
+gap:10px;
+padding:12px;
+margin-bottom:10px;
+background:#1b1b1b;
+border-radius:12px;
+cursor:pointer;
+">
+
+<input
+type="checkbox"
+class="qualifyTeam"
+value="${child.key}"
+style="
+width:20px;
+height:20px;
+margin:0;
+accent-color:#a855f7;
+flex:none;
+">
+
+<div>
+
+<b>${team.teamName}</b><br>
+
+<small>${team.uid}</small>
+
+</div>
+
+</label>
+
+`;
+
+}
+
+});
+
+});
+
+list.innerHTML=html||"No Teams Found";
+
+}
+
+async function qualifySelectedTeams(){
+
+const targetRound=document.getElementById("targetRound").value;
+
+const targetGroup=document.getElementById("targetGroup").value;
+
+if(!targetRound||!targetGroup){
+
+alert("Select Target Round & Target Group");
+
+return;
+
+}
+
+const tournament=document.getElementById("qualifyTournament").value;
+const currentRound=document.getElementById("qualifyRound").value;
+
+
+const checked=document.querySelectorAll(".qualifyTeam:checked");
+
+if(checked.length===0){
+
+alert("Select at least one team");
+return;
+
+}
+
+for(const team of checked){
+
+const teamKey=team.value;
+
+const teamSnap = await get(
+  ref(db, `tournamentEntries/${tournament}/${teamKey}`)
+);
+
+if (teamSnap.exists()) {
+  
+  const teamData = teamSnap.val();
+  
+  const qualifiedRounds = teamData.qualifiedRounds || {};
+qualifiedRounds[targetRound] = true;
+
+const roundGroups = teamData.roundGroups || {};
+roundGroups[targetRound] = targetGroup;
+
+await update(
+  ref(db, `tournamentEntries/${tournament}/${teamKey}`),
+  {
+    currentRound: targetRound,
+    group: targetGroup,
+    status: "Qualified",
+    qualifiedRounds,
+    roundGroups
+  }
+);
+  
+}
+}
+
+document.getElementById("qualifyMsg").innerHTML=
+`✅ ${checked.length} Team(s) Qualified to ${targetRound} - ${targetGroup}`;
+
+loadRegisteredTeams();
+
+}
+
+
+
+document.getElementById("roundPage").onclick=showRoundPage;
+
+document.getElementById("slotPage").onclick=showSlotPage;
+document.getElementById("roomPage").onclick=showRoomPage;
+document.getElementById("pointPage").onclick=showPointPage;
+
+document.getElementById("qualifyPage").onclick=showQualifyPage;
+document.getElementById("schedulePage").onclick=showSchedulePage;
+</script>
+
+</body>
+</html>
