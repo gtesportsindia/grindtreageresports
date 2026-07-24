@@ -565,25 +565,33 @@ loadTournament();
 
 async function openRoundPopup(){
 
-const snap=await get(ref(db,"rounds/"+tournamentId));
+const user = auth.currentUser;
 
-if(!snap.exists()){
-alert("No Round Found");
-return;
+const entrySnap = await get(
+    ref(db, "tournamentEntries/" + tournamentId + "/" + user.uid)
+);
+
+if (!entrySnap.exists()) {
+    alert("You are not registered");
+    return;
 }
 
-const select=document.getElementById("roundSelect");
-select.innerHTML="";
+const my = entrySnap.val();
 
-Object.keys(snap.val()).forEach(round=>{
+const select = document.getElementById("roundSelect");
+select.innerHTML = "";
 
-select.innerHTML+=`
-<option value="${round}">
-${round}
-</option>
-`;
+const rounds = my.qualifiedRounds || {
+    Round_1: true
+};
 
+Object.keys(rounds).forEach(round => {
+    select.innerHTML += `
+        <option value="${round}">${round}</option>
+    `;
 });
+
+document.getElementById("continueRound").onclick = loadSlotList;
 
 document.getElementById("roundPopup").style.display="flex";
 
@@ -656,6 +664,180 @@ document.getElementById("slotPopup").style.display="flex";
 
 }
 
+async function openRoomRoundPopup() {
+    
+    const user = auth.currentUser;
+    
+    const entrySnap = await get(
+        ref(db, "tournamentEntries/" + tournamentId + "/" + user.uid)
+    );
+    
+    if (!entrySnap.exists()) {
+        alert("You are not registered");
+        return;
+    }
+    
+    const my = entrySnap.val();
+    
+    const select = document.getElementById("roundSelect");
+    
+    select.innerHTML = "";
+    
+    const rounds = my.qualifiedRounds || {
+        Round_1: true
+    };
+    
+    Object.keys(rounds).forEach(round => {
+        
+        select.innerHTML += `
+<option value="${round}">
+${round}
+</option>
+`;
+        
+    });
+    
+    document.getElementById("continueRound").onclick = loadRoomDetails;
+    
+    document.getElementById("roundPopup").style.display = "flex";
+    
+}
+async function openPointRoundPopup() {
+    
+    const user = auth.currentUser;
+    
+    const entrySnap = await get(
+        ref(db, "tournamentEntries/" + tournamentId + "/" + user.uid)
+    );
+    
+    if (!entrySnap.exists()) {
+        alert("You are not registered");
+        return;
+    }
+    
+    const my = entrySnap.val();
+    
+    const select = document.getElementById("roundSelect");
+    
+    select.innerHTML = "";
+    
+    const rounds = my.qualifiedRounds || {
+        Round_1: true
+    };
+    
+    Object.keys(rounds).forEach(round => {
+        
+        select.innerHTML += `
+<option value="${round}">
+${round}
+</option>
+`;
+        
+    });
+    
+    document.getElementById("continueRound").onclick = loadPointTable;
+    
+    document.getElementById("roundPopup").style.display = "flex";
+    
+}
+async function loadRoomDetails(){
+
+const selectedRound=document.getElementById("roundSelect").value;
+
+document.getElementById("roundPopup").style.display="none";
+
+const user=auth.currentUser;
+
+const entrySnap=await get(
+ref(db,"tournamentEntries/"+tournamentId+"/"+user.uid)
+);
+
+if(!entrySnap.exists()){
+alert("You are not registered.");
+return;
+}
+
+const groupName=entrySnap.val().group;
+
+const roomSnap=await get(
+ref(db,"roomDetails/"+tournamentId+"/"+selectedRound+"/"+groupName)
+);
+
+if(!roomSnap.exists()){
+alert("Room Details Coming Soon");
+return;
+}
+
+const room=roomSnap.val();
+
+document.getElementById("roomIdText").innerText=room.roomId||"--";
+document.getElementById("roomPassText").innerText=room.password||"--";
+
+document.getElementById("roomPopup").style.display="flex";
+
+}
+async function loadPointTable(){
+
+const selectedRound=document.getElementById("roundSelect").value;
+
+document.getElementById("roundPopup").style.display="none";
+
+const user=auth.currentUser;
+
+const entrySnap=await get(
+ref(db,"tournamentEntries/"+tournamentId+"/"+user.uid)
+);
+
+if(!entrySnap.exists()){
+alert("You are not registered.");
+return;
+}
+
+const groupName=entrySnap.val().group;
+
+const pointSnap=await get(
+ref(db,"pointTables/"+tournamentId+"/"+selectedRound+"/"+groupName)
+);
+
+const table=document.getElementById("pointTableBody");
+
+table.innerHTML="";
+
+if(!pointSnap.exists()){
+
+table.innerHTML=`
+<tr>
+<td colspan="5">Point Table Coming Soon</td>
+</tr>
+`;
+
+document.getElementById("pointPopup").style.display="flex";
+
+return;
+
+}
+
+const data=pointSnap.val();
+
+Object.keys(data).forEach((team,index)=>{
+
+const p=data[team];
+
+table.innerHTML+=`
+<tr>
+<td>${index+1}</td>
+<td>${team}</td>
+<td>${p.kills||0}</td>
+<td>${p.position||0}</td>
+<td>${p.total||0}</td>
+</tr>
+`;
+
+});
+
+document.getElementById("pointPopup").style.display="flex";
+
+}
 async function loadTournament(){
     const snapshot=await get(
 ref(db,"tournaments/"+tournamentId)
@@ -686,16 +868,34 @@ db,
 )
 );
 
-if(entrySnap.exists()){
+if (entrySnap.exists()) {
+    
+    const my = entrySnap.val();
+    const currentRound = my.currentRound || "Round_1";
+    
+    const scheduleSnap = await get(
+        ref(
+            db,
+            "matchSchedule/" + tournamentId + "/" + currentRound + "/" + my.group
+        )
+    );
+    
+    if (scheduleSnap.exists()) {
+        
+        const s = scheduleSnap.val();
+        
+        document.getElementById("startTime").innerText =
+            (s.date || "--") + " | " + (s.time || "--");
+        
+    }
+    
+    document.getElementById("myCard").style.display = "block";
+    
+    document.getElementById("myStatus").innerText = my.status || "Registered";
+    document.getElementById("myTeam").innerText = my.teamName || "--";
+    document.getElementById("myGroup").innerText = my.group || "--";
+    document.getElementById("mySlot").innerText = my.slot || "--";
 
-const my=entrySnap.val();
-
-document.getElementById("myCard").style.display="block";
-
-document.getElementById("myStatus").innerText=my.status||"Registered";
-document.getElementById("myTeam").innerText=my.teamName||"--";
-document.getElementById("myGroup").innerText=my.group||"--";
-document.getElementById("mySlot").innerText=my.slot||"--";
 
 }else{
 
@@ -740,7 +940,7 @@ document.getElementById("availableSlots").innerText=
 Number(t.slots)-Number(t.registeredTeams||0);
 
 document.getElementById("regEnd").innerText=t.registration;
-document.getElementById("startTime").innerText=t.date;
+
 
 document.getElementById("rulesList").innerHTML=`
 
@@ -859,9 +1059,15 @@ entryFee:tour.entry,
 prizePool:tour.prize,
 group:groupName,
 slot:slotNumber,
+
 status:"Registered",
+currentRound:"Round_1",
+
+qualifiedRounds:{
+Round_1:true
+},
+
 registeredAt:new Date().toLocaleString(),
-time:Date.now()
 
 });
 
@@ -902,6 +1108,8 @@ document.getElementById("cancelPopup").onclick=()=>{
 popup.style.display="none";
 };
 document.getElementById("slotBtn").onclick = openRoundPopup;
+document.getElementById("roomBtn").onclick = openRoomRoundPopup;
+document.getElementById("pointBtn").onclick = openPointRoundPopup;
 
 document.getElementById("closeSlotPopup").onclick = () => {
 
@@ -914,6 +1122,12 @@ document.getElementById("continueRound").onclick = loadSlotList;
 document.getElementById("cancelRound").onclick = () => {
 
 document.getElementById("roundPopup").style.display = "none";
+
+};
+
+document.getElementById("closeRoomPopup").onclick = () => {
+
+document.getElementById("roomPopup").style.display = "none";
 
 };
 
@@ -1036,6 +1250,70 @@ Cancel
 
 <button id="continueRound">
 Continue
+</button>
+
+</div>
+
+</div>
+
+</div>
+<!-- Room Details Popup -->
+
+<div id="roomPopup" class="popup">
+
+<div class="popupBox">
+
+<h2>Room Details</h2>
+
+<div class="rule">
+<b>Room ID</b><br><br>
+<span id="roomIdText">--</span>
+</div>
+
+<div class="rule">
+<b>Password</b><br><br>
+<span id="roomPassText">--</span>
+</div>
+
+<div class="popupBtns">
+<button id="closeRoomPopup">Close</button>
+</div>
+
+</div>
+
+</div>
+<!-- Point Table Popup -->
+
+<div id="pointPopup" class="popup">
+
+<div class="popupBox">
+
+<h2>Point Table</h2>
+
+<table style="width:100%;border-collapse:collapse;">
+
+<thead>
+
+<tr>
+<th>Rank</th>
+<th>Team</th>
+<th>Kills</th>
+<th>Pos</th>
+<th>Total</th>
+</tr>
+
+</thead>
+
+<tbody id="pointTableBody">
+
+</tbody>
+
+</table>
+
+<div class="popupBtns">
+
+<button onclick="document.getElementById('pointPopup').style.display='none'">
+Close
 </button>
 
 </div>
