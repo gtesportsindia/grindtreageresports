@@ -19,169 +19,172 @@ font-family:Inter,Arial,sans-serif;
 }
 
 :root{
---bg:#060B14;
---card:#101827;
---card2:#141E30;
---border:rgba(255,255,255,.06);
---blue:#3B82F6;
---blue2:#2563EB;
+--bg:#050505;
+--card:#101010;
+--card2:#171717;
+--border:rgba(177,77,255,.18);
+--purple:#b14dff;
+--purple2:#8d2cff;
 --text:#fff;
---sub:#9CA3AF;
+--sub:#cbd5e1;
 }
 
 body{
-background:var(--bg);
+background:#050505;
+background-image:radial-gradient(circle at top,#3d0d63 0%,#050505 45%);
 color:#fff;
 padding-bottom:100px;
 }
 
 .header{
-height:70px;
+height:72px;
 display:flex;
 align-items:center;
 justify-content:space-between;
 padding:0 18px;
-background:#0A111F;
-border-bottom:1px solid var(--border);
+background:#0c0c0c;
+border-bottom:1px solid rgba(255,255,255,.06);
 position:sticky;
 top:0;
 z-index:999;
 }
 
 .back{
-width:42px;
-height:42px;
+width:46px;
+height:46px;
 display:flex;
 align-items:center;
 justify-content:center;
-background:#121C2D;
-border-radius:12px;
-font-size:18px;
+background:#181818;
+border-radius:14px;
 cursor:pointer;
+font-size:18px;
 }
 
 .logo{
-font-size:20px;
-font-weight:700;
+font-size:22px;
+font-weight:900;
+color:var(--purple);
 }
 
 .wallet{
-padding:10px 14px;
-background:#121C2D;
+padding:10px 16px;
+background:#181818;
+border-radius:14px;
 border:1px solid var(--border);
-border-radius:12px;
 font-weight:700;
 }
 
 .container{
-padding:16px;
+padding:18px;
 }
 
 .hero{
-background:linear-gradient(135deg,#13203A,#0A111F);
-border-radius:20px;
-padding:22px;
+background:linear-gradient(135deg,#32104d,#121212);
+padding:24px;
+border-radius:22px;
 border:1px solid var(--border);
 position:relative;
 overflow:hidden;
-margin-bottom:18px;
+margin-bottom:20px;
+box-shadow:0 15px 40px rgba(177,77,255,.18);
 }
 
-.hero::after{
-content:"🏆";
+.hero::before{
+content:"";
 position:absolute;
-right:18px;
-top:12px;
-font-size:90px;
-opacity:.05;
+width:260px;
+height:260px;
+border-radius:50%;
+background:rgba(177,77,255,.08);
+right:-90px;
+top:-90px;
 }
 
 .game{
 font-size:12px;
-letter-spacing:2px;
+letter-spacing:3px;
 text-transform:uppercase;
-color:#60A5FA;
+color:#d8b4fe;
 }
 
 .title{
 font-size:34px;
 font-weight:900;
-margin-top:8px;
-line-height:40px;
+margin-top:10px;
+line-height:42px;
 }
 
 .desc{
 margin-top:14px;
-color:#B9C4D8;
-line-height:24px;
-font-size:15px;
+line-height:25px;
+color:#d1d5db;
 }
 
 .status{
 margin-top:18px;
 display:inline-flex;
-padding:8px 16px;
-background:#1E293B;
+padding:10px 18px;
+background:#1f2937;
 border-radius:30px;
 font-size:13px;
 font-weight:700;
-color:#4ADE80;
+color:#22c55e;
 }
 
 .card{
-background:linear-gradient(180deg,#111827,#0F172A);
-border:1px solid rgba(59,130,246,.25);
-border-radius:18px;
+background:#101010;
+border:1px solid var(--border);
+border-radius:20px;
 padding:18px;
-margin-bottom:16px;
-box-shadow:0 8px 25px rgba(0,0,0,.35);
+margin-bottom:18px;
 }
 
 .cardTitle{
 font-size:18px;
-font-weight:700;
+font-weight:800;
 margin-bottom:16px;
+color:#d8b4fe;
 }
 
 .grid{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:14px;
+gap:15px;
 }
 
 .box{
-background:#162033;
-padding:14px;
-border-radius:14px;
+background:#171717;
+padding:16px;
+border-radius:16px;
+border-left:5px solid var(--purple);
 }
 
 .label{
 font-size:13px;
-color:#AAB8D4;
+color:#9ca3af;
 margin-bottom:8px;
 font-weight:600;
 }
 
 .value{
-font-size:19px;
-font-weight:700;
+font-size:20px;
+font-weight:800;
 }
 
-.green{color:#4ADE80;}
-.blue{color:#60A5FA;}
+.green{color:#22c55e;}
+.blue{color:#60a5fa;}
 
 .joinBtn{
 width:220px;
 height:56px;
 border:none;
-border-radius:14px;
-background:linear-gradient(135deg,#2563EB,#38BDF8);
+border-radius:16px;
+background:linear-gradient(90deg,#8d2cff,#d946ef);
 color:#fff;
 font-size:16px;
-font-weight:700;
+font-weight:800;
 cursor:pointer;
-transition:.25s;
-box-shadow:0 10px 35px rgba(37,99,235,.35);
 }
 
 .resourceNav{
@@ -192,10 +195,10 @@ margin-top:20px;
 
 .navItem{
 flex:1;
-background:#162033;
-border:1px solid rgba(255,255,255,.06);
-border-radius:14px;
-padding:14px;
+background:#171717;
+border:1px solid var(--border);
+border-radius:16px;
+padding:15px;
 display:flex;
 flex-direction:column;
 align-items:center;
@@ -206,56 +209,58 @@ cursor:pointer;
 
 .navItem i{
 font-size:22px;
-color:#60A5FA;
+color:#d8b4fe;
 }
 
 .navItem span{
 font-size:13px;
-font-weight:600;
+font-weight:700;
 }
 
 .rule{
-background:#162033;
+background:#171717;
 padding:14px;
 border-radius:14px;
 margin-top:10px;
 line-height:24px;
 }
+
 .popup{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,.7);
 display:none;
 justify-content:center;
 align-items:center;
+background:rgba(0,0,0,.8);
 z-index:99999;
 }
 
 .popupBox{
 width:92%;
-max-width:400px;
-background:#111827;
+max-width:430px;
+background:#101010;
 padding:22px;
-border-radius:18px;
-border:1px solid rgba(255,255,255,.08);
+border-radius:20px;
+border:1px solid var(--border);
 }
 
 .popupBox h2{
 margin-bottom:18px;
 text-align:center;
+color:#d8b4fe;
 }
 
-.popupBox input{
+.popupBox input,
+.popupBox select{
 width:100%;
-height:50px;
+height:52px;
 margin-bottom:12px;
 border:none;
 outline:none;
 padding:0 15px;
-border-radius:12px;
-background:#1F2937;
+border-radius:14px;
+background:#1b1b1b;
 color:#fff;
-font-size:15px;
 }
 
 .popupBtns{
@@ -266,23 +271,24 @@ margin-top:10px;
 
 .popupBtns button{
 flex:1;
-height:48px;
+height:50px;
 border:none;
-border-radius:12px;
+border-radius:14px;
 font-size:15px;
 font-weight:700;
 cursor:pointer;
 }
 
 #cancelPopup{
-background:#374151;
+background:#2f2f2f;
 color:#fff;
 }
 
 #confirmJoin{
-background:#2563EB;
+background:linear-gradient(90deg,#8d2cff,#d946ef);
 color:#fff;
 }
+
 </style>
 
 </head>
@@ -292,11 +298,11 @@ color:#fff;
 <header class="header">
 
 <div class="back" onclick="location.href='tournament.html'">
-    <i class="fa-solid fa-arrow-left"></i>
+<i class="fa-solid fa-arrow-left"></i>
 </div>
 
 <div class="logo">
-Tournament
+GT ESPORTS
 </div>
 
 <div class="wallet">
@@ -310,110 +316,149 @@ Tournament
 
 <div class="hero">
 
-<div class="game">
-FREE FIRE MAX
-</div>
+    <div class="game">
+        FREE FIRE MAX
+    </div>
 
-<div class="title" id="tournamentName">
-Loading...
-</div>
+    <div class="title" id="tournamentName">
+        Loading...
+    </div>
 
-<div class="desc" id="description">
-Loading Tournament...
-</div>
+    <div class="desc" id="description">
+        Loading Tournament...
+    </div>
 
-<div class="status" id="status">
-Loading...
-</div>
-
-</div>
-<div class="card">
-
-<div class="cardTitle">
-Tournament Information
-</div>
-
-<div class="grid">
-
-<div class="box">
-<div class="label">Prize Pool</div>
-<div class="value green" id="prizePool">--</div>
-</div>
-
-<div class="box">
-<div class="label">Entry Fee</div>
-<div class="value blue" id="entryFee">--</div>
-</div>
-
-<div class="box">
-<div class="label">Mode</div>
-<div class="value" id="mode">--</div>
-</div>
-
-<div class="box">
-<div class="label">Map</div>
-<div class="value" id="map">--</div>
-</div>
-
-<div class="box">
-<div class="label">Date</div>
-<div class="value" id="date">--</div>
-</div>
-
-<div class="box">
-<div class="label">Slots</div>
-<div class="value blue" id="slots">--</div>
-</div>
+    <div class="status" id="status">
+        Loading...
+    </div>
 
 </div>
 
+<!-- YOUR REGISTRATION -->
+
+<div class="card" id="myCard" style="display:none;">
+
+    <div class="cardTitle">
+        <i class="fa-solid fa-circle-check"></i>
+        Your Registration
+    </div>
+
+    <div class="grid">
+
+        <div class="box">
+            <div class="label">Status</div>
+            <div class="value green" id="myStatus">Registered</div>
+        </div>
+
+        <div class="box">
+            <div class="label">Team Name</div>
+            <div class="value" id="myTeam">--</div>
+        </div>
+
+        <div class="box">
+            <div class="label">Group</div>
+            <div class="value blue" id="myGroup">--</div>
+        </div>
+
+        <div class="box">
+            <div class="label">Slot</div>
+            <div class="value blue" id="mySlot">--</div>
+        </div>
+
+    </div>
+
 </div>
+
+<!-- Tournament Information -->
 
 <div class="card">
 
-<div class="cardTitle">
-Tournament Entry
-</div>
+    <div class="cardTitle">
+        Tournament Information
+    </div>
 
-<div style="display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;">
+    <div class="grid">
 
-<div>
+        <div class="box">
+            <div class="label">Prize Pool</div>
+            <div class="value green" id="prizePool">--</div>
+        </div>
 
-<div style="font-size:13px;color:#9CA3AF;">
-Entry Fee
-</div>
+        <div class="box">
+            <div class="label">Entry Fee</div>
+            <div class="value blue" id="entryFee">--</div>
+        </div>
 
-<div id="bottomEntry"
-style="font-size:28px;font-weight:700;color:#60A5FA;">
-0 GTC
-</div>
+        <div class="box">
+            <div class="label">Mode</div>
+            <div class="value" id="mode">--</div>
+        </div>
 
-</div>
+        <div class="box">
+            <div class="label">Map</div>
+            <div class="value" id="map">--</div>
+        </div>
 
-<button class="joinBtn" id="joinTournament">
-JOIN TOURNAMENT
-</button>
+        <div class="box">
+            <div class="label">Date</div>
+            <div class="value" id="date">--</div>
+        </div>
 
-</div>
+        <div class="box">
+            <div class="label">Slots</div>
+            <div class="value blue" id="slots">--</div>
+        </div>
 
-<div id="resourceNav" class="resourceNav" style="display:none;">
-
-<div class="navItem" id="slotBtn">
-<i class="fa-solid fa-list-check"></i>
-<span>Slot List</span>
-</div>
-
-<div class="navItem" id="roomBtn">
-<i class="fa-solid fa-key"></i>
-<span>ID & Password</span>
-</div>
-
-<div class="navItem" id="pointBtn">
-<i class="fa-solid fa-table-list"></i>
-<span>Point Table</span>
-</div>
+    </div>
 
 </div>
+
+<!-- Tournament Entry -->
+
+<div class="card">
+
+    <div class="cardTitle">
+        Tournament Entry
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;">
+
+        <div>
+
+            <div style="font-size:13px;color:#9CA3AF;">
+                Entry Fee
+            </div>
+
+            <div id="bottomEntry" style="font-size:28px;font-weight:700;color:#60A5FA;">
+                0 GTC
+            </div>
+
+        </div>
+
+        <button class="joinBtn" id="joinTournament">
+            JOIN TOURNAMENT
+        </button>
+
+    </div>
+
+    <div id="resourceNav" class="resourceNav" style="display:none;">
+
+        <div class="navItem" id="slotBtn">
+            <i class="fa-solid fa-list-check"></i>
+            <span>Slot List</span>
+        </div>
+
+        <div class="navItem" id="roomBtn">
+            <i class="fa-solid fa-key"></i>
+            <span>ID & Password</span>
+        </div>
+
+        <div class="navItem" id="pointBtn">
+            <i class="fa-solid fa-table-list"></i>
+            <span>Point Table</span>
+        </div>
+
+    </div>
 
 </div>
 
@@ -483,7 +528,8 @@ getDatabase,
 ref,
 get,
 set,
-runTransaction
+runTransaction,
+onValue
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
 import {
@@ -492,21 +538,21 @@ onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 const firebaseConfig = {
-apiKey: "AIzaSyAxxvbQlbvqtedhoicrijzAlljIjKeejWw",
-authDomain: "grind-treager.firebaseapp.com",
-databaseURL: "https://grind-treager-default-rtdb.firebaseio.com",
-projectId: "grind-treager",
-storageBucket: "grind-treager.firebasestorage.app",
-messagingSenderId: "236334920342",
-appId: "1:236334920342:web:5ae959f81b41541f5608b7"
+apiKey:"AIzaSyAxxvbQlbvqtedhoicrijzAlljIjKeejWw",
+authDomain:"grind-treager.firebaseapp.com",
+databaseURL:"https://grind-treager-default-rtdb.firebaseio.com",
+projectId:"grind-treager",
+storageBucket:"grind-treager.firebasestorage.app",
+messagingSenderId:"236334920342",
+appId:"1:236334920342:web:5ae959f81b41541f5608b7"
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-const auth = getAuth(app);
+const app=initializeApp(firebaseConfig);
+const db=getDatabase(app);
+const auth=getAuth(app);
 
-const params = new URLSearchParams(location.search);
-const tournamentId = params.get("id");
+const params=new URLSearchParams(location.search);
+const tournamentId=params.get("id");
 
 if(!tournamentId){
 alert("Tournament Not Found");
@@ -517,9 +563,103 @@ onAuthStateChanged(auth,()=>{
 loadTournament();
 });
 
-async function loadTournament(){
+async function openRoundPopup(){
 
-const snapshot=await get(ref(db,"tournaments/"+tournamentId));
+const snap=await get(ref(db,"rounds/"+tournamentId));
+
+if(!snap.exists()){
+alert("No Round Found");
+return;
+}
+
+const select=document.getElementById("roundSelect");
+select.innerHTML="";
+
+Object.keys(snap.val()).forEach(round=>{
+
+select.innerHTML+=`
+<option value="${round}">
+${round}
+</option>
+`;
+
+});
+
+document.getElementById("roundPopup").style.display="flex";
+
+}
+
+async function loadSlotList(){
+
+const firstRound=document.getElementById("roundSelect").value;
+
+document.getElementById("roundPopup").style.display="none";
+
+const user=auth.currentUser;
+
+const entrySnap=await get(
+ref(db,"tournamentEntries/"+tournamentId+"/"+user.uid)
+);
+
+if(!entrySnap.exists()){
+alert("You are not registered.");
+return;
+}
+
+const groupName=entrySnap.val().group;
+
+onValue(
+
+ref(
+db,
+"slotLists/"+tournamentId+"/"+firstRound+"/"+groupName
+),
+
+(snap)=>{
+
+const table=document.getElementById("slotTable");
+
+table.innerHTML="";
+
+if(!snap.exists()){
+
+table.innerHTML=`
+<tr>
+<td colspan="2">
+No Slot List
+</td>
+</tr>
+`;
+
+return;
+
+}
+
+const data=snap.val();
+
+for(let i=1;i<=12;i++){
+
+table.innerHTML+=`
+<tr>
+<td>${i}</td>
+<td>${data["slot"+i]||"-"}</td>
+</tr>
+`;
+
+}
+
+}
+
+);
+
+document.getElementById("slotPopup").style.display="flex";
+
+}
+
+async function loadTournament(){
+    const snapshot=await get(
+ref(db,"tournaments/"+tournamentId)
+);
 
 if(!snapshot.exists()){
 alert("Tournament Not Found");
@@ -527,6 +667,7 @@ return;
 }
 
 const t=snapshot.val();
+
 const user=auth.currentUser;
 
 if(user){
@@ -539,8 +680,28 @@ document.getElementById("wallet").innerText=
 walletSnap.exists()?walletSnap.val():0;
 
 const entrySnap=await get(
-ref(db,"tournamentEntries/"+tournamentId+"/"+user.uid)
+ref(
+db,
+"tournamentEntries/"+tournamentId+"/"+user.uid
+)
 );
+
+if(entrySnap.exists()){
+
+const my=entrySnap.val();
+
+document.getElementById("myCard").style.display="block";
+
+document.getElementById("myStatus").innerText=my.status||"Registered";
+document.getElementById("myTeam").innerText=my.teamName||"--";
+document.getElementById("myGroup").innerText=my.group||"--";
+document.getElementById("mySlot").innerText=my.slot||"--";
+
+}else{
+
+document.getElementById("myCard").style.display="none";
+
+}
 
 if(entrySnap.exists()){
 
@@ -582,116 +743,183 @@ document.getElementById("regEnd").innerText=t.registration;
 document.getElementById("startTime").innerText=t.date;
 
 document.getElementById("rulesList").innerHTML=`
-<div class="rule">Only registered teams are allowed to participate in the tournament.</div>
-<div class="rule">Join the room before match time.</div>
-<div class="rule">Hack, cheat or exploit = Permanent Ban.</div>
-<div class="rule">Use registered IGN & UID only.</div>
-<div class="rule">Organizer decision will be final.</div>
+
+<div class="rule">
+Only registered teams are allowed to participate in the tournament.
+</div>
+
+<div class="rule">
+Join the room before match time.
+</div>
+
+<div class="rule">
+Hack, cheat or exploit = Permanent Ban.
+</div>
+
+<div class="rule">
+Use registered IGN & UID only.
+</div>
+
+<div class="rule">
+Organizer decision will be final.
+</div>
+
 `;
 
 const joinBtn=document.getElementById("joinTournament");
-const popup = document.getElementById("registerPopup");
+const popup=document.getElementById("registerPopup");
 
-joinBtn.onclick = () => {
-    popup.style.display = "flex";
+joinBtn.onclick=()=>{
+popup.style.display="flex";
 };
-document.getElementById("confirmJoin").onclick = async () => {
 
-const teamName = document.getElementById("teamName").value.trim();
-const iglName = document.getElementById("iglName").value.trim();
-const iglUid = document.getElementById("iglUid").value.trim();
-const whatsapp = document.getElementById("whatsapp").value.trim();
+document.getElementById("confirmJoin").onclick=async()=>{
+    const teamName=document.getElementById("teamName").value.trim();
+const iglName=document.getElementById("iglName").value.trim();
+const iglUid=document.getElementById("iglUid").value.trim();
+const whatsapp=document.getElementById("whatsapp").value.trim();
 
 if(!teamName || !iglName || !iglUid || !whatsapp){
-    alert("Please fill all fields");
-    return;
+alert("Please fill all fields");
+return;
 }
+
 if(!/^[6-9]\d{9}$/.test(whatsapp)){
-    alert("Enter a valid 10-digit WhatsApp Number");
-    return;
+alert("Enter a valid 10-digit WhatsApp Number");
+return;
 }
-const user = auth.currentUser;
+
+const user=auth.currentUser;
 
 if(!user){
-    alert("Please Login First");
-    return;
+alert("Please Login First");
+return;
 }
 
-const uid = user.uid;
+const uid=user.uid;
 
-const walletRef = ref(db,"wallets/"+uid+"/balance");
-const walletSnap = await get(walletRef);
+const walletRef=ref(db,"wallets/"+uid+"/balance");
+
+const walletSnap=await get(walletRef);
 
 if(!walletSnap.exists()){
-    alert("Wallet Not Found");
-    return;
+alert("Wallet Not Found");
+return;
 }
 
-const wallet = Number(walletSnap.val());
+const wallet=Number(walletSnap.val());
 
-const tourSnap = await get(ref(db,"tournaments/"+tournamentId));
-const tour = tourSnap.val();
+const tourSnap=await get(
+ref(db,"tournaments/"+tournamentId)
+);
 
-if(wallet < Number(tour.entry)){
-    alert("Insufficient GTC Coin");
-    return;
+const tour=tourSnap.val();
+
+if(wallet<Number(tour.entry)){
+alert("Insufficient GTC Coin");
+return;
 }
 
-const joinedRef = ref(db,"tournamentEntries/"+tournamentId+"/"+uid);
+const joinedRef=ref(
+db,
+"tournamentEntries/"+tournamentId+"/"+uid
+);
 
-const joinedSnap = await get(joinedRef);
+const joinedSnap=await get(joinedRef);
 
 if(joinedSnap.exists()){
-    alert("Already Registered");
-    return;
+alert("Already Registered");
+return;
 }
+
+const totalRegistered=Number(tour.registeredTeams||0);
+
+const groupSize=12;
+
+const groupNumber=Math.floor(totalRegistered/groupSize);
+
+const groupName="Group "+String.fromCharCode(65+groupNumber);
+
+const slotNumber=(totalRegistered%groupSize)+1;
 
 await runTransaction(walletRef,(coin)=>{
-    return Number(coin||0)-Number(tour.entry);
+return Number(coin||0)-Number(tour.entry);
 });
 
-await set(joinedRef, {
-    uid: uid,
-    
-    tournamentId: tournamentId,
-    tournamentName: tour.name,
-    
-    teamName: teamName,
-    iglName: iglName,
-    iglUid: iglUid,
-    whatsapp: whatsapp,
-    
-    entryFee: tour.entry,
-    prizePool: tour.prize,
-    
-    status: "Registered",
-    
-    registeredAt: new Date().toLocaleString(),
-    
-    time: Date.now()
+await set(joinedRef,{
+
+uid:uid,
+tournamentId:tournamentId,
+tournamentName:tour.name,
+teamName:teamName,
+iglName:iglName,
+iglUid:iglUid,
+whatsapp:whatsapp,
+entryFee:tour.entry,
+prizePool:tour.prize,
+group:groupName,
+slot:slotNumber,
+status:"Registered",
+registeredAt:new Date().toLocaleString(),
+time:Date.now()
+
 });
+
+await set(
+
+ref(
+db,
+"slotLists/"+tournamentId+"/Round_1/"+groupName+"/slot"+slotNumber
+),
+
+teamName
+
+);
 
 await runTransaction(
+
 ref(db,"tournaments/"+tournamentId+"/registeredTeams"),
+
 (value)=>{
-    return (value||0)+1;
+return (value||0)+1;
 }
+
 );
 
 popup.style.display="none";
 
-alert("Registration Successful");
+alert(
+"Registration Successful\n\n"+
+groupName+
+"\nSlot "+slotNumber
+);
+
 location.reload();
 
 };
-document.getElementById("cancelPopup").onclick = () => {
-    popup.style.display = "none";
+
+document.getElementById("cancelPopup").onclick=()=>{
+popup.style.display="none";
+};
+document.getElementById("slotBtn").onclick = openRoundPopup;
+
+document.getElementById("closeSlotPopup").onclick = () => {
+
+document.getElementById("slotPopup").style.display = "none";
+
 };
 
+document.getElementById("continueRound").onclick = loadSlotList;
+
+document.getElementById("cancelRound").onclick = () => {
+
+document.getElementById("roundPopup").style.display = "none";
+
+};
 
 }
-
 </script>
+
 <!-- Registration Popup -->
 
 <div id="registerPopup" class="popup">
@@ -700,19 +928,115 @@ document.getElementById("cancelPopup").onclick = () => {
 
 <h2>Tournament Registration</h2>
 
-<input type="text" id="teamName" placeholder="Team Name">
+<input
+type="text"
+id="teamName"
+placeholder="Team Name">
 
-<input type="text" id="iglName" placeholder="IGL Name">
+<input
+type="text"
+id="iglName"
+placeholder="IGL Name">
 
-<input type="number" id="iglUid" placeholder="IGL UID">
+<input
+type="number"
+id="iglUid"
+placeholder="IGL UID">
 
-<input type="tel" id="whatsapp" placeholder="WhatsApp Number">
+<input
+type="tel"
+id="whatsapp"
+placeholder="WhatsApp Number">
 
 <div class="popupBtns">
 
-<button id="cancelPopup">Cancel</button>
+<button id="cancelPopup">
+Cancel
+</button>
 
-<button id="confirmJoin">Confirm</button>
+<button id="confirmJoin">
+Confirm
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Slot List Popup -->
+
+<div id="slotPopup" class="popup">
+
+<div class="popupBox">
+
+<h2>Slot List</h2>
+
+<table style="width:100%;border-collapse:collapse;">
+
+<thead>
+
+<tr>
+
+<th style="padding:10px">
+Slot
+</th>
+
+<th style="padding:10px">
+Team
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="slotTable">
+
+</tbody>
+
+</table>
+
+<div class="popupBtns">
+
+<button id="closeSlotPopup">
+Close
+</button>
+
+</div>
+
+</div>
+
+</div>
+<!-- Round Select Popup -->
+
+<div id="roundPopup" class="popup">
+
+<div class="popupBox">
+
+<h2>Select Round</h2>
+
+<select id="roundSelect" style="
+width:100%;
+height:52px;
+background:#1b1b1b;
+color:#fff;
+border:none;
+border-radius:14px;
+padding:0 15px;
+margin-bottom:15px;
+">
+
+</select>
+
+<div class="popupBtns">
+
+<button id="cancelRound">
+Cancel
+</button>
+
+<button id="continueRound">
+Continue
+</button>
 
 </div>
 
@@ -720,4 +1044,5 @@ document.getElementById("cancelPopup").onclick = () => {
 
 </div>
 </body>
+
 </html>
