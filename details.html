@@ -297,7 +297,7 @@ color:#fff;
 
 <header class="header">
 
-<div class="back" onclick="location.href='tournament.html'">
+<div class="back" onclick="location.href='tournaments.html.'">
 <i class="fa-solid fa-arrow-left"></i>
 </div>
 
@@ -305,9 +305,17 @@ color:#fff;
 GT ESPORTS
 </div>
 
+<div style="display:flex;align-items:center;gap:10px;">
+
 <div class="wallet">
 <i class="fa-solid fa-coins"></i>
 <span id="wallet">0</span>
+</div>
+
+<div class="back" onclick="location.href="details-"details-admin.html" title="Admin Panel">
+<i class="fa-solid fa-user-shield"></i>
+</div>
+
 </div>
 
 </header>
@@ -497,7 +505,7 @@ Registration Ends
 
 <div class="box">
 <div class="label">
-Tournament Starts
+YOUR MATCH DATE/TIME
 </div>
 <div class="value" id="startTime">--</div>
 </div>
@@ -614,7 +622,10 @@ alert("You are not registered.");
 return;
 }
 
-const groupName=entrySnap.val().group;
+const my = entrySnap.val();
+
+const groupName =
+(my.roundGroups && my.roundGroups[firstRound]) || my.group;
 
 onValue(
 
@@ -757,7 +768,11 @@ alert("You are not registered.");
 return;
 }
 
-const groupName=entrySnap.val().group;
+const my = entrySnap.val();
+
+const groupName =
+(my.roundGroups && my.roundGroups[selectedRound]) || my.group;
+
 
 const roomSnap=await get(
 ref(db,"roomDetails/"+tournamentId+"/"+selectedRound+"/"+groupName)
@@ -793,7 +808,10 @@ alert("You are not registered.");
 return;
 }
 
-const groupName=entrySnap.val().group;
+const my = entrySnap.val();
+
+const groupName =
+(my.roundGroups && my.roundGroups[selectedRound]) || my.group;
 
 const pointSnap=await get(
 ref(db,"pointTables/"+tournamentId+"/"+selectedRound+"/"+groupName)
@@ -1067,6 +1085,10 @@ qualifiedRounds:{
 Round_1:true
 },
 
+roundGroups:{
+Round_1:groupName
+},
+
 registeredAt:new Date().toLocaleString(),
 
 });
@@ -1083,7 +1105,6 @@ teamName
 );
 
 await runTransaction(
-
 ref(db,"tournaments/"+tournamentId+"/registeredTeams"),
 
 (value)=>{
@@ -1324,3 +1345,4 @@ Close
 </body>
 
 </html>
+
