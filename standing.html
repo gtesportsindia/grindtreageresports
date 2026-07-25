@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 <style>
 
 *{
@@ -343,6 +344,21 @@ body{
 
 }
 
+.team-name{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+}
+
+.top6-trophy{
+    color:#FFD700;
+    font-size:15px;
+    margin-right:15px;
+    flex-shrink:0;
+}
+
+
 </style>
 </head>
 <body>
@@ -432,7 +448,7 @@ body{
     <div class="footer-top">
         <div class="footer-date">
             <i class="ri-calendar-line"></i>
-            20 JULY // 9:00 PM
+            25 JULY // 9:00 PM
         </div>
 
         <div class="footer-org">
@@ -508,7 +524,10 @@ teams.forEach((team,index)=>{
 html += `
 <div class="team-row">
 <div class="rk">${String(index+1).padStart(2,'0')}</div>
-<div>${team.name}</div>
+<div class="team-name">
+    <span>${team.name}</span>
+    ${index < 6 ? '<i class="fa-solid fa-trophy top6-trophy"></i>' : ''}
+</div>
 <div>${team.mp}</div>
 <div>${team.kp}</div>
 <div>${team.w}</div>
