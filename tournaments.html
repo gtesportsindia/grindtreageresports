@@ -1465,6 +1465,87 @@ font-size:15px;
 color:#fff;
 font-weight:700;
 }
+
+/* HELP POPUP */
+/* ===== HELP POPUP ===== */
+
+#helpPopup{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.75);
+backdrop-filter:blur(10px);
+justify-content:center;
+align-items:center;
+z-index:999999;
+padding:20px;
+}
+
+#helpPopup.show{
+display:flex;
+}
+
+#helpPopup .popup-content{
+width:100%;
+max-width:430px;
+background:linear-gradient(180deg,#172033,#0E1522);
+border:1px solid rgba(255,255,255,.08);
+border-radius:24px;
+padding:25px;
+box-shadow:0 0 40px rgba(37,99,235,.35);
+}
+
+#helpPopup h2{
+font-size:28px;
+font-weight:800;
+margin-bottom:20px;
+display:flex;
+align-items:center;
+gap:10px;
+color:#fff;
+}
+
+#helpPopup .team-input,
+#helpPopup textarea{
+width:100%;
+background:#1C2538;
+border:1px solid rgba(255,255,255,.08);
+border-radius:14px;
+padding:14px;
+color:#fff;
+font-size:15px;
+margin-bottom:15px;
+outline:none;
+}
+
+#helpPopup textarea{
+height:120px;
+resize:none;
+}
+
+#helpPopup .team-input:focus,
+#helpPopup textarea:focus{
+border-color:#2563EB;
+box-shadow:0 0 15px rgba(37,99,235,.4);
+}
+
+#helpPopup .team-btn{
+width:100%;
+height:52px;
+border:none;
+border-radius:14px;
+background:linear-gradient(90deg,#2563EB,#3B82F6);
+font-size:16px;
+font-weight:700;
+color:#fff;
+cursor:pointer;
+transition:.3s;
+}
+
+#helpPopup .team-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 0 20px rgba(37,99,235,.45);
+}
 </style>
 
 </head>
@@ -1722,8 +1803,14 @@ function openWallet(){
 }
 
 function openHelp(){
-    window.location.href="help.html";
+    document.getElementById("helpPopup").classList.add("show");
 }
+
+function closeHelp(){
+    document.getElementById("helpPopup").classList.remove("show");
+}
+
+
 </script>
 <script type="module">
 
@@ -2209,6 +2296,52 @@ onAuthStateChanged(auth,(user)=>{
 
 });
 
+// HELP FORM SUBMIT
+document.getElementById("helpForm").addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    const btn = this.querySelector("button");
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+
+    try{
+
+        const formData = new FormData(this);
+
+        const res = await fetch("https://api.web3forms.com/submit",{
+            method:"POST",
+            body:formData
+        });
+
+        const data = await res.json();
+
+        if(data.success){
+
+            alert("✅ Support request sent successfully!");
+
+            this.reset();
+
+            closeHelp();
+
+        }else{
+
+            alert("❌ Failed to send request.");
+
+        }
+
+    }catch(err){
+
+        console.error(err);
+        alert("❌ Network error. Please try again.");
+
+    }
+
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Request';
+
+});
+
 </script>
 <div id="teamPopup" class="profile-popup">
     
@@ -2422,6 +2555,70 @@ placeholder="Team Name">
     </div>
 
   </div>
+
+</div>
+<<div id="helpPopup" class="popup">
+
+<div class="popup-content">
+
+<span class="close-btn" onclick="closeHelp()">&times;</span>
+
+<h2>
+<i class="fa-solid fa-circle-question"></i>
+Help & Support
+</h2>
+
+<form id="helpForm">
+
+<input
+type="hidden"
+name="access_key"
+value="65c5dc14-9bd8-4f32-a27a-590904cfdb4f">
+
+<input
+type="text"
+name="name"
+class="team-input"
+placeholder="Your Name"
+required>
+
+<input
+type="tel"
+name="mobile"
+class="team-input"
+placeholder="Mobile Number"
+required>
+
+<input
+type="email"
+name="email"
+class="team-input"
+placeholder="Email Address"
+required>
+
+<input
+type="text"
+name="subject"
+class="team-input"
+placeholder="Subject"
+required>
+
+<textarea
+name="message"
+class="team-input"
+placeholder="Write your message..."
+required></textarea>
+
+<button
+type="submit"
+class="team-btn">
+<i class="fa-solid fa-paper-plane"></i>
+Send Request
+</button>
+
+</form>
+
+</div>
 
 </div>
 </body>
