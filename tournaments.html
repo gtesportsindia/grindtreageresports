@@ -1696,9 +1696,6 @@ placeholder="SEARCH THE ARENA">
 
 </section>
 <section class="tournaments">
-  
-  
-</div>
 </section>
 </div>
 <script>
@@ -1858,7 +1855,11 @@ container.innerHTML="";
 snapshot.forEach((child)=>{
 
 const id = child.key;
-const t = child.val();
+const t = child.val() || {};
+
+if (!t.name) return;
+
+container.innerHTML += `
 
 container.innerHTML += `
 
@@ -2557,7 +2558,7 @@ placeholder="Team Name">
   </div>
 
 </div>
-<<div id="helpPopup" class="popup">
+<div id="helpPopup" class="popup">
 
 <div class="popup-content">
 
